@@ -59,8 +59,9 @@ elmo-hikes/
 
 
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- India Murgatroyd- BCIT CST Student who loves being in nature, for a variety of sports and activities. Fun fact: I am a middle child of 3 girls.
+- Jeevan Singh Jandu - BCIT CST Student with a passion for playing and wanting to create videogames. Fun fact: I am the youngest of 3 and my siblings are both sisters.
+- Jemsel Aaron Jumapit - BCIT CST Student who loves to stay at home, procrastinate, and code. Fun fact: I have 5 brothers whose names all start with a J.
 
 ---
 
