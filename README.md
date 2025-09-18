@@ -59,10 +59,10 @@ elmo-hikes/
 
 
 ## Contributors
-- Jeevan Singh Jandu - BCIT CST Student with a passion for playing and wanting to create videogames. Fun fact: I am the youngest of 3 and my siblings are both sisters.
 - Jemsel Aaron Jumapit - BCIT CST Student who loves to stay at home, procrastinate, and code. Fun fact: I have 5 brothers whose names all start with a J.
-- India Murgatroyd- BCIT CST Student who loves being in nature, for a variety of sports and activies. Fun fact: I am a middle child of 3 girls.
---- 
+- Jeevan Singh Jandu - BCIT CST Student with a passion for playing and wanting to create videogames. Fun fact: I am the youngest of 3 and my siblings are both sisters.
+- India Murgatroyd - BCIT CST Student who loves being in nature, for a variety of sports and activities. Fun fact: I am a middle child of 3 girls.
+---
 
 
 ## Acknowledgments
