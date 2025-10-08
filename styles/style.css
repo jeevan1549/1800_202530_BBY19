@@ -1,1 +1,31 @@
 
+.bg-info {
+    background-color:  #5FDD9D !important;
+    width: 100%;
+    height: 75px;
+}
+
+.footer-img {
+    max-width: 48px;
+    filter: invert(100%);
+}
+
+.To-Do-label {
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.pet-label {
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.leaderboard-label {
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
