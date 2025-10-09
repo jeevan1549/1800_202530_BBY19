@@ -1,1 +1,17 @@
+/* Navbar */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
+.navbar {
+  background-color: #5fdd9d;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.container-fluid {
+  display: none;
+}
