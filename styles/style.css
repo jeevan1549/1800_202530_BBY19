@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-<<<<<<< HEAD
 #appName {
     font-family: 'Cedarville Cursive', cursive;
-    font-size: 2rem;
+    font-size: 40px;
     margin: 0;        /* Remove extra space */
     margin-top: 5px;
 
@@ -11,7 +10,7 @@
 
 #welcome {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 50px;
     margin: 0; 
 }
 
@@ -21,7 +20,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-=======
+}
 .bg-info {
     background-color:  #5FDD9D !important;
     width: 100%;
@@ -50,6 +49,22 @@
     font-size: 10px;
     justify-content: center;
     align-items: center;
->>>>>>> 68223122ae6cee73180bd12f930cf4dc359caf87
     text-align: center;
+}
+
+.container-fluid {
+    background-color: #5FDD9D;
+    width: 100%;
+    height: 75px;
+    margin-top: -6px;
+}
+.navbar-brand {
+    color: white !important;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 15px;
 }
