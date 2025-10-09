@@ -1,1 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+#appName {
+    font-family: 'Cedarville Cursive', cursive;
+    font-size: 2rem;
+    margin: 0;        /* Remove extra space */
+    margin-top: 5px;
+
+}
+
+#welcome {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin: 0; 
+}
+
+.welcomeMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
