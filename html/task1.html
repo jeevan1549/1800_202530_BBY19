@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Creation Form</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <main class="main-container">
+      <nav class="TopNav">
+        <div></div>
+        <div class="MiscNav">
+          <img class="calendarImg" alt="calendar" src="/images/calendar.png" />
+          <img
+            class="informationImg"
+            alt="information"
+            src="/images/information.png"
+          />
+          <div></div>
+          <img class="userImg" alt="account" src="/images/user.png" />
+          <img class="settingsImg" alt="settings" src="/images/setting.png" />
+        </div>
+        <div>
+          <p class="brandName">Swiftask</p>
+        </div>
+      </nav>
+      <div class="MainContent">
+        <!-- Task Creation -->
+        <div class="taskForm">
+          <form>
+            <br />
+            <!--Name of task-->
+            <div class="formGroup">
+              <label for="taskName">What is the name of your task?</label>
+              <br />
+              <input type="text" id="taskName" placeholder="Enter name" />
+            </div>
+            <br />
+
+            <!--Which class the task is for-->
+            <div class="formGroup">
+              <label for="taskClass">What class is your task for?</label>
+              <br />
+              <input type="text" id="taskClass" placeholder="Enter class" />
+            </div>
+            <br />
+
+            <!--Task due date-->
+            <div class="formGroup">
+              <label for="taskDueDate">When is your task due?</label>
+              <br />
+              <input
+                type="text"
+                id="taskDueDate"
+                placeholder="Enter DD/MM/YYYY"
+              />
+            </div>
+            <br />
+
+            <!--Time for task to be completed-->
+            <div class="formGroup">
+              <label for="taskTime">How long will your task take? (opt.)</label>
+              <div class="taskTimeOptions">
+                <span
+                  ><input type="radio" name="timeOption" value="30 mins" /> 30
+                  mins</span
+                >
+                <span
+                  ><input type="radio" name="timeOption" value="1 hour" /> 1
+                  hour</span
+                >
+                <span
+                  ><input type="radio" name="timeOption" value="2 hours" /> 2
+                  hours</span
+                >
+                <label>
+                  <input type="radio" name="timeOption" value="Other hours" />
+                  Other:
+                  <input
+                    type="text"
+                    name="otherTimeOption"
+                    placeholder="Enter hour(s)"
+                /></label>
+              </div>
+            </div>
+            <br />
+
+            <!--Task description-->
+            <div class="formGroup">
+              <label for="taskDesc">Task description: (opt.)</label>
+              <textarea
+                id="taskDesc"
+                placeholder="Enter description"
+              ></textarea>
+            </div>
+
+            <!--Cancel and Create buttons-->
+            <div class="buttons">
+              <a type="button" class="cancel" href="index.html">Cancel</a>
+              <a type="submit" class="create" href="index.html">Create</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Task Creation -->
+      </div>
+      <footer class="BottomNav">
+        <div></div>
+        <div class="navContainer">
+          <div class="navButtons">
+            <div class="navB">
+              <a class="taskButton" href="index.html">
+                <img class="taskImg" alt="taskButton" src="/images/task.png" />
+              </a>
+            </div>
+            <div class="navB">
+              <a class="petButton">
+                <img class="petImg" alt="taskButton" src="/images/pet.png" />
+              </a>
+            </div>
+            <div class="navB">
+              <a class="leaderboardButton">
+                <img
+                  class="leaderboardImg"
+                  alt="taskButton"
+                  src="/images/leaderboard.png"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
