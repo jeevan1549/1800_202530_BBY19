@@ -1,0 +1,330 @@
+/*---------------------------------[ Landing Page ]---------------------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&display=swap");
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body img {
+  height: 25px;
+}
+
+.main-container {
+  display: grid;
+  height: 100dvh;
+  grid-template-rows: 15vh auto 15vh;
+}
+
+/* Top Navigation */
+.TopNav {
+  display: grid;
+  grid-template-rows: auto 5vh auto;
+}
+.TopNav div:nth-child(1) {
+  background-color: rgb(223, 223, 223);
+}
+.TopNav div:nth-child(2) {
+  background-color: rgb(218, 218, 218);
+}
+.TopNav div:nth-child(3) {
+  background-color: rgb(206, 206, 206);
+  border-bottom: 1vh solid rgb(159, 159, 159);
+}
+
+.MainContent {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Bottom Navigation */
+.BottomNav {
+  display: grid;
+  grid-template-rows: auto 13vh;
+  z-index: 1;
+}
+.BottomNav > div:nth-child(1) {
+  background-color: rgb(235, 235, 235);
+  border-top: 1vh solid rgb(159, 159, 159);
+}
+.BottomNav > div:nth-child(2) {
+  background-color: rgb(223, 223, 223);
+  border-bottom: 1vh solid rgb(159, 159, 159);
+}
+
+/* Navigation Buttons */
+
+.navButtons {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-items: center;
+  z-index: 1;
+}
+
+.navB > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 12vh;
+  border: none;
+  background-color: rgb(213, 213, 213);
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.taskImg {
+  height: 11vh;
+  filter: drop-shadow(2px 4px 2px rgb(174, 174, 174));
+  filter: invert(30%);
+  transition: transform 0.1s ease;
+}
+.petImg {
+  height: 7vh;
+  filter: drop-shadow(2px 4px 2px rgb(174, 174, 174));
+  filter: invert(30%);
+  transition: transform 0.1s ease;
+}
+.leaderboardImg {
+  height: 7.5vh;
+  filter: drop-shadow(2px 4px 2px rgb(174, 174, 174));
+  filter: invert(30%);
+  transition: transform 0.1s ease;
+}
+
+/* Welcome Section */
+
+.welcomeText {
+  font-family: "Quicksand", sans-serif;
+  padding-top: 8vh;
+  font-size: 3vh;
+  color: rgb(86, 86, 86);
+  justify-self: center;
+  align-self: center;
+}
+
+.infoText {
+  font-family: "Quicksand", sans-serif;
+  font-size: 2vh;
+  color: rgb(86, 86, 86);
+  justify-self: center;
+  align-self: center;
+}
+
+/* Brand Name */
+
+.brandName {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  position: absolute;
+  justify-self: center;
+  font-size: 2vh;
+  top: 8%;
+  font-weight: 500;
+  color: rgb(86, 86, 86);
+}
+
+/* Misc Navigation Buttons */
+
+.MiscNav {
+  display: grid;
+  grid-template-columns: 10vw 10vw auto 10vw 9vw;
+  justify-items: center;
+  align-items: center;
+}
+
+.calendarImg {
+  height: 4vh;
+  filter: invert(20%);
+  position: relative;
+}
+
+.informationImg {
+  height: 4vh;
+  filter: invert(20%);
+  position: relative;
+}
+
+.userImg {
+  height: 4vh;
+  filter: invert(20%);
+  position: relative;
+}
+
+.settingsImg {
+  height: 4vh;
+  filter: invert(20%);
+  position: relative;
+}
+
+/* Add Task Button */
+.addTaskContainer {
+  position: absolute;
+  width: 100%;
+  height: 55vh;
+  z-index: 0;
+}
+.addTask {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 28vh;
+}
+.addTask2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25.5vh;
+  top: 57.5%;
+}
+
+.addTask {
+  filter: invert(62.67%);
+  bottom: -3vh;
+  z-index: 1;
+}
+
+.addTask2 {
+  bottom: -1vh;
+  z-index: 2;
+  filter: invert(90%);
+}
+
+.plusImg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 4vh;
+  top: 71.5%;
+  z-index: 2;
+  filter: invert(20%);
+  pointer-events: none;
+}
+
+#addTaskClickable {
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 8.5vh;
+  background-color: #494949;
+  z-index: 3;
+  opacity: 0%;
+}
+
+/* Psuedo */
+
+.navB:hover img {
+  transform: scale(1.1);
+  filter: invert(40%);
+}
+
+.addTask2:hover {
+  filter: invert(80%);
+}
+
+.MiscNav img:hover {
+  filter: invert(35%);
+}
+
+.navB:active img {
+  transform: scale(0.95);
+}
+
+@media screen and (min-width: 1200px) {
+  #addTaskClickable {
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 8.5vh;
+    background-color: #494949;
+    z-index: 3;
+    opacity: 50%;
+  }
+}
+
+/*---------------------------------[ - ]---------------------------------*/
+
+/*---------------------------------[ Task Creation / I.M ]---------------------------------*/
+
+body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.taskForm {
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  justify-self: center;
+  margin-top: 1vh;
+}
+
+.formGroup {
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.formGroup label {
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #494949;
+  background-color: rgb(185, 185, 185);
+}
+
+.formGroup span {
+  display: inline-block;
+  padding: 4%;
+  margin-top: -5px;
+}
+
+.formGroup label[for="time"] {
+  border: transparent;
+  background-color: transparent;
+}
+
+.formGroup input[type="text"],
+.formGroup textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.buttons a {
+  padding: 10px 20px;
+  border: 2px solid rgb(148, 148, 148);
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
+}
+
+.buttons .cancel {
+  margin-right: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.buttons .create {
+  margin-left: 15px;
+  text-decoration: none;
+  color: black;
+}
