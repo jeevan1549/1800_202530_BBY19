@@ -1,0 +1,156 @@
+
+.headers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top : 50px;
+    font-size: xx-small;
+
+    
+}
+
+.header1 {
+    width: 50%;
+    align-items: center;
+    border: 5px solid;
+    border-color: black;
+    border-left: 100%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.header2 {
+    width: 50%;
+    align-items: center;
+    border: 5px solid;
+    border-color: black;
+    text-align: center;
+    border-radius: 5px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.container.podium {
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 10%;
+}
+.podium__item {
+  width: 200px;
+}
+
+.podium__rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  color: #fff;
+}
+
+.podium__city {
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.podium__number {
+  width: 27px;
+  height: 75px;
+}
+
+.podium .first {
+  min-height: 300px;
+  background: grey;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.podium .second {
+  min-height: 200px;
+  background: grey;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.podium .third {
+  min-height: 100px;
+  background: grey;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.level{
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    background-color: darkgrey;
+}
+.level-up {
+    width: 85%;
+    background-color: lightgrey;
+    border: 2px solid;
+    margin-top: 50px;
+    display: flex;
+}
+
+.myBar {
+  width: 80%;
+  height: 30%;
+  background-color: grey;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  border: 1px solid;
+  border-color :black;
+  justify-content: flex;
+}
+
+.level-number-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 50%;
+  margin-left: 50px;
+  margin-top: -5px;
+}
+
+.fire-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  justify-content: flex;
+}
+
+.streaks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.streaks-number {
+    position: relative;
+    top: 15px;
+    left: -40px;
+}
+
+.streaks-text {
+    font-size: x-large;
+    margin-right: 10px;
+}
