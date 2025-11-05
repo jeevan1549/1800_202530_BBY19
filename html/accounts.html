@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="/styles/calender.css" />
+    <title>Accounts</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
@@ -33,28 +32,30 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="calender">
-          <div class="header">
-            <button id="prevBtn">
-              <img src="/images/left-chevron.png" alt="Left-Arrow" />
-            </button>
-            <div class="month-year" id="month-year"></div>
-            <button id="nextBtn">
-              <img src="/images/chevron.png" alt="Right-Arrow" />
-            </button>
+        <div class="main-content-container">
+          <div class="account-header">
+            <h1>My Account</h1>
+            <figure>
+              <img class="accountImg" alt="account" src="/images/user.png" />
+              <figcaption id="Username">Guest</figcaption>
+            </figure>
           </div>
-
-          <div class="days">
-            <div class="day">Sun</div>
-            <div class="day">Mon</div>
-            <div class="day">Tue</div>
-            <div class="day">Wed</div>
-            <div class="day">Thu</div>
-            <div class="day">Fri</div>
-            <div class="day">Sat</div>
+          <div class="account-stats">
+            <div>
+              <h2>Points:</h2>
+            </div>
+            <div>
+              <h2>Friends:</h2>
+            </div>
+            <div>
+              <h2>Level:</h2>
+            </div>
           </div>
-
-          <div id="dates" class="dates"></div>
+          <div class="account-content"></div>
+          <div class="login-and-signup">
+            <a>Login</a>
+            <a>Signup</a>
+          </div>
         </div>
       </div>
       <footer class="BottomNav">
@@ -71,8 +72,8 @@
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
-            <div class="navB" >
-              <a class="leaderboardButton" href="/html/leaderboard1.html">
+            <div class="navB">
+              <a class="leaderboardButton">
                 <img
                   class="leaderboardImg"
                   alt="taskButton"
@@ -85,5 +86,4 @@
       </footer>
     </main>
   </body>
-  <script src="/js/calender.js"></script>
 </html>
