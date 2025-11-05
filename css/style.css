@@ -413,6 +413,10 @@ body {
   max-width: 100px;
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ad05c1338ee4f1740cbab1afdf3183441d4424d1
 .TopNav {
   position: sticky;
   top: 0;
@@ -441,4 +445,7 @@ footer {
   object-fit: cover;
   filter: grayscale(50%);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad05c1338ee4f1740cbab1afdf3183441d4424d1
