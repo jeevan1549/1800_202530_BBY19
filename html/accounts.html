@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pet</title>
+    <title>Accounts</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
@@ -26,12 +26,30 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="petBG">
-          <img
-            class="backgroundImg"
-            alt="background"
-            src="/images/background.png"
-          />
+        <div class="main-content-container">
+          <div class="account-header">
+            <h1>My Account</h1>
+            <figure>
+              <img class="accountImg" alt="account" src="/images/user.png" />
+              <figcaption id="Username">Guest</figcaption>
+            </figure>
+          </div>
+          <div class="account-stats">
+            <div>
+              <h2>Points:</h2>
+            </div>
+            <div>
+              <h2>Friends:</h2>
+            </div>
+            <div>
+              <h2>Level:</h2>
+            </div>
+          </div>
+          <div class="account-content"></div>
+          <div class="login-and-signup">
+            <a>Login</a>
+            <a>Signup</a>
+          </div>
         </div>
       </div>
       <footer class="BottomNav">
@@ -44,12 +62,12 @@
               </a>
             </div>
             <div class="navB">
-              <a class="petButton">
+              <a class="petButton" href="/html/pet1.html">
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
             <div class="navB">
-              <a class="leaderboardButton" href="/html/leaderboard1.html">
+              <a class="leaderboardButton">
                 <img
                   class="leaderboardImg"
                   alt="taskButton"
