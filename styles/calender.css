@@ -1,0 +1,110 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #dfe9f3);
+}
+
+.calender {
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #ffffffcc;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.header button:hover {
+  transform: scale(1.2);
+}
+
+.header img {
+  width: 24px;
+  height: 24px;
+}
+
+.month-year {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.dates {
+  flex-grow: 1; 
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr; 
+  gap: 0.3rem;
+}
+
+.dates div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background 0.3s, transform 0.2s;
+}
+
+
+.dates div:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
+}
+
+@media (max-width: 700px) {
+  .month-year {
+    font-size: 1.5rem;
+  }
+
+  .dates div {
+    font-size: 0.8rem;
+  }
+}
+
+.date.active {
+    background-color: #007bff;
+    color: white;
+}
+.day {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.date {
+    font-size: 2.5rem;
+}
