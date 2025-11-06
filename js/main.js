@@ -1,13 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap";
+// main.js
+// Optional function
+// Import Firebase auth logic
 
-import "/styles/style.css";
-
-function sayHello() {}
-document.addEventListener("DOMContentLoaded", sayHello);
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap";
-
-function sayHello() {}
-// document.addEventListener('DOMContentLoaded', sayHello);
+console.log("main.js is running!");
