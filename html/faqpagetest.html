@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Landing Page</title>
-    <link rel="stylesheet" href="/styles/calender.css" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
@@ -12,13 +11,7 @@
       <nav class="TopNav">
         <div></div>
         <div class="MiscNav">
-          <a class="calendarButton" href="/html/calender.html">
-            <img
-              class="calendarImg"
-              alt="calendar"
-              src="/images/calendar.png"
-            />
-          </a>
+          <img class="calendarImg" alt="calendar" src="/images/calendar.png" />
           <img
             class="informationImg"
             alt="information"
@@ -33,28 +26,27 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="calender">
-          <div class="header">
-            <button id="prevBtn">
-              <img src="/images/left-chevron.png" alt="Left-Arrow" />
-            </button>
-            <div class="month-year" id="month-year"></div>
-            <button id="nextBtn">
-              <img src="/images/chevron.png" alt="Right-Arrow" />
-            </button>
+        <div class="faq">
+          <div id="howToCreateTask">
+            <h4 id="helpHeaders">How do I create a task?</h4>
+            <p>Yappa yappa</p>
           </div>
-
-          <div class="days">
-            <div class="day">Sun</div>
-            <div class="day">Mon</div>
-            <div class="day">Tue</div>
-            <div class="day">Wed</div>
-            <div class="day">Thu</div>
-            <div class="day">Fri</div>
-            <div class="day">Sat</div>
+          <div id="howToCheckLeaderboard">
+            <h4 class="helpHeaders">How do I check my leaderboard status?</h4>
+            <p>Yappa yappa</p>
           </div>
-
-          <div id="dates" class="dates"></div>
+          <div id="howToSetReminder">
+            <h4 class="helplHeaders">How do I set a reminder?</h4>
+            <p>Yappa yappa</p>
+          </div>
+          <div id="howToFindArchiveTasks">
+            <h4 class="helplHeaders">How do I find my archived tasks?</h4>
+            <p>Yappa yappa</p>
+          </div>
+          <div id="howToSetReminder">
+            <h4 class="helplHeaders">How do I set a reminder?</h4>
+            <p>Yappa yappa</p>
+          </div>
         </div>
       </div>
       <footer class="BottomNav">
@@ -62,17 +54,17 @@
         <div class="navContainer">
           <div class="navButtons">
             <div class="navB">
-              <a class="taskButton" href="/index.html">
+              <a class="taskButton" href="index.html">
                 <img class="taskImg" alt="taskButton" src="/images/task.png" />
               </a>
             </div>
             <div class="navB">
-              <a class="petButton" href="/html/pet1.html">
+              <a class="petButton">
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
             <div class="navB">
-              <a class="leaderboardButton" href="/html/leaderboard1.html">
+              <a class="leaderboardButton">
                 <img
                   class="leaderboardImg"
                   alt="taskButton"
@@ -85,5 +77,4 @@
       </footer>
     </main>
   </body>
-  <script src="/js/calender.js"></script>
 </html>
