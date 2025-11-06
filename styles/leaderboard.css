@@ -4,29 +4,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 50px;
     font-size: xx-small;
-
-    
 }
 
 .header1 {
     width: 50%;
     align-items: center;
-    border: 5px solid;
+    border: 2px solid;
     border-color: black;
     border-left: 100%;
     text-align: center;
-    border-radius: 5px;
+    font-size: larger;
+    border-top: none;
 }
 
 .header2 {
     width: 50%;
     align-items: center;
-    border: 5px solid;
+    border: 2px solid;
     border-color: black;
     text-align: center;
-    border-radius: 5px;
+    font-size: larger;
+    border-top: none;
+    border-left: none;
 }
 
 body {
@@ -41,10 +41,15 @@ body {
 .container.podium {
   justify-content: center;
   margin-top: 2rem;
-  margin-bottom: 10%;
+  margin-bottom: 3rem;
 }
 .podium__item {
   width: 200px;
+}
+
+.podium__city {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .podium__rank {
@@ -89,46 +94,57 @@ body {
   border-radius: 5px;
 }
 
-.level{
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-    background-color: darkgrey;
-}
-.level-up {
-    width: 85%;
-    background-color: lightgrey;
-    border: 2px solid;
-    margin-top: 50px;
-    display: flex;
-}
-
-.myBar {
-  width: 80%;
-  height: 30%;
-  background-color: grey;
-  text-align: center;
-  line-height: 30px;
-  color: black;
-  border: 1px solid;
-  border-color :black;
-  justify-content: flex;
-}
-
-.level-number-circle {
+.level {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem 0;
+}
+
+.level-up {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  min-width: 250px;
+  height: 2.5vw;
+  min-height: 25px;
+  background-color: lightgrey;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.myBar {
+  height: 100%;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  transition: width 0.5s ease;
+  width: 80%;
+}
+
+.level-number-circle {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5vw;
+  height: 2.5vw;
+  min-width: 25px;
+  min-height: 25px;
   background-color: grey;
   color: white;
   font-weight: bold;
-  border: 1px solid;
-  border-color: black;
+  border: 2px solid black;
   border-radius: 50%;
-  margin-left: 50px;
-  margin-top: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
 .fire-icon {
