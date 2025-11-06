@@ -1,8 +1,10 @@
 /*---------------------------------[ Landing Page ]---------------------------------*/
-
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&display=swap");
 body {
+  font-family: "Stack Sans Text";
+  background-color: #616161;
   margin: 0;
   height: 100%;
 }
@@ -258,11 +260,6 @@ body img {
 
 /*---------------------------------[ Task Creation / I.M ]---------------------------------*/
 
-body {
-  background-color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
 
 .taskForm {
   background-color: #e7e7e7;
@@ -454,14 +451,34 @@ footer {
 
 /*---------------------------------[ Accounts Page ]---------------------------------*/
 
+:root {
+  --header-height: 60px;
+  --footer-height: 50px;
+}
+
 .main-content-container {
   display: grid;
   width: 100%;
-  grid-template-rows: 20% 20% 40% 20%;
+  height: 102%;
+  grid-template-rows: auto auto 40% auto;
 }
 
 .account-header {
-  background-color: #494949;
+  background-color: #2f2e2e;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  color: white;
+}
+
+.accountImg {
+  filter: invert(100%);
+  height: 12.5vh;
+}
+
+#Username {
+  padding-top: 1vh;
+  font-weight: bold;
 }
 
 .account-stats {
@@ -476,21 +493,21 @@ footer {
 .login-and-signup {
   background-color: #d3d3d3;
   display: grid;
-  grid-template-columns: auto auto;
   justify-items: center;
   align-items: center;
   padding: 20px 0;
 }
 
 .account-content {
-  background-color: #935a5a;
+  background-color: #bdbdbd;
 }
 .login-and-signup a {
   text-decoration: none;
-  color: black;
-  background-color: #b9b9b9;
+  color: rgb(255, 255, 255);
+  background-color: #545455;
   padding: 10px 20px;
-  border: 2px solid #949494;
-  border-radius: 5px;
+  width: 10vw;
+  text-align: center;
+
 }
 /*---------------------------------[ - ]---------------------------------*/

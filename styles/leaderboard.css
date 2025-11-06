@@ -1,32 +1,29 @@
-
 .headers {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top : 50px;
-    font-size: xx-small;
-
-    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: xx-small;
 }
 
 .header1 {
-    width: 50%;
-    align-items: center;
-    border: 5px solid;
-    border-color: black;
-    border-left: 100%;
-    text-align: center;
-    border-radius: 5px;
+  width: 50%;
+  align-items: center;
+  border: 5px solid;
+  border-color: black;
+  border-left: 100%;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .header2 {
-    width: 50%;
-    align-items: center;
-    border: 5px solid;
-    border-color: black;
-    text-align: center;
-    border-radius: 5px;
+  width: 50%;
+  align-items: center;
+  border: 5px solid;
+  border-color: black;
+  text-align: center;
+  border-radius: 5px;
 }
 
 body {
@@ -57,7 +54,7 @@ body {
 
 .podium__city {
   text-align: center;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .podium__number {
@@ -89,17 +86,17 @@ body {
   border-radius: 5px;
 }
 
-.level{
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-    background-color: darkgrey;
+.level {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  background-color: darkgrey;
 }
 .level-up {
-    width: 85%;
-    background-color: lightgrey;
-    border: 2px solid;
-    margin-top: 50px;
-    display: flex;
+  width: 85%;
+  background-color: lightgrey;
+  border: 2px solid;
+  margin-top: 50px;
+  display: flex;
 }
 
 .myBar {
@@ -110,7 +107,7 @@ body {
   line-height: 30px;
   color: black;
   border: 1px solid;
-  border-color :black;
+  border-color: black;
   justify-content: flex;
 }
 
@@ -139,18 +136,18 @@ body {
 }
 
 .streaks {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 .streaks-number {
-    position: relative;
-    top: 15px;
-    left: -40px;
+  position: relative;
+  top: 15px;
+  left: -40px;
 }
 
 .streaks-text {
-    font-size: x-large;
-    margin-right: 10px;
+  font-size: x-large;
+  margin-right: 10px;
 }

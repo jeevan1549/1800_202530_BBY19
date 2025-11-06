@@ -8,7 +8,7 @@
 // environment variables (.env file in project root).
 // ---------------------------------------------------------
 
-// Import Firebase SDK modules (using Firebase v9 modular syntax)
+// Import Firebase SDK modules (using Firebase v9 modular syntax
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/styles/signup.css" />
+  </head>
+  <body>
+    <main>
+      <form id="signup-form">
+        <h2 class="logo">Swiftask</h2>
+        <fieldset class="login-fieldset">
+          <div class="back-button-container">
+            <a href="/html/accounts.html">
+              <img
+                src="/images/back.png"
+                alt="back-button"
+                class="back-button"
+              />
+            </a>
+          </div>
+          <p class="signuplogo">Sign Up</p>
+          <div class="logintext">
+            <p>Create an account or</p>
+            <a href="/html/login.html">Login</a>
+          </div>
+          <p></p>
+          <input type="email" placeholder="Email" id="email" name="email" />
+          <br />
+
+          <input
+            type="text"
+            placeholder="Username"
+            id="Username"
+            name="username"
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+          />
+          <br />
+
+          <div class="checkbox-row">
+            <div>
+              <input type="checkbox" id="remember" />
+              <span>Remember me</span>
+            </div>
+          </div>
+
+          <input type="submit" id="signin" value="Sign Up" />
+          <br />
+        </fieldset>
+      </form>
+    </main>
+  </body>
+  <script type="module" src="../js/auth.js"></script>
+</html>
