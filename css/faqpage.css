@@ -6,3 +6,13 @@
     justify-self: center;
     margin-top: 1vh;
 }
+.faq .helpHeaders {
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #494949;
+    background-color: rgb(185, 185, 185);
+  }
