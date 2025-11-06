@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pet</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
@@ -29,6 +29,7 @@
           <a class="userButton" href="/html/accounts.html"
             ><img class="userImg" alt="account" src="/images/user.png"
           /></a>
+
           <img class="settingsImg" alt="settings" src="/images/setting.png" />
         </div>
         <div>
@@ -36,25 +37,24 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="petBG">
-          <img
-            class="backgroundImg"
-            alt="background"
-            src="/images/background.png"
-          />
-        </div>
+        <p class="welcomeText">Welcome to Swiftask! <br /></p>
+
+        <p class="infoText">
+          Create a task by clicking the + button below. <br />
+          for more information, click the ? button above.
+        </p>
       </div>
       <footer class="BottomNav">
         <div></div>
         <div class="navContainer">
           <div class="navButtons">
             <div class="navB">
-              <a class="taskButton" href="/index.html">
+              <a class="taskButton">
                 <img class="taskImg" alt="taskButton" src="/images/task.png" />
               </a>
             </div>
             <div class="navB">
-              <a class="petButton">
+              <a class="petButton" href="/html/pet1.html">
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
@@ -68,8 +68,20 @@
               </a>
             </div>
           </div>
+          <div class="addTaskContainer">
+            <img class="addTask" alt="addTask" src="/images/half-circle.png" />
+            <img
+              class="addTask2"
+              alt="addTask2"
+              src="/images/half-circle.png"
+            />
+            <img class="plusImg" alt="plusImg" src="/images/add.png" />
+            <a id="addTaskClickable" href="/html/task1.html"></a>
+          </div>
         </div>
       </footer>
     </main>
   </body>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="../js/auth.js"></script>
 </html>

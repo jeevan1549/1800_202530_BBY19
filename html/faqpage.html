@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leaderboard</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/styles/leaderboard.css" />
   </head>
   <body>
     <main class="main-container">
@@ -27,9 +26,7 @@
             />
           </a>
           <div></div>
-          <a class="userButton" href="/html/accounts.html"
-            ><img class="userImg" alt="account" src="/images/user.png"
-          /></a>
+          <img class="userImg" alt="account" src="/images/user.png" />
           <img class="settingsImg" alt="settings" src="/images/setting.png" />
         </div>
         <div>
@@ -37,49 +34,58 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="headers">
-          <div class="header1"><h1>Leaderboard</h1></div>
-          <div class="header2"><h1>Friends</h1></div>
-        </div>
-        <div class="container podium">
-          <div class="podium__item">
-            <p class="podium__city">Jemsel</p>
-            <div class="podium__rank second">2</div>
+        <nav class="TopNav">
+          <div></div>
+          <div class="MiscNav">
+            <img class="calendarImg" alt="calendar" src="/images/calendar.png" />
+            <img
+              class="informationImg"
+              alt="information"
+              src="/images/information.png"
+            />
+            <div></div>
+            <img class="userImg" alt="account" src="/images/user.png" />
+            <img class="settingsImg" alt="settings" src="/images/setting.png" />
           </div>
-          <div class="podium__item">
-            <p class="podium__city">India</p>
-            <div class="podium__rank first">1</div>
+          <div>
+            <p class="brandName">Swiftask</p>
           </div>
-          <div class="podium__item">
-            <p class="podium__city">Jeevan</p>
-            <div class="podium__rank third">3</div>
+        </nav>
+        <div class="MainContent">
+          <div class="faq">
+              <div id="howToCreateTask">
+                  <h4 id="helpHeaders">How do I create a task?</h4>
+                  <p>Yappa yappa</p>
+              </div>
+              <div id="howToCheckLeaderboard">
+                  <h4 class="helpHeaders">How do I check my leaderboard status?</h4>
+                  <p>Yappa yappa</p>
+              </div>
+              <div id="howToSetReminder">
+                  <h4 class="helplHeaders">How do I set a reminder?</h4>
+                  <p>Yappa yappa</p>
+              </div>
+              <div id="howToFindArchiveTasks">
+                  <h4 class="helplHeaders">How do I find my archived tasks?</h4>
+                  <p>Yappa yappa</p>
+              </div>
+              <div id="howToSetReminder">
+                  <h4 class="helplHeaders">How do I set a reminder?</h4>
+                  <p>Yappa yappa</p>
+              </div>
           </div>
-        </div>
-        <div class="level">
-          <div class="level-up">
-            <div class="myBar">80%</div>
-            <div class="level-number-circle" style="right: -29px">
-              <span>3</span>
-            </div>
-          </div>
-        </div>
-        <figure class="streaks">
-          <img src="/images/fire.png" alt="fire icon" class="fire-icon" />
-          <figcaption class="streaks-number">5</figcaption>
-          <div class="streaks-text"><p>Daily Streak</p></div>
-        </figure>
       </div>
       <footer class="BottomNav">
         <div></div>
         <div class="navContainer">
           <div class="navButtons">
             <div class="navB">
-              <a class="taskButton" href="/index.html">
+              <a class="taskButton" href="index.html">
                 <img class="taskImg" alt="taskButton" src="/images/task.png" />
               </a>
             </div>
             <div class="navB">
-              <a class="petButton" href="/html/pet1.html">
+              <a class="petButton">
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
@@ -97,5 +103,4 @@
       </footer>
     </main>
   </body>
-  <script src="/js/leaderboard.js"></script>
 </html>
