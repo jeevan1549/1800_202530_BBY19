@@ -1,26 +1,67 @@
-import { db } from "./firebaseAPIConfig.js";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+// task.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 
-const taskList = document.getElementById("todolist");
+// Initialize Firebase from your .env variables
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};
 
-const q = query(collection(db, "tasks"), orderBy("createdAt", "desc"));
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-onSnapshot(q, (snapshot) => {
-    taskList.innerHTML = "";
-    snapshot.forEach((doc) => {
-      const task = doc.data();
-  
-      const div = document.createElement("div");
-      div.classList.add("taskItem");
-      div.innerHTML = `
-        <h2>${task.name}</h2>
-        <p><strong>Class:</strong> ${task.class}</p>
-        <p><strong>Due:</strong> ${task.dueDate}</p>
-        <p><strong>Time:</strong> ${task.time}</p>
-        <p><strong>Description:</strong> ${task.description}</p>
-        <hr/>
-      `;
-      taskList.appendChild(div);
-    });
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const taskName = document.getElementById("taskName").value.trim();
+  const taskClass = document.getElementById("taskClass").value.trim();
+  const taskDueDate = document.getElementById("taskDueDate").value.trim();
+  const taskDesc = document.getElementById("taskDesc").value.trim();
+
+  // Task time
+  const timeOptions = document.getElementsByName("timeOption");
+  let taskTime = "";
+  timeOptions.forEach((option) => {
+    if (option.checked) {
+      taskTime =
+        option.value === "Other hours"
+          ? document.querySelector('input[name="otherTimeOption"]').value || ""
+          : option.value;
+    }
   });
-  
+
+  // Validate required fields
+  if (!taskName || !taskClass || !taskDueDate) {
+    alert("Please fill out all required fields!");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "tasks"), {
+      taskName,
+      taskClass,
+      taskDueDate,
+      taskTime,
+      taskDesc,
+      createdAt: serverTimestamp(),
+    });
+
+    alert("Task created successfully!");
+    window.location.href = "/index.html";
+  } catch (err) {
+    console.error("Error adding task:", err);
+    alert("Failed to create task.");
+  }
+});

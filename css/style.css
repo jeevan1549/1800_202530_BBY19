@@ -37,6 +37,9 @@ body img {
 
 .MainContent {
   background-color: rgb(255, 255, 255);
+  min-height: calc(100vh - 15vh - 15vh);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 /* Bottom Navigation */
@@ -259,7 +262,6 @@ body img {
 /*---------------------------------[ - ]---------------------------------*/
 
 /*---------------------------------[ Task Creation / I.M ]---------------------------------*/
-
 
 .taskForm {
   background-color: #e7e7e7;
@@ -508,6 +510,31 @@ footer {
   padding: 10px 20px;
   width: 10vw;
   text-align: center;
-
 }
 /*---------------------------------[ - ]---------------------------------*/
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.taskItem {
+  background: #e8e8e8;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

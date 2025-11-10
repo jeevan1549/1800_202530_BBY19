@@ -1,33 +1,58 @@
-import { db } from "./firebaseAPIConfig.js";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 
-const form = document.getElementById("taskForm");
-form.addEventListener("Submit", async (e) => {
-e.preventDefault();
+// Firebase config
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
 
-//Reads inputs from user
-const taskName = document.getElementById("taskName").value.trim();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // prevent default page reload
+
+  const taskName = document.getElementById("taskName").value.trim();
   const taskClass = document.getElementById("taskClass").value.trim();
   const taskDueDate = document.getElementById("taskDueDate").value.trim();
   const taskDesc = document.getElementById("taskDesc").value.trim();
-  const otherTime = document.getElementById("otherTimeOption").value.trim();
-  const timeOption = document.querySelector('input[name="timeOption"]:checked')?.value || otherTime;
+
+  const timeOptions = document.getElementsByName("timeOption");
+  let taskTime = "";
+  timeOptions.forEach(option => {
+    if (option.checked) {
+      taskTime = option.value === "Other hours" 
+        ? document.querySelector('input[name="otherTimeOption"]').value || ""
+        : option.value;
+    }
+  });
+
+  if (!taskName || !taskClass || !taskDueDate) {
+    alert("Please fill out all required fields!");
+    return;
+  }
 
   try {
     await addDoc(collection(db, "tasks"), {
-      name: taskName,
-      class: taskClass,
-      dueDate: taskDueDate,
-      time: timeOption,
-      description: taskDesc,
+      taskName,
+      taskClass,
+      taskDueDate,
+      taskTime,
+      taskDesc,
       createdAt: serverTimestamp()
-
     });
-    alert("Task created!");
-    form.reset();
-    window.location.href = "tasklist.html";
-    } catch (error) {
-    console.error("Error adding task:", error);
-    alert("Error saving task.");
+
+    // Redirect to index page AFTER creating task
+    window.location.href = "/index.html";
+  } catch (err) {
+    console.error("Error adding task:", err);
+    alert("Failed to create task.");
   }
 });
