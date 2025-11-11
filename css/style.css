@@ -25,18 +25,18 @@ body img {
   grid-template-rows: auto 5vh auto;
 }
 .TopNav div:nth-child(1) {
-  background-color: rgb(223, 223, 223);
+  background-color: rgb(233, 233, 233);
 }
 .TopNav div:nth-child(2) {
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(228, 228, 228);
 }
 .TopNav div:nth-child(3) {
-  background-color: rgb(206, 206, 206);
-  border-bottom: 1vh solid rgb(159, 159, 159);
+  background-color: rgb(216, 216, 216);
+  border-bottom: 1vh solid rgb(169, 169, 169);
 }
 
 .MainContent {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(265, 265, 265);
   min-height: calc(100vh - 15vh - 15vh);
   overflow-y: auto;
   box-sizing: border-box;
@@ -50,14 +50,14 @@ body img {
   grid-template-rows: auto 13vh;
 }
 .BottomNav > div:nth-child(1) {
-  background-color: rgb(235, 235, 235);
-  border-top: 1vh solid rgb(159, 159, 159);
+  background-color: rgb(245, 245, 245);
+  border-top: 1vh solid rgb(180, 180, 180);
   width: 100%;
   z-index: 3;
 }
 .BottomNav > div:nth-child(2) {
-  background-color: rgb(223, 223, 223);
-  border-bottom: 1vh solid rgb(159, 159, 159);
+  background-color: rgb(233, 233, 233);
+  border-bottom: 1vh solid rgb(190, 190, 190);
   z-index: 3;
 }
 
@@ -122,6 +122,7 @@ body img {
   color: rgb(86, 86, 86);
   justify-self: center;
   align-self: center;
+  padding-bottom: 8vh;
 }
 
 /* Brand Name */
@@ -317,15 +318,24 @@ body img {
   margin-bottom: 10px;
 }
 
-.buttons a {
+.buttons a,
+.buttons button {
   padding: 10px 20px;
   border: 2px solid rgb(148, 148, 148);
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
   background-color: rgb(199, 199, 199);
+  transition: background-color 0.1s ease, border-color 0.1s ease,
+    transform 0.2s ease;
 }
 
+/* Hover effect */
+.buttons a:hover,
+.buttons button:hover {
+  background-color: rgb(170, 170, 170); /* darker shade */
+  border-color: rgb(120, 120, 120); /* slightly darker border */
+}
 .buttons .cancel {
   margin-right: 15px;
   text-decoration: none;
@@ -342,7 +352,7 @@ body img {
 
 .todolist {
   align-items: center;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -420,6 +430,14 @@ body img {
   font-size: 0.9em;
   max-width: 100px;
 }
+
+/* Highlight effect on hover */
+.editButton:hover,
+.doneButton:hover {
+  background-color: #bbbbbb; /* darker shade */
+  color: #656565; /* optional: darker text */
+}
+
 .TopNav {
   position: sticky;
   top: 0;
@@ -429,6 +447,75 @@ footer {
   position: sticky;
   bottom: 0;
 }
+
+/*---------------------------------[ Task List / Effects ]---------------------------------*/
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.taskItem {
+  background: #e8e8e8;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todolist {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.todolist.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade-in new tasks */
+.todolist {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.todolist.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Completed tasks */
+.task.completed {
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+/* Slide up and fade out removed tasks */
+.task.remove {
+  opacity: 0;
+  transform: translateY(-50px); /* slide up */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/*---------------------------------[ - ]---------------------------------*/
 
 /*---------------------------------[ Pet Creataion / JA.J ]---------------------------------*/
 .petBG {
@@ -466,7 +553,7 @@ footer {
 }
 
 .account-header {
-  background-color: #2f2e2e;
+  background-color: #434343;
   align-content: center;
   justify-items: center;
   text-align: center;
@@ -484,16 +571,17 @@ footer {
 }
 
 .account-stats {
-  background-color: #e7e7e7;
+  background-color: #f9f9f9;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
   padding: 10px 0;
+  text-align: center;
 }
 
 .login-and-signup {
-  background-color: #d3d3d3;
+  background-color: #ededed;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -501,40 +589,14 @@ footer {
 }
 
 .account-content {
-  background-color: #bdbdbd;
+  background-color: #e1e1e1;
 }
 .login-and-signup a {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background-color: #545455;
+  background-color: #656565;
   padding: 10px 20px;
   width: 10vw;
   text-align: center;
 }
 /*---------------------------------[ - ]---------------------------------*/
-
-.taskList {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.taskItem {
-  background: #e8e8e8;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}

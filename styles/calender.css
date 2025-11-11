@@ -1,11 +1,11 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@ html, body {
 
 .calender {
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -62,10 +62,10 @@ html, body {
 }
 
 .dates {
-  flex-grow: 1; 
+  flex-grow: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: 1fr; 
+  grid-auto-rows: 1fr;
   gap: 0.3rem;
 }
 
@@ -75,10 +75,9 @@ html, body {
   justify-content: center;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: background 0.3s, transform 0.2s;
 }
-
 
 .dates div:hover {
   background-color: #007bff;
@@ -97,14 +96,14 @@ html, body {
 }
 
 .date.active {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 .day {
-    font-weight: bold;
-    font-size: 2rem;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .date {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
