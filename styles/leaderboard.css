@@ -20,12 +20,14 @@
 .header2 {
   width: 50%;
   align-items: center;
+  color:black;
   border: 2px solid;
   border-color: black;
   text-align: center;
   font-size: larger;
   border-top: none;
   border-left: none;
+  text-decoration: none;
 }
 
 body {
