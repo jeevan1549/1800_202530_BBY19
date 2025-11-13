@@ -133,16 +133,28 @@ onSnapshot(tasksQuery, (snapshot) => {
             await updateDoc(userRef, { points: totalPoints, exp: totalExp });
           }
         }
+      
 
-        // Delete task after a short delay
-        setTimeout(async () => {
-          await deleteDoc(doc(db, "tasks", docSnap.id));
-          taskDiv.classList.add("remove");
-          setTimeout(() => {
-            todolist.remove();
-          }, 500);
-        }, 300);
+      try {
+        const archiveRef = collection(db, "archiveTasks");
+        await setDoc(doc(archiveRef, docSnap.id), {
+          ...task,
+          archivedAt: new Date(),
+          finalPoints: points,
+          finalExp: exp,
+          userId: auth.currentUser ? auth.currentUser.uid : "guest",
+        });
+
+        await deleteDoc(doc(db, "tasks", docSnap.id));
+        taskDiv.classList.add("remove");
+        setTimeout(() => {
+          window.location.href = "/html/archive.html";}, 600);
+        } catch (err) {
+          console.error("Error archiving task:", err);
+          alert("There was an issue archiving your task.");
+        }
       });
+
 
     // Task footer
     const taskFooter = document.createElement("div");
