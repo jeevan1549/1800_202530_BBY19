@@ -19,7 +19,7 @@ const updateCalendar = () => {
     month: "long",
     year: "numeric",
   });
-  monthYearElement.textContent = monthYearString; 
+  monthYearElement.textContent = monthYearString;
 
   let datesHTML = "";
 

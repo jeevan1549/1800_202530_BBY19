@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore"; // added updateDoc & getDoc
 
 document.addEventListener("DOMContentLoaded", () => {
   // -------------------------
@@ -30,17 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         const user = userCredential.user;
 
-        // Optional: store username in Firestore
+        // Store username, email, points, exp, and level in Firestore
         await setDoc(doc(db, "users", user.uid), {
           username: username,
           email: email,
+          points: 0, // initial points
+          exp: 50, // initial experience
+          level: 1, // initial level
           createdAt: new Date(),
         });
 
-        // After successful signup
         alert("Signup successful!");
         signupForm.reset();
-        // Redirect to accounts page
         window.location.href = "/html/accounts.html";
       } catch (err) {
         alert(err.message);
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         alert("Login successful!");
         loginForm.reset();
-        // Redirect to dashboard or homepage
         window.location.href = "/html/accounts.html";
       } catch (err) {
         alert(err.message);
@@ -83,10 +83,30 @@ document.addEventListener("DOMContentLoaded", () => {
 // -------------------------
 // OPTIONAL: AUTH STATE
 // -------------------------
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("User logged in:", user.email);
-    // You could show/hide elements based on login status
+
+    // Fetch user data to handle dynamic level
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    // inside onAuthStateChanged
+    if (userSnap.exists()) {
+      let userData = userSnap.data();
+      let exp = userData.exp ?? 50;
+      let level = userData.level ?? 1;
+
+      // Smaller multiplier for next level (1.15x)
+      let expForNextLevel = 50 * Math.pow(1.025, level - 1);
+
+      while (exp >= expForNextLevel) {
+        exp -= expForNextLevel;
+        level++;
+        expForNextLevel = 50 * Math.pow(1.025, level - 1);
+      }
+
+      await updateDoc(userRef, { exp, level });
+    }
   } else {
     console.log("No user logged in");
   }

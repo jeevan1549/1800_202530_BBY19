@@ -1,31 +1,31 @@
 .headers {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: xx-small;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-small;
 }
 
 .header1 {
-    width: 50%;
-    align-items: center;
-    border: 2px solid;
-    border-color: black;
-    border-left: 100%;
-    text-align: center;
-    font-size: larger;
-    border-top: none;
+  width: 50%;
+  align-items: center;
+  border: 2px solid;
+  border-color: black;
+  border-left: 100%;
+  text-align: center;
+  font-size: larger;
+  border-top: none;
 }
 
 .header2 {
-    width: 50%;
-    align-items: center;
-    border: 2px solid;
-    border-color: black;
-    text-align: center;
-    font-size: larger;
-    border-top: none;
-    border-left: none;
+  width: 50%;
+  align-items: center;
+  border: 2px solid;
+  border-color: black;
+  text-align: center;
+  font-size: larger;
+  border-top: none;
+  border-left: none;
 }
 
 body {

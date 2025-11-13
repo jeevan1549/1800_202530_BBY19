@@ -1,8 +1,8 @@
 .faq {
-    background-color: #e7e7e7;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 350px;
-    justify-self: center;
-    margin-top: 1vh;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  justify-self: center;
+  margin-top: 1vh;
 }
