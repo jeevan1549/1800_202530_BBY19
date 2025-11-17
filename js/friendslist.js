@@ -51,8 +51,6 @@ function createFriendCard(friendDoc) {
   container.className = "friend-card";
   container.dataset.id = friendDoc.id;
 
-  const avatarUrl = usersCache.get(friendDoc.uid)?.avatar || null;
-
   container.innerHTML = `
     <div class="friend-main">
       <div class="friend-meta">
