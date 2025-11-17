@@ -30,6 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         const user = userCredential.user;
 
+        function generateUserId() {
+          const chars = "ABCDEFGHIGJKLMNOPQRSTUVWXYZ1234567890";
+          let id = "";
+          for (let i = 0; i < 6; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length))
+          }
+          return id;
+        }
         // Store username, email, points, exp, and level in Firestore
         await setDoc(doc(db, "users", user.uid), {
           username: username,
@@ -38,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
           exp: 50, // initial experience
           level: 1, // initial level
           createdAt: new Date(),
+          userId: generateUserId(),
         });
 
         alert("Signup successful!");
