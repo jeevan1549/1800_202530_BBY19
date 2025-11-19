@@ -9,6 +9,8 @@ import {
   deleteDoc,
   updateDoc,
   getDoc,
+  setDoc,
+  serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 import { auth } from "./firebaseConfig.js";
 
@@ -112,7 +114,7 @@ onSnapshot(tasksQuery, (snapshot) => {
     });
 
     // Done button
-    taskButtons
+    taskButtons 
       .querySelector(".doneButton")
       .addEventListener("click", async () => {
         taskDiv.classList.add("completed");
@@ -139,7 +141,7 @@ onSnapshot(tasksQuery, (snapshot) => {
         const archiveRef = collection(db, "archiveTasks");
         await setDoc(doc(archiveRef, docSnap.id), {
           ...task,
-          archivedAt: new Date(),
+          archivedAt: serverTimestamp(),
           finalPoints: points,
           finalExp: exp,
           userId: auth.currentUser ? auth.currentUser.uid : "guest",

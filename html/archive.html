@@ -38,13 +38,25 @@
       </nav>
       <div class="MainContent">
         
-        <div class="MainContent">
-          <h2>Archived Tasks</h2>
-          <div id="archiveList" class="taskList">
+        
+          <h2 class="archiveTitle">Archived Tasks</h2>
+          <div id="archiveList" class="archiveContainer">
+            <div class="task">
+              <div class="taskHeader">Task Name</div>
+              <div class="taskContent">
+                <ul class="taskDetails">
+                  <li>Attribute 1</li>
+                  <li>Attribute 2</li>
+                  <li>Attribute 3</li>
+                </ul>
+                <button class="deleteBtn">Delete</button>
+              </div>
+            </div>
+            
           </div>
-        </div>
+        
 
-      </div>
+      
       <footer class="BottomNav">
         <div></div>
         <div class="navContainer">
@@ -73,5 +85,5 @@
       </footer>
     </main>
   </body>
-  <script type="module" src="/js/indexTasks.js"></script>
+  <script type="module" src="/js/archive.js"></script>
 </html>
