@@ -87,22 +87,19 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("User logged in:", user.email);
 
-    // Fetch user data to handle dynamic level
     const userRef = doc(db, "users", user.uid);
     const userSnap = await getDoc(userRef);
-    // inside onAuthStateChanged
     if (userSnap.exists()) {
       let userData = userSnap.data();
       let exp = userData.exp ?? 50;
       let level = userData.level ?? 1;
 
-      // Smaller multiplier for next level (1.15x)
-      let expForNextLevel = 50 * Math.pow(1.025, level - 1);
+      let expForNextLevel = 50 * Math.pow(1.015, level - 1);
 
       while (exp >= expForNextLevel) {
         exp -= expForNextLevel;
         level++;
-        expForNextLevel = 50 * Math.pow(1.025, level - 1);
+        expForNextLevel = 50 * Math.pow(1.015, level - 1);
       }
 
       await updateDoc(userRef, { exp, level });

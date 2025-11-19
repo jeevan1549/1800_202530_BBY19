@@ -41,6 +41,7 @@ const tasksRef = collection(db, "tasks");
 const tasksQuery = query(tasksRef, orderBy("createdAt", "desc"));
 
 onSnapshot(tasksQuery, (snapshot) => {
+  
   taskList.innerHTML = "";
 
   // Clear existing intervals when tasks reload
@@ -74,18 +75,18 @@ onSnapshot(tasksQuery, (snapshot) => {
 
     const pointsSpan = taskHeader.querySelector(".taskReward");
     let points = task.taskPoints || 0;
-    let exp = task.taskExp || 0; // <-- initialize task EXP
+    let exp = task.taskExp || 0; // user EXP
 
     // Increment points and EXP every interval
     const intervalId = setInterval(async () => {
       points += 50;
-      exp += 20; // increase EXP per interval
+      exp += 20;
       pointsSpan.textContent = `${points} points`;
       await updateDoc(doc(db, "tasks", docSnap.id), {
         taskPoints: points,
         taskExp: exp,
       });
-    }, 10_000); // 60_000 for production
+    }, 10_000); // Every 10 seconds
     pointsIntervals.set(docSnap.id, intervalId);
 
     // Task details
@@ -117,11 +118,10 @@ onSnapshot(tasksQuery, (snapshot) => {
       .addEventListener("click", async () => {
         taskDiv.classList.add("completed");
 
-        // Stop points interval
         clearInterval(pointsIntervals.get(docSnap.id));
         pointsIntervals.delete(docSnap.id);
 
-        // Add task points and EXP to current user
+        // Done Task
         const user = auth.currentUser;
         if (user) {
           const userRef = doc(db, "users", user.uid);
@@ -134,7 +134,6 @@ onSnapshot(tasksQuery, (snapshot) => {
           }
         }
 
-        // Delete task after a short delay
         setTimeout(async () => {
           await deleteDoc(doc(db, "tasks", docSnap.id));
           taskDiv.classList.add("remove");

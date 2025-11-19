@@ -517,7 +517,7 @@ footer {
 
 /*---------------------------------[ - ]---------------------------------*/
 
-/*---------------------------------[ Pet Creataion / JA.J ]---------------------------------*/
+/*---------------------------------[ Pet Creation / JA.J ]---------------------------------*/
 .petBG {
   position: absolute;
   overflow: hidden;
@@ -526,6 +526,7 @@ footer {
   align-items: center;
   height: 70%;
   width: 100%;
+  z-index: 0;
 }
 
 .backgroundImg {
@@ -534,6 +535,88 @@ footer {
   object-position: 37% center;
   object-fit: cover;
   filter: grayscale(50%);
+}
+
+.pet-buttons {
+  z-index: 1;
+  position: fixed;
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto auto;
+  justify-items: center;
+  bottom: 17vh;
+}
+
+.pet-interactions {
+  background-color: rgb(236, 236, 236);
+  font-family: "Pixelify Sans";
+  width: 25vw;
+  height: 5vh;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 2vh;
+  border-color: #c3c3c3;
+  color: #242424;
+}
+
+.petStatsAndCurrency {
+  font-family: "Pixelify Sans";
+  position: fixed;
+  right: 0;
+  padding-right: 4vw;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+#energyContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+}
+
+#hungerContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+}
+
+#loveContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+}
+
+.currencyBox {
+  background-color: #e3e3e3;
+  width: 20vw;
+  border: 4px solid rgb(104, 104, 104);
+  padding-left: 2vw;
+  margin-top: 3vh;
+  border-radius: 5px;
+  position: relative;
+}
+#currencyContainer {
+  display: grid;
+  grid-template-columns: 30% auto;
+  align-items: center;
+  font-size: 1.5vh;
+}
+
+#ageContainer {
+  display: grid;
+  grid-template-columns: 40% auto;
+  align-items: center;
+}
+
+#petContainer {
+  position: absolute;
+  justify-self: center;
+  height: 6vh;
+  bottom: 50vh;
+}
+
+#pet {
+  animation: blink 3s infinite;
 }
 
 /*---------------------------------[ - ]---------------------------------*/
@@ -595,6 +678,7 @@ footer {
   text-decoration: none;
   color: rgb(255, 255, 255);
   background-color: #656565;
+  border-radius: 5px;
   padding: 10px 20px;
   width: 10vw;
   text-align: center;
