@@ -351,6 +351,18 @@ body img {
 
 /*---------------------------------[ Task To Do List / I.M ]---------------------------------*/
 
+.archiveButton {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.archiveImg {
+  width: 35px;
+  height: 35px;
+  filter: grayscale(100%) brightness(50%);
+}
+
 .todolist {
   align-items: center;
   width: 100%;
