@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leaderboard</title>
+    <title>FriendsList</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/styles/leaderboard.css" />
+    <link rel="stylesheet" href="/styles/friendslist.css" />
   </head>
   <body>
     <main class="main-container">
@@ -37,42 +37,43 @@
         </div>
       </nav>
       <div class="MainContent">
-        <div class="headers">
-          <div class="header1"><h1>Leaderboard</h1></div>
-          <a class="header2" href="/html/friendslist.html">
-            <div><h1>Friends</h1></div>
-          </a>
-        </div>
-        <div class="container podium">
-          <div class="podium__item">
-            <p id="secondPlaceName" class="podium__city">---</p>
-            <div class="podium__rank second" id="secondPlaceRank">2</div>
-          </div>
-
-          <div class="podium__item">
-            <p id="firstPlaceName" class="podium__city">---</p>
-            <div class="podium__rank first" id="firstPlaceRank">1</div>
-          </div>
-
-          <div class="podium__item">
-            <p id="thirdPlaceName" class="podium__city">---</p>
-            <div class="podium__rank third" id="thirdPlaceRank">3</div>
-          </div>
-        </div>
-
-        <div class="level">
-          <div class="level-up">
-            <div class="myBar">80%</div>
-            <div class="level-number-circle">
-              <span>3</span>
+        <section class="friends-container">
+          <div class="friends-header">
+            <h2 class="friends-title">
+              Friends <span id="friendsCount">(0)</span>
+            </h2>
+            <div class="friends-controls">
+              <input
+                id="friendsSearch"
+                type="search"
+                placeholder="Search friends..."
+              />
+              <select id="friendsSort">
+                <option value="recent">Recently added</option>
+                <option value="name">Name (A → Z)</option>
+                <option value="level">Level (High → Low)</option>
+              </select>
             </div>
           </div>
-        </div>
-        <figure class="streaks">
-          <img src="/images/fire.png" alt="fire icon" class="fire-icon" />
-          <figcaption class="streaks-number">5</figcaption>
-          <div class="streaks-text"><p>Daily Streak</p></div>
-        </figure>
+          <form id="addFriendForm" class="friend-form">
+            <input
+              id="friendName"
+              type="text"
+              placeholder="Friend's display name"
+              required
+            />
+            <input
+              id="friendUserId"
+              type="text"
+              placeholder="Friend User ID (e.g. SBRFOK)"
+              required
+            />
+            <button id="addFriendButton" type="submit" class="add-btn">
+              Add Friend
+            </button>
+          </form>
+          <div id="friendsList" class="friends-list"></div>
+        </section>
       </div>
       <footer class="BottomNav">
         <div></div>
@@ -88,8 +89,8 @@
                 <img class="petImg" alt="taskButton" src="/images/pet.png" />
               </a>
             </div>
-            <div class="navB">
-              <a class="leaderboardButton">
+            <div class="navB" href="/html/leaderboard1.html">
+              <a class="leaderboardButton" href="/html/leaderboard1.html">
                 <img
                   class="leaderboardImg"
                   alt="taskButton"
@@ -103,5 +104,5 @@
     </main>
   </body>
   <script type="module" src="/js/indexTasks.js"></script>
-  <script src="/js/leaderboard.js"></script>
+  <script type="module" src="/js/friendslist.js"></script>
 </html>
