@@ -34,9 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
         await setDoc(doc(db, "users", user.uid), {
           username: username,
           email: email,
-          points: 0, // initial points
-          exp: 50, // initial experience
-          level: 1, // initial level
+          points: 0,
+          currency: 200,
+          exp: 50,
+          level: 1,
+          bag: {
+            // object for all items
+            milkBowl: 0,
+            foodBowl: 0,
+            ball: 0,
+            fish: 0,
+            stuffy: 0,
+            meat: 0,
+          },
           createdAt: new Date(),
         });
 

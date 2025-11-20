@@ -28,108 +28,100 @@ const db = getFirestore(app);
 const taskList = document.getElementById("taskList");
 const welcomeContainer = document.querySelector(".welcomeContainer");
 
-// Helper: sanitize empty or whitespace-only strings
+// Helper
 function sanitizeInput(value) {
   return value && value.trim() ? value.trim() : "N/A";
 }
 
-// Store references to points intervals
 const pointsIntervals = new Map();
 
-// Real-time listener for tasks
-const tasksRef = collection(db, "tasks");
-const tasksQuery = query(tasksRef, orderBy("createdAt", "desc"));
+// -------------------------------------------------
+// ONLY RUN TASK LOGIC IF taskList EXISTS ON PAGE
+// -------------------------------------------------
+if (taskList) {
+  const tasksRef = collection(db, "tasks");
+  const tasksQuery = query(tasksRef, orderBy("createdAt", "desc"));
 
-onSnapshot(tasksQuery, (snapshot) => {
-  
-  taskList.innerHTML = "";
+  onSnapshot(tasksQuery, (snapshot) => {
+    taskList.innerHTML = "";
 
-  // Clear existing intervals when tasks reload
-  pointsIntervals.forEach((intervalId) => clearInterval(intervalId));
-  pointsIntervals.clear();
+    pointsIntervals.forEach((intervalId) => clearInterval(intervalId));
+    pointsIntervals.clear();
 
-  // Show/hide welcome message
-  if (snapshot.empty) {
-    if (welcomeContainer) welcomeContainer.style.display = "block";
-  } else {
-    if (welcomeContainer) welcomeContainer.style.display = "none";
-  }
+    if (snapshot.empty) {
+      if (welcomeContainer) welcomeContainer.style.display = "block";
+    } else {
+      if (welcomeContainer) welcomeContainer.style.display = "none";
+    }
 
-  snapshot.forEach((docSnap) => {
-    const task = docSnap.data();
+    snapshot.forEach((docSnap) => {
+      const task = docSnap.data();
 
-    const todolist = document.createElement("div");
-    todolist.classList.add("todolist");
+      const todolist = document.createElement("div");
+      todolist.classList.add("todolist");
 
-    const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task");
+      const taskDiv = document.createElement("div");
+      taskDiv.classList.add("task");
 
-    // Task header
-    const taskHeader = document.createElement("div");
-    taskHeader.classList.add("taskHeader");
-    taskHeader.innerHTML = `
-      <span class="name">${sanitizeInput(task.taskName)}</span>
-      <span class="taskReward">${task.taskPoints || 0} points</span>
-      <div class="toggle"></div>
-    `;
+      const taskHeader = document.createElement("div");
+      taskHeader.classList.add("taskHeader");
+      taskHeader.innerHTML = `
+        <span class="name">${sanitizeInput(task.taskName)}</span>
+        <span class="taskReward">${task.taskPoints || 0} points</span>
+        <div class="toggle"></div>
+      `;
 
-    const pointsSpan = taskHeader.querySelector(".taskReward");
-    let points = task.taskPoints || 0;
-    let exp = task.taskExp || 0; // user EXP
+      const pointsSpan = taskHeader.querySelector(".taskReward");
+      let points = task.taskPoints || 0;
+      let exp = task.taskExp || 0;
 
-    // Increment points and EXP every interval
-    const intervalId = setInterval(async () => {
-      points += 50;
-      exp += 20;
-      pointsSpan.textContent = `${points} points`;
-      await updateDoc(doc(db, "tasks", docSnap.id), {
-        taskPoints: points,
-        taskExp: exp,
+      const intervalId = setInterval(async () => {
+        points += 50;
+        exp += 20;
+        pointsSpan.textContent = `${points} points`;
+        await updateDoc(doc(db, "tasks", docSnap.id), {
+          taskPoints: points,
+          taskExp: exp,
+        });
+      }, 10000);
+      pointsIntervals.set(docSnap.id, intervalId);
+
+      const taskDetails = document.createElement("ul");
+      taskDetails.classList.add("taskDetails");
+      taskDetails.innerHTML = `
+        <li><strong>Class:</strong> ${sanitizeInput(task.taskClass)}</li>
+        <li><strong>Due:</strong> ${sanitizeInput(task.taskDueDate)}</li>
+        <li><strong>Duration:</strong> ${sanitizeInput(task.taskTime)}</li>
+        <li><strong>Description:</strong> ${sanitizeInput(task.taskDesc)}</li>
+      `;
+
+      const taskButtons = document.createElement("div");
+      taskButtons.classList.add("taskButtons");
+      taskButtons.innerHTML = `
+        <button class="editButton">EDIT</button>
+        <button class="doneButton">DONE</button>
+      `;
+
+      taskButtons.querySelector(".editButton").addEventListener("click", () => {
+        window.location.href = `/html/task1.html?taskId=${docSnap.id}`;
       });
-    }, 10_000); // Every 10 seconds
-    pointsIntervals.set(docSnap.id, intervalId);
 
-    // Task details
-    const taskDetails = document.createElement("ul");
-    taskDetails.classList.add("taskDetails");
-    taskDetails.innerHTML = `
-      <li><strong>Class:</strong> ${sanitizeInput(task.taskClass)}</li>
-      <li><strong>Due:</strong> ${sanitizeInput(task.taskDueDate)}</li>
-      <li><strong>Duration:</strong> ${sanitizeInput(task.taskTime)}</li>
-      <li><strong>Description:</strong> ${sanitizeInput(task.taskDesc)}</li>
-    `;
-
-    // Task buttons
-    const taskButtons = document.createElement("div");
-    taskButtons.classList.add("taskButtons");
-    taskButtons.innerHTML = `
-      <button class="editButton">EDIT</button>
-      <button class="doneButton">DONE</button>
-    `;
-
-    // Edit button
-    taskButtons.querySelector(".editButton").addEventListener("click", () => {
-      window.location.href = `/html/task1.html?taskId=${docSnap.id}`;
-    });
-
-    // Done button
-    taskButtons
-      .querySelector(".doneButton")
-      .addEventListener("click", async () => {
+      taskButtons.querySelector(".doneButton").addEventListener("click", async () => {
         taskDiv.classList.add("completed");
 
         clearInterval(pointsIntervals.get(docSnap.id));
         pointsIntervals.delete(docSnap.id);
 
-        // Done Task
         const user = auth.currentUser;
         if (user) {
           const userRef = doc(db, "users", user.uid);
           const userSnap = await getDoc(userRef);
+
           if (userSnap.exists()) {
             const userData = userSnap.data();
             const totalPoints = (userData.points || 0) + points;
             const totalExp = (userData.exp || 0) + exp;
+
             await updateDoc(userRef, { points: totalPoints, exp: totalExp });
           }
         }
@@ -137,34 +129,33 @@ onSnapshot(tasksQuery, (snapshot) => {
         setTimeout(async () => {
           await deleteDoc(doc(db, "tasks", docSnap.id));
           taskDiv.classList.add("remove");
+
           setTimeout(() => {
             todolist.remove();
           }, 500);
         }, 300);
       });
 
-    // Task footer
-    const taskFooter = document.createElement("div");
-    taskFooter.classList.add("taskFooter");
-    const createdDate = task.createdAt?.toDate
-      ? task.createdAt.toDate().toLocaleString()
-      : new Date().toLocaleString();
-    taskFooter.textContent = createdDate;
+      const taskFooter = document.createElement("div");
+      taskFooter.classList.add("taskFooter");
+      const createdDate = task.createdAt?.toDate
+        ? task.createdAt.toDate().toLocaleString()
+        : new Date().toLocaleString();
+      taskFooter.textContent = createdDate;
 
-    // Assemble task
-    taskDiv.appendChild(taskHeader);
-    taskDiv.appendChild(taskDetails);
-    taskDiv.appendChild(taskButtons);
-    taskDiv.appendChild(taskFooter);
+      taskDiv.appendChild(taskHeader);
+      taskDiv.appendChild(taskDetails);
+      taskDiv.appendChild(taskButtons);
+      taskDiv.appendChild(taskFooter);
 
-    todolist.appendChild(taskDiv);
-    taskList.appendChild(todolist);
+      todolist.appendChild(taskDiv);
+      taskList.appendChild(todolist);
 
-    // Smooth fade-in animation when tasks are loaded
-    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        todolist.classList.add("show");
+        requestAnimationFrame(() => {
+          todolist.classList.add("show");
+        });
       });
     });
   });
-});
+}

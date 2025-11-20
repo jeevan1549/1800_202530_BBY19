@@ -59,14 +59,59 @@
             <button id="petButton" class="pet-interactions">PET</button>
           </div>
         </div>
+
+        <div class="shopAndInventory">
+          <div class="saiDiv">
+            <div>
+              <button id="shopButton">SHOP</button>
+            </div>
+            <div class="bsicondiv">
+              <img src="/images/petsprites/shopicon.png" id="shopicon" />
+            </div>
+          </div>
+          <div class="saiDiv">
+            <div>
+              <button id="bagButton">BAG</button>
+            </div>
+            <div class="bsicondiv">
+              <img src="/images/petsprites/bagicon.png" id="bagicon" />
+            </div>
+          </div>
+        </div>
+
+        <div id="shopFrame">
+          <div class="shopFrameHeader">
+            <div class="shopTitle">
+              <p>Shop</p>
+            </div>
+          </div>
+          <div class="shopFrameBody">
+            <div id="itemContainer"></div>
+          </div>
+        </div>
+
+        <div id="bagFrame">
+          <div class="bagFrameHeader">
+            <div class="invTitle">
+              <p>Inventory</p>
+            </div>
+          </div>
+          <div class="bagFrameBody">
+            <div id="bagContainer"></div>
+          </div>
+        </div>
+
         <div class="petStatsAndCurrency">
           <div class="currencyBox">
             <div id="currencyContainer">
               <div>
-                <img src="/images/petsprites/currency.png" />
+                <img
+                  src="/images/petsprites/currency.png"
+                  class="petCurrency"
+                />
               </div>
               <div>
-                <p>2000</p>
+                <p id="pet-currency">67</p>
               </div>
             </div>
           </div>

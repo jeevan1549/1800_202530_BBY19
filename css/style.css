@@ -555,8 +555,20 @@ footer {
   border-radius: 5px;
   font-weight: bold;
   font-size: 2vh;
-  border-color: #c3c3c3;
+  border: #a4a4a4 solid 3px;
   color: #242424;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.pet-interactions:hover {
+  background-color: rgb(225, 225, 225);
+  transform: translateY(-3px);
+}
+
+.pet-interactions:active {
+  background-color: rgb(210, 210, 210);
+  transform: scale(0.92);
 }
 
 .petStatsAndCurrency {
@@ -586,6 +598,9 @@ footer {
   align-items: center;
 }
 
+.petCurrency {
+  height: 2.5vh;
+}
 .currencyBox {
   background-color: #e3e3e3;
   width: 20vw;
@@ -599,6 +614,8 @@ footer {
   display: grid;
   grid-template-columns: 30% auto;
   align-items: center;
+  height: 4vh;
+  transform: translateY(-0.175vh);
   font-size: 1.5vh;
 }
 
@@ -617,6 +634,218 @@ footer {
 
 #pet {
   animation: blink 3s infinite;
+}
+
+.shopAndInventory {
+  position: fixed;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding-left: 1vw;
+  padding-top: 1vw;
+  row-gap: 1vh;
+}
+
+.shopAndInventory button {
+  width: 20vw;
+  text-align: center;
+  height: 5vh;
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border-color: #b2b2b2;
+  font-family: "Pixelify Sans";
+  font-size: 2vh;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.shopAndInventory button:hover {
+  background-color: #e2e2e2;
+  transform: translateX(2px);
+}
+
+.shopAndInventory button:active {
+  background-color: #d0d0d0;
+  transform: scale(0.92);
+}
+
+.saiDiv {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+}
+
+.bsicondiv {
+  padding-left: 1vw;
+}
+
+#shopFrame {
+  position: fixed;
+  display: grid;
+  width: 80%;
+  height: 40%;
+  margin-top: 12vh;
+  justify-self: center;
+  grid-template-rows: 10% auto;
+  z-index: 4;
+  visibility: hidden;
+}
+
+#bagFrame {
+  position: fixed;
+  display: grid;
+  width: 80%;
+  height: 40%;
+  margin-top: 12vh;
+  justify-self: center;
+  grid-template-rows: 10% auto;
+  z-index: 4;
+  visibility: hidden;
+}
+
+.bagFrameHeader {
+  background-color: #acacac;
+  opacity: 70%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.invTitle {
+  font-family: "Pixelify Sans";
+  margin-top: -0.75vh;
+  font-size: 1.75vh;
+}
+
+.shopTitle {
+  font-family: "Pixelify Sans";
+  margin-top: -0.75vh;
+  font-size: 1.75vh;
+}
+
+.bagFrameBody {
+  background-color: #e0e0e0;
+  opacity: 70%;
+  border-radius: 5px;
+}
+/* */
+.shopFrameHeader {
+  background-color: #acacac;
+  opacity: 70%;
+  border-radius: 5px;
+  text-align: center;
+}
+.shopFrameBody {
+  background-color: #e0e0e0;
+  opacity: 70%;
+  border-radius: 5px;
+}
+
+#closeShop {
+  border-radius: 5px;
+  border-width: 0;
+  width: 9vw;
+  height: 4vh;
+  font-family: "Pixelify Sans";
+  color: white;
+  background-color: #9a9a9a;
+}
+
+#shopicon {
+  margin-top: 1.2vh;
+}
+
+#bagicon {
+  margin-top: 1.2vh;
+}
+
+#itemContainer {
+  padding-top: 2vh;
+  width: 90%;
+  height: 80%;
+  justify-self: center;
+  display: grid;
+  justify-content: left;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 4vw;
+}
+
+/*-- [ item ] --*/
+.shopItemBody {
+  width: 13vw;
+  height: 11vh;
+  text-align: center;
+  font-size: 1.7vh;
+  background-color: #d1d1d1;
+  border-radius: 5px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.shopItemHeader {
+  width: 13vw;
+  height: 2.25vh;
+  text-align: center;
+  background-color: #8f8f8f;
+  border-radius: 5px;
+  font-family: "Pixelify Sans";
+  pointer-events: none;
+}
+
+.shopItemFooter {
+  bottom: 0;
+  margin-top: -1.5vh;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  text-align: left;
+  font-family: "Pixelify Sans";
+  pointer-events: none;
+}
+
+.priceIcon {
+  height: 2vh;
+  margin-top: 0.45vh;
+  margin-left: 1.65vw;
+  pointer-events: none;
+}
+
+.shop-item {
+  margin-top: 1.4vh;
+  height: 4vh;
+}
+
+.shopItemBody:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(162, 190, 255, 0.2);
+  background-color: #eaeaea;
+}
+
+.shopItemBody:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e0;
+}
+
+#bagContainer {
+  padding-left: 4vw;
+  font-family: "Pixelify Sans";
+}
+/* */
+
+.useContainer {
+  display: grid;
+  width: 40%;
+  grid-template-columns: auto auto;
+}
+
+.useContainer p {
+  width: 15vw;
+}
+
+.useButton {
+  width: 25px;
+  height: 25px;
+  background-color: #242424;
+  align-self: center;
 }
 
 /*---------------------------------[ - ]---------------------------------*/
