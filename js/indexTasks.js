@@ -42,6 +42,7 @@ const pointsIntervals = new Map();
 const tasksRef = collection(db, "tasks");
 const tasksQuery = query(tasksRef, orderBy("createdAt", "desc"));
 
+
 onSnapshot(tasksQuery, (snapshot) => {
   taskList.innerHTML = "";
 
@@ -149,8 +150,6 @@ onSnapshot(tasksQuery, (snapshot) => {
 
         await deleteDoc(doc(db, "tasks", docSnap.id));
         taskDiv.classList.add("remove");
-        setTimeout(() => {
-          window.location.href = "/html/archive.html";}, 600);
         } catch (err) {
           console.error("Error archiving task:", err);
           alert("There was an issue archiving your task.");

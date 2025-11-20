@@ -25,14 +25,18 @@ body img {
   grid-template-rows: auto 5vh auto;
 }
 .TopNav div:nth-child(1) {
-  background-color: rgb(233, 233, 233);
+  background-color: #dbe6eb;
+  /* background-color: rgb(233, 233, 233); */
 }
 .TopNav div:nth-child(2) {
-  background-color: rgb(228, 228, 228);
+  background-color: #c6deea;
+  /* background-color: rgb(228, 228, 228); */
 }
 .TopNav div:nth-child(3) {
-  background-color: rgb(216, 216, 216);
-  border-bottom: 1vh solid rgb(169, 169, 169);
+  background-color: #bcd9e8;
+  /* background-color: rgb(216, 216, 216); */
+  border-bottom: 1vh solid #88afc2;
+  /* border-bottom: 1vh solid rgb(169, 169, 169); */
 }
 
 .MainContent {
@@ -51,13 +55,16 @@ body img {
 }
 .BottomNav > div:nth-child(1) {
   background-color: rgb(245, 245, 245);
-  border-top: 1vh solid rgb(180, 180, 180);
+  /* border-top: 1vh solid rgb(180, 180, 180); */
+  border-top: 1vh solid #97c0d4;
   width: 100%;
   z-index: 3;
 }
 .BottomNav > div:nth-child(2) {
-  background-color: rgb(233, 233, 233);
-  border-bottom: 1vh solid rgb(190, 190, 190);
+  /* background-color: rgb(233, 233, 233); */
+  background-color: #dbe6eb;
+  /* border-bottom: 1vh solid rgb(190, 190, 190); */
+  border-bottom: 1vh solid #97c0d4;
   z-index: 3;
 }
 
@@ -77,7 +84,8 @@ body img {
   width: 25vw;
   height: 12vh;
   border: none;
-  background-color: rgb(213, 213, 213);
+  /* background-color: rgb(213, 213, 213); */
+  background-color: #c6deea;
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   text-decoration: none;
   z-index: 4;
@@ -223,7 +231,8 @@ body img {
   transform: translateX(-50%);
   width: 30%;
   height: 12vh;
-  background-color: #494949;
+  /* background-color: #494949; */
+  background-color: #88afc2;
   z-index: 5;
   opacity: 0%;
 }
