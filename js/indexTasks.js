@@ -9,6 +9,8 @@ import {
   deleteDoc,
   updateDoc,
   getDoc,
+  setDoc,
+  serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 import { auth } from "./firebaseConfig.js";
 
@@ -125,6 +127,7 @@ if (taskList) {
             await updateDoc(userRef, { points: totalPoints, exp: totalExp });
           }
         }
+      
 
         setTimeout(async () => {
           await deleteDoc(doc(db, "tasks", docSnap.id));

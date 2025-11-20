@@ -39,26 +39,31 @@
       <div class="MainContent">
         <div class="headers">
           <div class="header1"><h1>Leaderboard</h1></div>
-          <div class="header2"><h1>Friends</h1></div>
+          <a class="header2" href="/html/friendslist.html">
+            <div><h1>Friends</h1></div>
+          </a>
         </div>
         <div class="container podium">
           <div class="podium__item">
-            <p class="podium__city">Jemsel</p>
-            <div class="podium__rank second">2</div>
+            <p id="secondPlaceName" class="podium__city">---</p>
+            <div class="podium__rank second" id="secondPlaceRank">2</div>
           </div>
+
           <div class="podium__item">
-            <p class="podium__city">India</p>
-            <div class="podium__rank first">1</div>
+            <p id="firstPlaceName" class="podium__city">---</p>
+            <div class="podium__rank first" id="firstPlaceRank">1</div>
           </div>
+
           <div class="podium__item">
-            <p class="podium__city">Jeevan</p>
-            <div class="podium__rank third">3</div>
+            <p id="thirdPlaceName" class="podium__city">---</p>
+            <div class="podium__rank third" id="thirdPlaceRank">3</div>
           </div>
         </div>
+
         <div class="level">
           <div class="level-up">
             <div class="myBar">80%</div>
-            <div class="level-number-circle" style="right: -29px">
+            <div class="level-number-circle">
               <span>3</span>
             </div>
           </div>
