@@ -1,7 +1,13 @@
 // src/accounts.js
 import { auth, db } from "./firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  collection,
+  getDocs,
+} from "firebase/firestore";
 
 document.addEventListener("DOMContentLoaded", () => {
   const usernameElement = document.getElementById("Username");
@@ -81,7 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
       level = 1;
       pointsElement.textContent = `Points: ${points}`;
       levelElement.textContent = `Level: ${level}`;
-      friendsElement.textContent = `Friends: 0`;
+
+      const friendsCol = collection(db, "users", user.uid, "friends");
+      const friendsSnap = await getDocs(friendsCol);
+      friendsElement.textContent = `Friends: ${friendsSnap.size}`;
     }
   });
 
