@@ -1,0 +1,325 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f2f2f2;
+}
+
+
+.settings-wrapper {
+max-width: 700px;
+margin: 40px auto;
+padding: 20px;
+}
+
+
+h1 {
+margin-bottom: 20px;
+}
+
+
+.card {
+background: white;
+border-radius: 16px;
+padding: 16px;
+margin-bottom: 15px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+.setting-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+
+.setting-info p {
+font-size: 14px;
+color: #666;
+}
+
+
+.security-options {
+display: flex;
+gap: 10px;
+margin-top: 10px;
+}
+
+
+.security-options button {
+padding: 8px 12px;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+background: #1e40af;
+color: white;
+}
+
+
+.logins-box {
+margin-top: 10px;
+font-size: 14px;
+color: #333;
+}
+
+
+.switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+
+
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+border-radius: 34px;
+transition: 0.4s;
+}
+
+
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+border-radius: 50%;
+transition: 0.4s;
+}
+
+
+input:checked + .slider {
+background-color: #1e40af;
+}
+
+
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+
+
+.dark-mode {
+background: #121212;
+color: white;
+}
+
+
+.dark-mode .card {
+background: #1f1f1f;
+}
+
+/* settings.css */
+
+/* =============================
+   THEME VARIABLES
+   ============================= */
+:root {
+  /* LIGHT MODE */
+  --bg-main: #f2f2f2;
+  --bg-surface: #ffffff;
+  --bg-soft: #e7e7e7;
+  --bg-nav: #dbe6eb;
+  --bg-nav-alt: #c6deea;
+  --bg-nav-dark: #bcd9e8;
+
+  --text-main: #333333;
+  --text-light: #666666;
+  --text-invert: #ffffff;
+
+  --border-color: #97c0d4;
+  --card-bg: #fafafa;
+  --accent: #4f8fbf;
+}
+
+/* DARK MODE VARIABLES */
+body.dark-mode {
+  --bg-main: #121212;
+  --bg-surface: #1e1e1e;
+  --bg-soft: #2a2a2a;
+  --bg-nav: #1a1f24;
+  --bg-nav-alt: #222831;
+  --bg-nav-dark: #2d3a45;
+
+  --text-main: #e0e0e0;
+  --text-light: #b5b5b5;
+  --text-invert: #ffffff;
+
+  --border-color: #3d4f5c;
+  --card-bg: #242424;
+  --accent: #6aa9ff;
+}
+
+/* =============================
+   GLOBAL RESET
+   ============================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* =============================
+   SETTINGS PAGE LAYOUT
+   ============================= */
+.settings-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: var(--bg-surface);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.settings-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* =============================
+   SETTINGS CARD
+   ============================= */
+.setting-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.setting-desc {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* =============================
+   SWITCH TOGGLE
+   ============================= */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* =============================
+   BUTTONS
+   ============================= */
+.settings-btn {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-btn:hover {
+  background: var(--accent);
+  color: var(--text-invert);
+}
+
+/* =============================
+   ACCOUNT & SECURITY SECTION
+   ============================= */
+.security-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.security-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =============================
+   APP VERSION
+   ============================= */
+.app-version {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* =============================
+   SMOOTH DARK MODE TRANSITION
+   ============================= */
+body, .setting-card, .settings-container {
+  transition: background 0.3s ease, color 0.3s ease;
+}
