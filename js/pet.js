@@ -2,13 +2,13 @@ import { db, auth } from "./firebaseConfig.js";
 import { doc, setDoc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-const petDoc = doc(db, "pets", "myPet");
-
-const petData = {
+// --- PET TEMPLATE ---
+const petTemplate = {
   age: 1,
   mood: 3,
   hunger: 3,
   love: 3,
+  type: "cat" // placeholder type
 };
 
 const playButton = document.getElementById("playButton");
@@ -57,25 +57,86 @@ ageDisplay.textContent = age;
 pet.style.height = `${catHeight}vh`;
 petContainer.style.height = `${containerHeight}vh`;
 
-async function loadPet() {
-  const docSnap = await getDoc(petDoc);
-  if (docSnap.exists()) {
-    age = docSnap.data().age || 1;
-    if (age > 9) {
-      catHeight = 30 + 9;
-      containerHeight = 6 + 9;
-    } else {
-      catHeight = 30 + (age - 1);
-      containerHeight = 6 + (age - 1);
+// --- DATABASE FUNCTIONS ---
+
+function getUserDoc(uid) {
+  return doc(db, "users", uid);
+}
+
+// Create a pet for the user if none exists
+async function createPetForUser(uid) {
+  const userDoc = getUserDoc(uid);
+  const docSnap = await getDoc(userDoc);
+
+  if (!docSnap.exists()) {
+    await setDoc(userDoc, { pets: [petTemplate] }, { merge: true });
+  } else {
+    const petsArray = docSnap.data().pets || [];
+    if (petsArray.length === 0) {
+      await updateDoc(userDoc, { pets: [petTemplate] });
     }
   }
+}
+
+// Load pet stats from user document
+async function loadPetForUser(uid) {
+  const userDoc = getUserDoc(uid);
+  const docSnap = await getDoc(userDoc);
+  if (!docSnap.exists()) return;
+
+  const petsArray = docSnap.data().pets || [];
+  const userPet = petsArray[0] || petTemplate;
+
+  age = userPet.age || 1;
+
+  const visualAge = Math.min(age, 9);
+  catHeight = 30 + (visualAge - 1);
+  containerHeight = 6 + (visualAge - 1);
+
   ageDisplay.textContent = age;
   pet.style.height = `${catHeight}vh`;
   petContainer.style.height = `${containerHeight}vh`;
 }
 
-loadPet();
+// Update the first pet's stats in user document
+async function updatePetForUser(uid, updatedPet) {
+  const userDoc = getUserDoc(uid);
+  const docSnap = await getDoc(userDoc);
+  if (!docSnap.exists()) return;
 
+  const petsArray = docSnap.data().pets || [];
+  petsArray[0] = { ...petsArray[0], ...updatedPet };
+  await updateDoc(userDoc, { pets: petsArray });
+}
+
+// --- AUTH LISTENER ---
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+
+  await createPetForUser(user.uid);
+  await loadPetForUser(user.uid);
+
+  // Real-time listener for user's pets
+  const userDoc = getUserDoc(user.uid);
+  onSnapshot(userDoc, (docSnap) => {
+    if (!docSnap.exists()) return;
+
+    const petsArray = docSnap.data().pets || [];
+    const userPet = petsArray[0];
+    if (!userPet) return;
+
+    age = userPet.age || 1;
+    const visualAge = Math.min(age, 9);
+    catHeight = 30 + (visualAge - 1);
+    containerHeight = 6 + (visualAge - 1);
+
+    ageDisplay.textContent = age;
+    pet.style.height = `${catHeight}vh`;
+    petContainer.style.height = `${containerHeight}vh`;
+  });
+});
+
+// --- PET ANIMATION LOOP ---
 let looping = false;
 let idleTimeout;
 
@@ -126,7 +187,11 @@ function petLoop() {
 
 petLoop();
 
+// --- AGE TIMER ---
 setInterval(async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+
   age += 1;
   ageDisplay.textContent = age;
 
@@ -136,9 +201,10 @@ setInterval(async () => {
   pet.style.height = `${catHeight}vh`;
   petContainer.style.height = `${containerHeight}vh`;
 
-  await setDoc(petDoc, { age: age }, { merge: true });
+  await updatePetForUser(user.uid, { age });
 }, 120000);
 
+// --- PET INTERACTIONS ---
 function bounce() {
   if (bouncedeb) return;
   bouncedeb = true;
@@ -180,9 +246,9 @@ playButton.addEventListener("click", bounce);
 petButton.addEventListener("click", petted);
 feedButton.addEventListener("click", bounce);
 
+// --- SHOP & BAG LOGIC ---
 shopButton.addEventListener("click", () => {
-  const shopVisible =
-    window.getComputedStyle(shopFrame).visibility === "visible";
+  const shopVisible = window.getComputedStyle(shopFrame).visibility === "visible";
   shopFrame.style.visibility = shopVisible ? "hidden" : "visible";
   if (!shopVisible) bagFrame.style.visibility = "hidden";
 });
@@ -193,14 +259,15 @@ bagButton.addEventListener("click", () => {
   if (!bagVisible) shopFrame.style.visibility = "hidden";
 });
 
+// --- INITIAL PET CREATION ---
 async function createPet() {
-  const docSnap = await getDoc(petDoc);
-  if (!docSnap.exists()) {
-    await setDoc(petDoc, petData);
-  }
+  const user = auth.currentUser;
+  if (!user) return;
+  await createPetForUser(user.uid);
 }
 createPet();
 
+// --- SHOP ITEMS & BAG RENDERING ---
 const itemContainer = document.getElementById("itemContainer");
 
 itemContainer.innerHTML = `
@@ -242,7 +309,6 @@ function renderBag(bag) {
     <p id="meat-amount">Meat: ${bag.meat || 0}</p>
     <button id="use6" class="useButton"></button>
   </div>
-  
   `;
 }
 
@@ -251,17 +317,14 @@ const currencyContainer = document.getElementById("pet-currency");
 onAuthStateChanged(auth, (user) => {
   if (!user) return;
 
-  const userRef = doc(db, "users", user.uid);
+  const userRef = getUserDoc(user.uid);
 
   onSnapshot(userRef, (docSnap) => {
     if (!docSnap.exists()) return;
 
     const userData = docSnap.data();
-
     renderBag(userData.bag || {});
-
-    if (currencyContainer)
-      currencyContainer.textContent = userData.currency ?? 0;
+    if (currencyContainer) currencyContainer.textContent = userData.currency ?? 0;
   });
 });
 
@@ -272,7 +335,7 @@ if (foodbowlItem) {
     const user = auth.currentUser;
     if (!user) return alert("You must be logged in to buy items.");
 
-    const userRef = doc(db, "users", user.uid);
+    const userRef = getUserDoc(user.uid);
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
