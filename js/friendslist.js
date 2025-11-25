@@ -1,5 +1,4 @@
-
-import { db } from "/js/firebaseConfig.js";
+import { db, auth } from "/js/firebaseConfig.js";
 import {
   collection,
   addDoc,
@@ -12,13 +11,13 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 console.log("friendslist.js loaded");
 
 const form = document.getElementById("addFriendForm");
 const nameInput = document.getElementById("friendName");
 const userIdInput = document.getElementById("friendUserId");
-const addBtn = document.getElementById("addFriendButton");
 const friendsListEl = document.getElementById("friendsList");
 const searchInput = document.getElementById("friendsSearch");
 const sortSelect = document.getElementById("friendsSort");
@@ -44,6 +43,16 @@ function updateFriendCount() {
 
 function clearList() {
   friendsListEl.innerHTML = "";
+}
+
+function escapeHtml(str) {
+  if (!str && str !== 0) return "";
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function createFriendCard(friendDoc) {
@@ -73,20 +82,25 @@ function createFriendCard(friendDoc) {
     </div>
   `;
 
+  // DELETE FRIEND
   container.querySelector(".delete-btn").addEventListener("click", async () => {
     const confirmed = confirm(`Delete ${friendDoc.name} from your friends?`);
     if (!confirmed) return;
+
     try {
-      await deleteDoc(doc(db, "friends", friendDoc.id));
+      const user = auth.currentUser;
+      await deleteDoc(doc(db, "users", user.uid, "friends", friendDoc.id));
     } catch (err) {
       console.error("Failed to delete friend:", err);
       alert("Delete failed. See console.");
     }
   });
 
+  // SHOW INFO
   container.querySelector(".info-btn").addEventListener("click", async () => {
     const detailsEl = document.getElementById(`details-${friendDoc.id}`);
     const isHidden = detailsEl.getAttribute("aria-hidden") === "true";
+
     if (isHidden) {
       await populateProfileIntoCard(friendDoc.uid, friendDoc.id);
       detailsEl.setAttribute("aria-hidden", "false");
@@ -100,16 +114,6 @@ function createFriendCard(friendDoc) {
   return container;
 }
 
-function escapeHtml(str) {
-  if (!str && str !== 0) return "";
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
 async function fetchUserByUserId(userId) {
   if (usersCache.has(userId)) {
     return usersCache.get(userId);
@@ -117,13 +121,16 @@ async function fetchUserByUserId(userId) {
   try {
     const q = query(collection(db, "users"), where("userId", "==", userId), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
+
     if (snap.empty) {
       usersCache.set(userId, null);
       return null;
     }
-    const first = snap.docs[0].data();
-    usersCache.set(userId, first);
-    return first;
+
+    const userData = snap.docs[0].data();
+    usersCache.set(userId, userData);
+    return userData;
+
   } catch (err) {
     console.error("Error fetching user profile:", err);
     usersCache.set(userId, null);
@@ -135,6 +142,7 @@ async function populateProfileIntoCard(userId, friendDocId) {
   const user = await fetchUserByUserId(userId);
   const detailsEl = document.getElementById(`details-${friendDocId}`);
   if (!detailsEl) return;
+
   if (!user) {
     detailsEl.querySelector(".u-username").textContent = "Unknown";
     detailsEl.querySelector(".u-level").textContent = "—";
@@ -143,6 +151,7 @@ async function populateProfileIntoCard(userId, friendDocId) {
     detailsEl.querySelector(".u-email").textContent = "—";
     return;
   }
+
   detailsEl.querySelector(".u-username").textContent = user.username ?? "—";
   detailsEl.querySelector(".u-level").textContent = user.level ?? "—";
   detailsEl.querySelector(".u-points").textContent = user.points ?? "—";
@@ -156,13 +165,15 @@ function applySearchAndSortAndRender() {
 
   let arr = [...friendsArray];
 
+  // FILTER
   if (searchTerm) {
-    arr = arr.filter((f) => {
-      return (f.name && f.name.toLowerCase().includes(searchTerm)) ||
-             (f.uid && f.uid.toLowerCase().includes(searchTerm));
-    });
+    arr = arr.filter((f) =>
+      (f.name && f.name.toLowerCase().includes(searchTerm)) ||
+      (f.uid && f.uid.toLowerCase().includes(searchTerm))
+    );
   }
 
+  // SORT
   if (sortMode === "name") {
     arr.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
   } else if (sortMode === "level") {
@@ -173,46 +184,64 @@ function applySearchAndSortAndRender() {
     });
   } else {
     arr.sort((a, b) => {
-      const atA = a.addedAt ? (a.addedAt.toDate ? a.addedAt.toDate().getTime() : new Date(a.addedAt).getTime()) : 0;
-      const atB = b.addedAt ? (b.addedAt.toDate ? b.addedAt.toDate().getTime() : new Date(b.addedAt).getTime()) : 0;
+      const atA = a.addedAt ? new Date(a.addedAt.toDate?.() || a.addedAt).getTime() : 0;
+      const atB = b.addedAt ? new Date(b.addedAt.toDate?.() || b.addedAt).getTime() : 0;
       return atB - atA;
     });
   }
 
   clearList();
+
   if (arr.length === 0) {
     const empty = document.createElement("div");
     empty.className = "friends-empty";
     empty.textContent = "No friends to show.";
     friendsListEl.appendChild(empty);
   } else {
-    arr.forEach((f) => {
-      const card = createFriendCard(f);
-      friendsListEl.appendChild(card);
-    });
+    arr.forEach((f) => friendsListEl.appendChild(createFriendCard(f)));
   }
 
   updateFriendCount();
 }
 
-onSnapshot(collection(db, "friends"), (snapshot) => {
-  const newArr = [];
-  snapshot.forEach((docSnap) => {
-    const data = docSnap.data();
-    newArr.push({
-      id: docSnap.id,
-      name: data.name ?? "",
-      uid: data.uid ?? "",
-      addedAt: data.addedAt ?? data.createdAt ?? null,
+/* ================================
+   REAL-TIME FRIENDS LISTENER (FIXED)
+   ================================ */
+
+let unsubscribeFriends = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) return;
+
+  if (unsubscribeFriends) unsubscribeFriends();
+
+  const friendsRef = collection(db, "users", user.uid, "friends");
+
+  unsubscribeFriends = onSnapshot(friendsRef, (snapshot) => {
+    const newArr = [];
+
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      newArr.push({
+        id: docSnap.id,
+        name: data.name ?? "",
+        uid: data.uid ?? "",
+        addedAt: data.addedAt ?? null,
+      });
     });
+
+    friendsArray = newArr;
+
+    const uids = Array.from(new Set(newArr.map(f => f.uid))).slice(0, 20);
+    uids.forEach((u) => fetchUserByUserId(u));
+
+    applySearchAndSortAndRender();
   });
-
-  friendsArray = newArr;
-  const uids = Array.from(new Set(friendsArray.map(f => f.uid))).slice(0, 20);
-  uids.forEach((u) => { fetchUserByUserId(u); }); 
-
-  applySearchAndSortAndRender();
 });
+
+/* ================================
+   ADD FRIEND
+   ================================ */
 
 form.addEventListener("submit", async (ev) => {
   ev.preventDefault();
@@ -226,6 +255,7 @@ form.addEventListener("submit", async (ev) => {
   }
 
   try {
+    // Verify the friend's userId exists
     const qUser = query(collection(db, "users"), where("userId", "==", friendUserId));
     const userSnap = await getDocs(qUser);
 
@@ -234,14 +264,19 @@ form.addEventListener("submit", async (ev) => {
       return;
     }
 
-    const qDup = query(collection(db, "friends"), where("uid", "==", friendUserId));
+    const currentUser = auth.currentUser;
+    const friendsRef = collection(db, "users", currentUser.uid, "friends");
+
+    // Prevent duplicate friend entries
+    const qDup = query(friendsRef, where("uid", "==", friendUserId));
     const dupSnap = await getDocs(qDup);
+
     if (!dupSnap.empty) {
       alert("This user is already in your friends list.");
       return;
     }
 
-    await addDoc(collection(db, "friends"), {
+    await addDoc(friendsRef, {
       name: friendName,
       uid: friendUserId,
       addedAt: serverTimestamp(),
@@ -255,11 +290,9 @@ form.addEventListener("submit", async (ev) => {
   }
 });
 
-searchInput.addEventListener("input", () => {
-  applySearchAndSortAndRender();
-});
-sortSelect.addEventListener("change", () => {
-  applySearchAndSortAndRender();
-});
+// Search and sort
+searchInput.addEventListener("input", applySearchAndSortAndRender);
+sortSelect.addEventListener("change", applySearchAndSortAndRender);
 
+// Initial render
 applySearchAndSortAndRender();
