@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const chars = "ABCDEFGHIGJKLMNOPQRSTUVWXYZ1234567890";
           let id = "";
           for (let i = 0; i < 6; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length))
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
           }
           return id;
         }
@@ -44,17 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
           email: email,
           points: 0,
           currency: 200,
-          exp: 50,
+          exp: 0,
           level: 1,
-          bag: {
-            // object for all items
-            milkBowl: 0,
-            foodBowl: 0,
-            ball: 0,
-            fish: 0,
-            stuffy: 0,
-            meat: 0,
-          },
           createdAt: new Date(),
           userId: generateUserId(),
         });

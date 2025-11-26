@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Task Creation Form</title>
+    <title>Swiftask - Create Task</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/images/Icon.ico" />
   </head>
 
   <body>
@@ -37,6 +38,7 @@
       </nav>
       <div class="MainContent">
         <!-- Task Creation -->
+         <h2 id="taskIntro">Create a Task</h2>
         <div class="taskForm">
           <form>
             <br />
@@ -73,19 +75,38 @@
               <label for="taskTime">How long will your task take? (opt.)</label>
               <div class="taskTimeOptions">
                 <span
-                  ><input type="radio" name="timeOption" value="30 mins" /> 30
-                  mins</span
+                  ><input
+                    type="radio"
+                    name="timeOption"
+                    value="30 mins"
+                    class="radioBtn"
+                  />
+                  30 mins</span
                 >
                 <span
-                  ><input type="radio" name="timeOption" value="1 hour" /> 1
-                  hour</span
+                  ><input
+                    type="radio"
+                    name="timeOption"
+                    value="1 hour"
+                    class="radioBtn"
+                  />
+                  1 hour</span
                 >
                 <span
-                  ><input type="radio" name="timeOption" value="2 hours" /> 2
-                  hours</span
+                  ><input
+                    type="radio"
+                    name="timeOption"
+                    value="2 hours"
+                    class="radioBtn"
+                  />
+                  2 hours</span
                 >
                 <label>
-                  <input type="radio" name="timeOption" value="Other hours" />
+                  <input
+                    type="radio"
+                    name="timeOption"
+                    value="Other hours"
+                    class="radioBtn" />
                   Other:
                   <input
                     type="text"
@@ -106,9 +127,9 @@
             </div>
 
             <!--Cancel and Create buttons-->
-            <div class="buttons">
-              <a type="button" class="cancel" href="/index.html">Cancel</a>
-              <button type="submit" class="create">Create</button>
+            <div class="buttons" id="taskCreationButtons">
+              <button type="button" class="cancel" id="cancelTaskBtn">Cancel</button>
+              <button type="submit" class="create" id="createTaskBtn">Create</button>
             </div>
           </form>
         </div>
@@ -144,5 +165,4 @@
     </main>
   </body>
   <script type="module" src="/js/task.js"></script>
-
 </html>

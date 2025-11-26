@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
 /* .faq { */
-    /* background-color: #e7e7e7;
+/* background-color: #e7e7e7;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width: 350px;
@@ -7,20 +8,31 @@
     margin-top: 1vh; */
 /* } */
 .faq .helpHeaders {
-    padding: 3px;
-    border: none;
-    border-radius: 5px;
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #494949;
-    background-color: rgb(185, 185, 185);
-  }
-  .faq #questions {
-    background-color: #e7e7e7;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 350px;
-    justify-self: center;
-    margin-top: 1vh;
-  }
+  padding: 1cap;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  display: block;
+  font-weight: bolder;
+  margin-bottom: 8px;
+  color: #525252;
+  background-color: rgb(231, 231, 231);
+  font-size: 2vh;
+}
+
+.faq .info {
+  font-size: 1.75vh;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  color: rgb(95, 95, 95);
+  padding-bottom: 5vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+/*
+  - sign in align
+
+  Create Task:
+  pet blocked when guest
+  cannot get to pets at task creation
+  css needs fixing
+  */

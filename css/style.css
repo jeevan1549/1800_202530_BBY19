@@ -1,5 +1,6 @@
-
-
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&display=swap");
 
 :root {
   /* LIGHT MODE */
@@ -36,9 +37,6 @@ body.dark-mode {
 }
 
 /*---------------------------------[ Landing Page ]---------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&display=swap");
 body {
   font-family: "Stack Sans Text";
   background-color: #616161;
@@ -179,6 +177,7 @@ body img {
   font-size: 2vh;
   top: 8%;
   font-weight: 500;
+  padding-top: 2vh;
   color: rgb(86, 86, 86);
 }
 
@@ -315,32 +314,45 @@ body img {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   width: 90%;
-  max-width: 400px;
+
+  position: relative;
   justify-self: center;
-  margin-top: 1vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
+.radioBtn {
+  transform: scale(1.5);
+}
 .formGroup {
   justify-content: center;
   margin-bottom: 1.5%;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
 }
 .formGroup label {
-  padding: 3px;
+  font-family: "Quicksand", sans-serif;
+  padding-top: 0.75vh;
+  padding-bottom: 0.75vh;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
   border: none;
   border-radius: 5px;
   display: block;
   font-weight: bold;
+  font-size: 2vh;
   margin-bottom: 1%;
   color: #494949;
   background-color: rgb(185, 185, 185);
 }
 
 .formGroup span {
+  font-family: "Quicksand", sans-serif;
   display: inline-block;
-  padding: 4%;
+  padding: 2%;
+  font-size: 2vh;
   margin-top: -5px;
+  color: #5a5a5a;
 }
 
 .formGroup label[for="time"] {
@@ -356,6 +368,7 @@ body img {
   border-radius: 5px;
   font-size: 1em;
   box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
 .buttons {
@@ -365,36 +378,73 @@ body img {
   margin-bottom: 10px;
 }
 
-.buttons a,
 .buttons button {
-  padding: 10px 20px;
-  border: 2px solid rgb(148, 148, 148);
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(181, 181, 181);
   transition: background-color 0.1s ease, border-color 0.1s ease,
     transform 0.2s ease;
 }
 
 /* Hover effect */
-.buttons a:hover,
 .buttons button:hover {
-  background-color: rgb(170, 170, 170); /* darker shade */
+  background-color: rgb(206, 206, 206); /* darker shade */
   border-color: rgb(120, 120, 120); /* slightly darker border */
 }
-.buttons .cancel {
+
+#taskIntro {
+  text-align: center;
+  font-size: 3vh;
+  font-family: "Quicksand", sans-serif;
+}
+
+#createTaskBtn {
   margin-right: 15px;
-  text-decoration: none;
   color: black;
+  width: 25vw;
+  height: 4vh;
+  font-size: 2vh;
+  text-align: center;
+  color: #4a4a4a;
+  font-weight: bold;
+  border-width: 0;
+  font-family: "Quicksand", sans-serif;
 }
 
-.buttons .create {
-  margin-left: 15px;
-  text-decoration: none;
+#cancelTaskBtn {
+  margin-right: 15px;
   color: black;
+  width: 25vw;
+  height: 4vh;
+  font-size: 2vh;
+  text-align: center;
+  color: #4a4a4a;
+  font-weight: bold;
+  border-collapse: collapse;
+  border-width: 0;
+  font-family: "Quicksand", sans-serif;
 }
 
+#taskDesc {
+  height: 10vh;
+  font-size: 2vh;
+}
+
+#taskDueDate {
+  height: 4vh;
+  font-size: 2vh;
+}
+
+#taskClass {
+  height: 4vh;
+  font-size: 2vh;
+}
+
+#taskName {
+  height: 4vh;
+  font-size: 2vh;
+}
 /*---------------------------------[ Task To Do List / I.M ]---------------------------------*/
 
 .archiveButton {
@@ -404,9 +454,8 @@ body img {
 }
 
 .archiveImg {
-  width: 35px;
-  height: 35px;
-  filter: grayscale(100%) brightness(50%);
+  height: 4vh;
+  filter: invert(20%);
 }
 
 .todolist {
@@ -422,8 +471,8 @@ body img {
   border: 2px solid #737373;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  max-width: 75%;
-  min-width: 65%;
+  max-width: 85%;
+  width: 85%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -443,6 +492,11 @@ body img {
 .taskReward {
   text-align: right;
   flex: 1 1 auto;
+}
+.taskReward2 {
+  text-align: right;
+  flex: 0.5;
+  color: #cbf5ff;
 }
 
 .taskName {
@@ -477,13 +531,14 @@ body img {
   justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  padding-right: 2vw;
 }
 .editButton,
 .doneButton {
   background-color: #d9d9d9;
   border: none;
   color: #737373;
-  padding: 0.4em 1.2em;
+  padding: 0.6em 1.8em;
   border-radius: 0.3rem;
   font-weight: bold;
   font-size: 0.9em;
@@ -636,7 +691,12 @@ footer {
   right: 0;
   padding-right: 4vw;
   color: rgb(0, 0, 0);
+  opacity: 80%;
   font-weight: bold;
+}
+
+.statImg {
+  height: 2.5vh;
 }
 
 #energyContainer {
@@ -693,6 +753,20 @@ footer {
 
 #pet {
   animation: blink 3s infinite;
+  height: 30vh;
+  display: block;
+  margin: 0 auto;
+}
+
+#itemImg {
+  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 75%);
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  opacity: 1;
 }
 
 .shopAndInventory {
@@ -763,7 +837,7 @@ footer {
 
 .bagFrameHeader {
   background-color: #acacac;
-  opacity: 70%;
+  opacity: 90%;
   border-radius: 5px;
   text-align: center;
 }
@@ -782,20 +856,21 @@ footer {
 
 .bagFrameBody {
   background-color: #e0e0e0;
-  opacity: 70%;
+  opacity: 90%;
   border-radius: 5px;
 }
 /* */
 .shopFrameHeader {
   background-color: #acacac;
-  opacity: 70%;
+  opacity: 90%;
   border-radius: 5px;
   text-align: center;
 }
 .shopFrameBody {
   background-color: #e0e0e0;
-  opacity: 70%;
+  opacity: 90%;
   border-radius: 5px;
+  align-content: center;
 }
 
 #closeShop {
@@ -810,10 +885,12 @@ footer {
 
 #shopicon {
   margin-top: 1.2vh;
+  height: 2.5vh;
 }
 
 #bagicon {
   margin-top: 1.2vh;
+  height: 2.5vh;
 }
 
 #itemContainer {
@@ -822,7 +899,7 @@ footer {
   height: 80%;
   justify-self: center;
   display: grid;
-  justify-content: left;
+  justify-content: center;
   grid-template-columns: auto auto auto auto;
   column-gap: 4vw;
 }
@@ -880,7 +957,7 @@ footer {
 
 .shopItemBody:active {
   transform: translateY(0) scale(0.97);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(88, 255, 163, 0.1);
   background-color: #e0e0e0;
 }
 
@@ -924,11 +1001,13 @@ footer {
 }
 
 .account-header {
+  font-family: "Quicksand", sans-serif;
   background-color: #434343;
   align-content: center;
   justify-items: center;
   text-align: center;
   color: white;
+  font-size: 1.5vh;
 }
 
 .accountImg {
@@ -937,11 +1016,14 @@ footer {
 }
 
 #Username {
+  font-family: "Quicksand", sans-serif;
   padding-top: 1vh;
+  font-size: 2vh;
   font-weight: bold;
 }
 
 .account-stats {
+  font-family: "Quicksand", sans-serif;
   background-color: #f9f9f9;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -953,10 +1035,20 @@ footer {
 
 .login-and-signup {
   background-color: #ededed;
+  font-family: "Quicksand", sans-serif;
   display: grid;
   justify-items: center;
   align-items: center;
+  text-align: center;
   padding: 20px 0;
+}
+
+#LoginButton {
+  text-align: center;
+}
+
+#LogoutButton {
+  text-align: center;
 }
 
 .account-content {

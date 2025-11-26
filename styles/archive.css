@@ -11,13 +11,16 @@
   border: 2px solid #737373;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  max-width: 75%;
-  min-width: 65%;
+
+  min-width: 75%;
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
 
+.archiveTitle {
+  font-size: 3vh;
+  color: #3f3f3f;
+}
 .taskDetail {
   font-size: 2vh;
   height: 1.5vh;
@@ -44,7 +47,7 @@
 }
 
 .taskDetails li {
-  margin: 0.5em 0; 
+  margin: 0.5em 0;
 }
 
 .taskList h3.taskName {
@@ -68,20 +71,22 @@
   justify-content: flex-end;
   gap: 0.5rem;
 
-  background-color: #d9d9d9;
+  background-color: #b2b2b2;
   border: none;
-  color: #737373;
-  padding: 0.4em 1.2em;
+  color: #fffbfb;
+  padding-top: .8vh;
+  padding-bottom: 1vh;
   border-radius: 0.3rem;
   font-weight: bold;
-  font-size: 0.9em;
-  width: 13vw;
+  font-size: 2vh;
+  width: 20vw;
+  height: 4vh;
+  text-align: center;
   justify-content: center;
-  max-width: 100px;
 }
 
 .deleteBtn:hover {
-  background-color: #bbbbbb;
+  background-color: #fefefe;
   color: #656565;
 }
 
@@ -96,13 +101,13 @@
 
 .taskFooter {
   display: flex;
-  justify-items: center; 
+  justify-items: center;
   align-items: center;
   padding-right: 2vw;
   font-size: 0.8em;
   color: #737373;
-} 
+}
 
 /* .taskFooter .taskArchivedDate {
   font-weight: normal;
-} */ 
+} */
