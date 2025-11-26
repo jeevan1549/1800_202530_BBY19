@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
+
 .archiveContainer {
   align-items: center;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-family: "Quicksand", sans-serif;
 }
 
 .archiveTask {
@@ -20,6 +23,7 @@
 .archiveTitle {
   font-size: 3vh;
   color: #3f3f3f;
+  font-family: "Quicksand", sans-serif;
 }
 .taskDetail {
   font-size: 2vh;
@@ -38,6 +42,9 @@
   max-height: 30px;
 }
 
+.timeArchived {
+  font-size: 1.5vh;
+}
 .archiveTitle {
   justify-self: center;
 }
@@ -48,6 +55,10 @@
 
 .taskDetails li {
   margin: 0.5em 0;
+}
+
+.taskName {
+  font-size: 2vh;
 }
 
 .taskList h3.taskName {
@@ -70,13 +81,14 @@
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
-
   background-color: #b2b2b2;
   border: none;
   color: #fffbfb;
-  padding-top: .8vh;
+  padding-top: 0.8vh;
   padding-bottom: 1vh;
   border-radius: 0.3rem;
+  padding-left: ;
+  margin-left: 50vw;
   font-weight: bold;
   font-size: 2vh;
   width: 20vw;
@@ -104,6 +116,7 @@
   justify-items: center;
   align-items: center;
   padding-right: 2vw;
+  padding-left: 10vw;
   font-size: 0.8em;
   color: #737373;
 }

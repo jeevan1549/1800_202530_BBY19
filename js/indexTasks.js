@@ -124,17 +124,25 @@ auth.onAuthStateChanged((user) => {
             const totalCurrency = (userData.currency || 0) + currency;
             const totalPoints = (userData.points || 0) + points;
             const totalExp = (userData.exp || 0) + exp;
-            await updateDoc(userRef, { points: totalPoints, exp: totalExp, currency: totalCurrency });
+            await updateDoc(userRef, {
+              points: totalPoints,
+              exp: totalExp,
+              currency: totalCurrency,
+            });
           }
 
           try {
-            const archiveRef = collection(db, "archiveTasks");
+            const archiveRef = collection(
+              db,
+              "users",
+              user.uid,
+              "archivedTasks"
+            );
             await setDoc(doc(archiveRef, docSnap.id), {
               ...task,
               archivedAt: serverTimestamp(),
               finalPoints: points,
               finalExp: exp,
-              userId: user.uid,
             });
 
             await deleteDoc(doc(userTasksCollection, docSnap.id));
