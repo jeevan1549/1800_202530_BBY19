@@ -8,8 +8,8 @@ import {
   collection,
   addDoc,
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
+import { auth } from "./firebaseConfig.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -22,7 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Form elements
 const taskNameInput = document.getElementById("taskName");
 const taskClassInput = document.getElementById("taskClass");
 const taskDueDateInput = document.getElementById("taskDueDate");
@@ -31,21 +30,33 @@ const otherTimeInput = document.querySelector("input[name='otherTimeOption']");
 const taskDescInput = document.getElementById("taskDesc");
 const createButton = document.querySelector(".create");
 
-// Get taskId from URL
 const params = new URLSearchParams(window.location.search);
 const taskId = params.get("taskId");
 
-// Helper function to convert empty/space-only input to "N/A"
 function sanitizeInput(value) {
   return value.trim() === "" ? "N/A" : value.trim();
 }
 
-// If editing an existing task
-if (taskId) {
-  createButton.textContent = "Done"; // Change button text to DONE
+const cancelButton = document.getElementById("cancelTaskBtn");
 
-  const taskDocRef = doc(db, "tasks", taskId);
-  getDoc(taskDocRef).then((docSnap) => {
+cancelButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  window.location.href = "/html/index.html";
+});
+
+auth.onAuthStateChanged(async (user) => {
+  if (!user) {
+    console.log("hello");
+    return;
+  }
+
+  const userTasksCollection = collection(db, "users", user.uid, "tasks");
+
+  if (taskId) {
+    createButton.textContent = "Done";
+
+    const taskDocRef = doc(userTasksCollection, taskId);
+    const docSnap = await getDoc(taskDocRef);
     if (docSnap.exists()) {
       const task = docSnap.data();
       taskNameInput.value = task.taskName || "";
@@ -69,50 +80,40 @@ if (taskId) {
         }
       }
     }
-  });
-} else {
-  createButton.textContent = "Create"; // Default text for new tasks
-}
-
-// On form submit (create or update task)
-createButton.addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  // Determine selected time
-  let selectedTime = "";
-  taskTimeRadios.forEach((radio) => {
-    if (radio.checked) {
-      selectedTime =
-        radio.value === "Other hours" ? otherTimeInput.value : radio.value;
-    }
-  });
-  selectedTime = sanitizeInput(selectedTime);
-
-  const taskData = {
-    taskName: sanitizeInput(taskNameInput.value),
-    taskClass: sanitizeInput(taskClassInput.value),
-    taskDueDate: convertToISO(sanitizeInput(taskDueDateInput.value)),
-    taskTime: selectedTime,
-    taskDesc: sanitizeInput(taskDescInput.value),
-    taskPoints: 0,
-    taskExp: 0,
-    createdAt: serverTimestamp(),
-  };
-
-  if (taskId) {
-    // Update existing task
-    await setDoc(doc(db, "tasks", taskId), taskData, { merge: true });
   } else {
-    // Create new task with auto-generated ID
-    await addDoc(collection(db, "tasks"), taskData);
+    createButton.textContent = "Create";
   }
 
-  // Redirect back to index
-  window.location.href = "/index.html";
-});
+  createButton.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-function convertToISO(dateString) {
-  if (dateString === "N/A") return "N/A";
-  const [day, month, year] = dateString.split("/");
-  return `${year}-${month}-${day}`;
-}
+    let selectedTime = "";
+    taskTimeRadios.forEach((radio) => {
+      if (radio.checked) {
+        selectedTime =
+          radio.value === "Other hours" ? otherTimeInput.value : radio.value;
+      }
+    });
+    selectedTime = sanitizeInput(selectedTime);
+
+    const taskData = {
+      taskName: sanitizeInput(taskNameInput.value),
+      taskClass: sanitizeInput(taskClassInput.value),
+      taskDueDate: sanitizeInput(taskDueDateInput.value),
+      taskTime: selectedTime,
+      taskDesc: sanitizeInput(taskDescInput.value),
+      taskPoints: 0,
+      taskCurrency: 0,
+      taskExp: 0,
+      createdAt: serverTimestamp(),
+    };
+
+    if (taskId) {
+      await setDoc(doc(userTasksCollection, taskId), taskData, { merge: true });
+    } else {
+      await addDoc(userTasksCollection, taskData);
+    }
+
+    window.location.href = "/index.html";
+  });
+});

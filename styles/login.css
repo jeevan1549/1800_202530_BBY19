@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Pixelify+Sans:wght@400..700&family=Quicksand:wght@300..700&family=Stack+Sans+Text:wght@200..700&display=swap");
 
 body {
-  font-family: "Stack Sans Text";
+  font-family: "Quicksand", sans-serif;
   margin: 0;
   height: 100%;
   width: 100%;
@@ -58,7 +58,7 @@ main {
 
 .login-fieldset {
   background-color: white;
-  width: 60%;
+  width: 80%;
   margin: auto;
   justify-items: center;
   border: none;
@@ -103,6 +103,7 @@ main {
   text-decoration: none;
   color: rgb(86, 128, 165);
   font-weight: bold;
+  font-size: 1.5vh;
 }
 
 .login-fieldset input[type="checkbox"],
@@ -111,6 +112,7 @@ main {
   display: inline-block;
   vertical-align: middle;
   margin: 0.6vh 0.6vh 0.6vh 0;
+  font-size: 1.5vh;
 }
 
 .login-fieldset input[type="checkbox"] {

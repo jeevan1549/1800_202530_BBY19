@@ -19,12 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginLink = loginContainer.querySelector("a");
 
   // Create logout button
-  const logoutButton = document.createElement("a");
-  logoutButton.textContent = "Logout";
-  logoutButton.href = "#";
-  logoutButton.className = loginLink.className;
-  logoutButton.style.display = "none";
-  loginContainer.appendChild(logoutButton);
+  const logoutButton = document.getElementById("LogoutButton");
 
   logoutButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -35,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Logout error:", err);
     }
   });
+
 
   let currentUserId = null;
   let points = 0;
