@@ -1,3 +1,34 @@
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};
+
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+
+let tasks = [];
+
+onSnapshot(collection(db, "tasks"), (snapshot) => {
+  tasks = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+    reminded: false
+  }));
+
+  renderTasksToCalendar(tasks);
+});
+
+
 const monthYearElement = document.getElementById("month-year");
 const datesElement = document.getElementById("dates");
 const prevBtn = document.getElementById("prevBtn");
@@ -33,7 +64,15 @@ const updateCalendar = () => {
     const date = new Date(currentYear, currentMonth, i);
     const activeClass =
       date.toDateString() === new Date().toDateString() ? "active" : "";
-    datesHTML += `<div class="date ${activeClass}">${i}</div>`;
+
+    const fullDate = date.toISOString().split("T")[0];
+
+    datesHTML += `
+      <div class="date ${activeClass}" data-date="${fullDate}">
+        <span>${i}</span>
+        <div class="tasks-container"></div>
+      </div>
+    `;
   }
 
   for (let i = 1; i < 7 - lastDayIndex; i++) {
@@ -42,6 +81,8 @@ const updateCalendar = () => {
   }
 
   datesElement.innerHTML = datesHTML;
+
+  renderTasksToCalendar(tasks);
 };
 
 prevBtn.addEventListener("click", () => {
@@ -55,3 +96,45 @@ nextBtn.addEventListener("click", () => {
 });
 
 updateCalendar();
+
+function renderTasksToCalendar(tasks) {
+  document.querySelectorAll(".tasks-container").forEach(c => c.innerHTML = "");
+
+  tasks.forEach(task => {
+    if (task.taskDueDate === "N/A") return;
+
+    const cell = document.querySelector(`[data-date="${task.taskDueDate}"]`);
+    if (cell) {
+      const container = cell.querySelector(".tasks-container");
+      const div = document.createElement("div");
+      div.className = "calendar-task";
+      div.innerText = task.taskName;
+      container.appendChild(div);
+    }
+  });
+}
+
+if ("Notification" in window && Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
+
+setInterval(() => {
+  if (!tasks || tasks.length === 0) return;
+
+  const now = new Date();
+
+  tasks.forEach(task => {
+    if (!task.taskDueDate || task.taskDueDate === "N/A") return;
+
+    const due = new Date(task.taskDueDate);
+    const diff = due - now;
+
+    if (diff > 0 && diff < 3600000 && !task.reminded) {
+      new Notification("Task Reminder", {
+        body: `${task.taskName} is due soon!`
+      });
+
+      task.reminded = true;
+    }
+  });
+}, 60000);

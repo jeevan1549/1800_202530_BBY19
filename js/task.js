@@ -91,11 +91,11 @@ createButton.addEventListener("click", async (e) => {
   const taskData = {
     taskName: sanitizeInput(taskNameInput.value),
     taskClass: sanitizeInput(taskClassInput.value),
-    taskDueDate: sanitizeInput(taskDueDateInput.value),
+    taskDueDate: convertToISO(sanitizeInput(taskDueDateInput.value)),
     taskTime: selectedTime,
     taskDesc: sanitizeInput(taskDescInput.value),
-    taskPoints: 0, // initialize task points at 0
-    taskExp: 0, // initialize task EXP at 0
+    taskPoints: 0,
+    taskExp: 0,
     createdAt: serverTimestamp(),
   };
 
@@ -110,3 +110,9 @@ createButton.addEventListener("click", async (e) => {
   // Redirect back to index
   window.location.href = "/index.html";
 });
+
+function convertToISO(dateString) {
+  if (dateString === "N/A") return "N/A";
+  const [day, month, year] = dateString.split("/");
+  return `${year}-${month}-${day}`;
+}
