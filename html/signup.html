@@ -26,7 +26,13 @@
             <a href="/html/login.html">Login</a>
           </div>
           <p></p>
-          <input type="email" placeholder="Email" id="email" name="email" />
+          <input
+            type="email"
+            placeholder="Email"
+            id="email"
+            name="email"
+            required
+          />
           <br />
 
           <input
@@ -34,13 +40,17 @@
             placeholder="Username"
             id="Username"
             name="username"
+            pattern="[A-Za-z0-9_]+"
+            required
           />
+
           <br />
           <input
             type="password"
             placeholder="Password"
             id="password"
             name="password"
+            required
           />
           <br />
 

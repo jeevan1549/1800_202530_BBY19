@@ -46,7 +46,13 @@ cancelButton.addEventListener("click", async (e) => {
 
 auth.onAuthStateChanged(async (user) => {
   if (!user) {
-    console.log("hello");
+    console.log("User is not logged in.");
+
+    createButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      window.location.href = "/html/login.html";
+    });
+
     return;
   }
 

@@ -38,6 +38,8 @@ onAuthStateChanged(auth, async (user) => {
       await updateDoc(userRef, { exp, level });
     }
   } else {
+    const lockedContent = document.querySelector(".LockedContent");
+    if (lockedContent) lockedContent.style.display = "grid";
     console.log("No user logged in");
 
     // Optional: hide main content if not logged in at all
@@ -70,6 +72,14 @@ const pet = document.getElementById("pet");
 const petContainer = document.getElementById("petContainer");
 const ageDisplay = document.getElementById("age");
 const currencyContainer = document.getElementById("pet-currency");
+
+const lockedloginButton = document.getElementById("lockedlogin");
+
+// --- Locked Login ---
+
+lockedloginButton.addEventListener("click", function () {
+  window.location.href = "login.html";
+});
 
 // --- FIRESTORE REFERENCES ---
 function userRef(uid) {
@@ -745,8 +755,6 @@ setInterval(() => {
   if (heart > 1000) {
     heart = 1000;
   }
-
-
 }, 500); // every .5 seconds
 
 // Energy System

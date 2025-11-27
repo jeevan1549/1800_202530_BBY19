@@ -632,6 +632,45 @@ footer {
 /*---------------------------------[ - ]---------------------------------*/
 
 /*---------------------------------[ Pet Creation / JA.J ]---------------------------------*/
+/* Locked Content */
+.LockedContent {
+  background-color: #43494b;
+  display: none;
+  grid-template-rows: auto auto auto;
+}
+
+.locked-login-title {
+  font-size: 3.5vh;
+  text-align: center;
+  color: white;
+  padding-top: 4vh;
+  font-family: "Quicksand", sans-serif;
+}
+
+.locked-img-container {
+  justify-self: center;
+}
+#lockImg {
+  height: 30.5vh;
+  filter: grayscale(25%);
+}
+
+.locked-login-container {
+  margin: auto;
+}
+.locked-login-button {
+  background-color: #bcbcbc;
+  border: 0;
+  color: #ffffff;
+  width: 30vw;
+  height: 4vh;
+  border-radius: 3px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 2.5vh;
+  font-weight: bold;
+  
+}
+/* Logged in */
 .petBG {
   position: absolute;
   overflow: hidden;
