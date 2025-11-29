@@ -61,21 +61,21 @@ body img {
 }
 .TopNav div:nth-child(1) {
   /* background-color: #dbe6eb; */
-  background-color: rgb(233, 233, 233);
+  background-color: #f0fcff;
 }
 .TopNav div:nth-child(2) {
   /* background-color: #c6deea; */
-  background-color: rgb(228, 228, 228);
+  background-color: #eafbff;
 }
 .TopNav div:nth-child(3) {
   /* background-color: #bcd9e8; */
-  background-color: rgb(216, 216, 216);
+  background-color: #e2f9ff;
   /*border-bottom: 1vh solid #88afc2; */
-  border-bottom: 1vh solid rgb(169, 169, 169);
+  border-bottom: 1vh solid rgb(192, 205, 212);
 }
 
 .MainContent {
-  background-color: rgb(265, 265, 265);
+  background-color: #f4f9ff;
   min-height: calc(100vh - 15vh - 15vh);
   overflow-y: auto;
   box-sizing: border-box;
@@ -90,15 +90,15 @@ body img {
 }
 .BottomNav > div:nth-child(1) {
   background-color: rgb(245, 245, 245);
-  border-top: 1vh solid rgb(180, 180, 180);
+  border-top: 1vh solid rgb(180, 194, 201);
   /* border-top: 1vh solid #97c0d4; */
   width: 100%;
   z-index: 3;
 }
 .BottomNav > div:nth-child(2) {
-  background-color: rgb(233, 233, 233);
+  background-color: #deecef;
   /* background-color: #dbe6eb; */
-  border-bottom: 1vh solid rgb(190, 190, 190);
+  border-bottom: 1vh solid rgb(193, 212, 214);
   /* border-bottom: 1vh solid #97c0d4; */
   z-index: 3;
 }
@@ -119,7 +119,7 @@ body img {
   width: 25vw;
   height: 12vh;
   border: none;
-  background-color: rgb(213, 213, 213);
+  background-color: #eafbff;
   /* background-color: #c6deea; */
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   text-decoration: none;
@@ -246,7 +246,7 @@ body img {
 .addTask2 {
   bottom: 2vh;
   z-index: 2;
-  filter: invert(90%);
+  filter: saturate(1.5);
 }
 
 .plusImg {
@@ -668,7 +668,6 @@ footer {
   font-family: "Quicksand", sans-serif;
   font-size: 2.5vh;
   font-weight: bold;
-  
 }
 /* Logged in */
 .petBG {
@@ -701,7 +700,7 @@ footer {
 }
 
 .pet-interactions {
-  background-color: rgb(236, 236, 236);
+  background-color: hsl(208, 52%, 95%);
   font-family: "Pixelify Sans";
   width: 25vw;
   height: 5vh;
@@ -760,7 +759,7 @@ footer {
   height: 2.5vh;
 }
 .currencyBox {
-  background-color: #e3e3e3;
+  background-color: hsl(208, 52%, 95%);
   width: 20vw;
   border: 4px solid rgb(104, 104, 104);
   padding-left: 2vw;
@@ -821,9 +820,9 @@ footer {
   width: 20vw;
   text-align: center;
   height: 5vh;
-  background-color: #eeeeee;
+  background-color: hsl(208, 52%, 95%);
   border-radius: 5px;
-  border-color: #b2b2b2;
+  border-color: #c5ced4;
   font-family: "Pixelify Sans";
   font-size: 2vh;
   cursor: pointer;
@@ -831,7 +830,7 @@ footer {
 }
 
 .shopAndInventory button:hover {
-  background-color: #e2e2e2;
+  background-color: hsl(208, 100%, 95%);
   transform: translateX(2px);
 }
 
@@ -875,7 +874,7 @@ footer {
 }
 
 .bagFrameHeader {
-  background-color: #acacac;
+  background-color: #ecf5f9;
   opacity: 90%;
   border-radius: 5px;
   text-align: center;
@@ -894,19 +893,19 @@ footer {
 }
 
 .bagFrameBody {
-  background-color: #e0e0e0;
+  background-color: #d2d9dd;
   opacity: 90%;
   border-radius: 5px;
 }
 /* */
 .shopFrameHeader {
-  background-color: #acacac;
+  background-color: #ecf5f9;
   opacity: 90%;
   border-radius: 5px;
   text-align: center;
 }
 .shopFrameBody {
-  background-color: #e0e0e0;
+  background-color: #d2d9dd;
   opacity: 90%;
   border-radius: 5px;
   align-content: center;
@@ -949,7 +948,7 @@ footer {
   height: 11vh;
   text-align: center;
   font-size: 1.7vh;
-  background-color: #d1d1d1;
+  background-color: #dee5ea;
   border-radius: 5px;
   transition: transform 0.25s ease, box-shadow 0.25s ease,
     background-color 0.25s ease;
@@ -959,10 +958,11 @@ footer {
   width: 13vw;
   height: 2.25vh;
   text-align: center;
-  background-color: #8f8f8f;
+  background-color: #ecf5f9;
   border-radius: 5px;
   font-family: "Pixelify Sans";
   pointer-events: none;
+  font-size: 1.3vh;
 }
 
 .shopItemFooter {
@@ -1041,7 +1041,7 @@ footer {
 
 .account-header {
   font-family: "Quicksand", sans-serif;
-  background-color: #434343;
+  background-color: #4a4e54;
   align-content: center;
   justify-items: center;
   text-align: center;
@@ -1063,7 +1063,7 @@ footer {
 
 .account-stats {
   font-family: "Quicksand", sans-serif;
-  background-color: #f9f9f9;
+  background-color: #edf5ff;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
@@ -1073,7 +1073,7 @@ footer {
 }
 
 .login-and-signup {
-  background-color: #ededed;
+  background-color: #eff9fd;
   font-family: "Quicksand", sans-serif;
   display: grid;
   justify-items: center;
@@ -1091,12 +1091,12 @@ footer {
 }
 
 .account-content {
-  background-color: #e1e1e1;
+  background-color: #d5dade;
 }
 .login-and-signup a {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background-color: #656565;
+  background-color: #5b5f66;
   border-radius: 5px;
   padding: 10px 20px;
   width: 10vw;
