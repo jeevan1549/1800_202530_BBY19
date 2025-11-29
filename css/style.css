@@ -61,15 +61,15 @@ body img {
 }
 .TopNav div:nth-child(1) {
   /* background-color: #dbe6eb; */
-  background-color: #f0fcff;
+  background-color: #f1fbfe;
 }
 .TopNav div:nth-child(2) {
   /* background-color: #c6deea; */
-  background-color: #eafbff;
+  background-color: #e7f1f4;
 }
 .TopNav div:nth-child(3) {
   /* background-color: #bcd9e8; */
-  background-color: #e2f9ff;
+  background-color: #e3edef;
   /*border-bottom: 1vh solid #88afc2; */
   border-bottom: 1vh solid rgb(192, 205, 212);
 }
@@ -96,7 +96,7 @@ body img {
   z-index: 3;
 }
 .BottomNav > div:nth-child(2) {
-  background-color: #deecef;
+  background-color: #e5f1f3;
   /* background-color: #dbe6eb; */
   border-bottom: 1vh solid rgb(193, 212, 214);
   /* border-bottom: 1vh solid #97c0d4; */
@@ -119,7 +119,7 @@ body img {
   width: 25vw;
   height: 12vh;
   border: none;
-  background-color: #eafbff;
+  background-color: #e7f6f9;
   /* background-color: #c6deea; */
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   text-decoration: none;
@@ -238,7 +238,7 @@ body img {
 }
 
 .addTask {
-  filter: invert(62.67%);
+  filter: invert(60.67%);
   bottom: 3vh;
   z-index: 1;
 }
@@ -310,7 +310,7 @@ body img {
 /*---------------------------------[ Task Creation / I.M ]---------------------------------*/
 
 .taskForm {
-  background-color: #e7e7e7;
+  background-color: #e4e6ea;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   width: 90%;
@@ -343,7 +343,7 @@ body img {
   font-size: 2vh;
   margin-bottom: 1%;
   color: #494949;
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(198, 209, 216);
 }
 
 .formGroup span {
@@ -382,14 +382,14 @@ body img {
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  background-color: rgb(181, 181, 181);
+  background-color: rgb(198, 209, 216);
   transition: background-color 0.1s ease, border-color 0.1s ease,
     transform 0.2s ease;
 }
 
 /* Hover effect */
 .buttons button:hover {
-  background-color: rgb(206, 206, 206); /* darker shade */
+  background-color: rgb(175, 184, 196); /* darker shade */
   border-color: rgb(120, 120, 120); /* slightly darker border */
 }
 
@@ -467,7 +467,7 @@ body img {
 }
 
 .task {
-  background-color: #e8e8e8;
+  background-color: #ebedef;
   border: 2px solid #737373;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -478,7 +478,7 @@ body img {
 }
 
 .taskHeader {
-  background-color: rgb(185, 185, 185);
+  background-color: rgb(209, 216, 222);
   padding: 1% 3%;
   display: flex;
   align-items: start;
@@ -535,7 +535,7 @@ body img {
 }
 .editButton,
 .doneButton {
-  background-color: #d9d9d9;
+  background-color: #d2d8df;
   border: none;
   color: #737373;
   padding: 0.6em 1.8em;
@@ -659,7 +659,7 @@ footer {
   margin: auto;
 }
 .locked-login-button {
-  background-color: #bcbcbc;
+  background-color: #b1b7bd;
   border: 0;
   color: #ffffff;
   width: 30vw;
