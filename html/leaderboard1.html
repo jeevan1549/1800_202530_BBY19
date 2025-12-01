@@ -41,14 +41,30 @@
       </nav>
       <div class="MainContent">
         <div class="headers">
-          <div class="header1"><h1>Leaderboard</h1></div>
-          <a class="header2" href="/html/friendslist.html">
-            <div><h1>Friends</h1></div>
+          <a class="header" href="/html/friendslist.html">
+            <div class="header-content"><h1>Friends</h1></div>
           </a>
         </div>
-        
+        <div class="leaderboard-wrap">
+          <div class="leaderboard-header">
+            <div>
+              <div class="title">
+                Leaderboard
+              </div>
+            </div>
+          </div>
+          <div class="board" role="list">
+            <div class="row header">
+              <div>Rank</div>
+              <div>Name</div>
+              <div class="score">Score</div>
+              <div class="level">Level</div>
+            </div>
+            <div class="board" id="leaderboardRows"></div>
+          </div>
+        </div>
+      </div>
 
-        
       <footer class="BottomNav">
         <div></div>
         <div class="navContainer">
@@ -77,5 +93,5 @@
       </footer>
     </main>
   </body>
-
+  <script type="module" src="/js/leaderboard.js"></script>
 </html>

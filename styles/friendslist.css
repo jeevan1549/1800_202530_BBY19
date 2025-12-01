@@ -1,15 +1,10 @@
 
-/* .MainContent {
-  font-size:xx-large;
-} */
-
 .friends-container {
   max-width: 980px;
   margin: 1.5rem auto;
   padding: 1.25rem;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(14, 21, 47, 0.06);
 }
 
 .friends-header {
@@ -70,8 +65,8 @@
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(180deg,#2aa7ff,#0072d1);
-  color: white;
+  background: lightblue;
+  color: black;
 }
 
 .friends-list {
@@ -91,7 +86,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  box-shadow: 0 2px 8px rgba(19, 35, 57, 0.04);
 }
 
 .friend-main {
