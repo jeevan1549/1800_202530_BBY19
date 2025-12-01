@@ -1,68 +1,57 @@
-import { auth, db } from "./firebaseConfig.js";
-import {
-  doc,
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  limit,
-} from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { db } from "../js/firebaseConfig.js";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
-const usersRef = collection(db, "users");
+const leaderboardRows = document.getElementById("leaderboardRows");
 
-const leaderboardQuery = query(
-  usersRef,
-  orderBy("points", "desc"),
-  orderBy("level", "desc"),
-  orderBy("exp", "desc"),
-  limit(3)
-);
+function startLeaderboard() {
+  const usersRef = collection(db, "users");
 
-onSnapshot(leaderboardQuery, (snapshot) => {
-  const top = snapshot.docs.map((doc) => doc.data());
+  const q = query(usersRef, orderBy("points", "desc"));
 
-  const first = top[0] || { username: "---", level: 0 };
-  const second = top[1] || { username: "---", level: 0 };
-  const third = top[2] || { username: "---", level: 0 };
-
-  document.getElementById("firstPlaceName").textContent = first.username;
-  document.getElementById("firstPlaceRank").textContent = first.level;
-
-  document.getElementById("secondPlaceName").textContent = second.username;
-  document.getElementById("secondPlaceRank").textContent = second.level;
-
-  document.getElementById("thirdPlaceName").textContent = third.username;
-  document.getElementById("thirdPlaceRank").textContent = third.level;
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const bar = document.querySelector(".myBar");
-  const levelCircle = document.querySelector(".level-number-circle span");
-
-  function calculateExpForNextLevel(level) {
-    return 50 * Math.pow(1.025, level - 1);
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if (!user) return;
-    const userRef = doc(db, "users", user.uid);
-
-    onSnapshot(userRef, (snapshot) => {
-      if (!snapshot.exists()) return;
-
-      const data = snapshot.data();
-      const exp = data.exp ?? 0;
-      const level = data.level ?? 1;
-
-      levelCircle.textContent = level;
-
-      const required = calculateExpForNextLevel(level);
-      const percent = Math.min((exp / required) * 100, 100);
-
-      bar.style.width = percent + "%";
-      bar.textContent = Math.floor(percent) + "%";
+  onSnapshot(q, (snapshot) => {
+    const users = [];
+    snapshot.forEach((doc) => {
+      users.push({ id: doc.id, ...doc.data() });
     });
+
+    renderLeaderboard(users);
   });
-});
+}
+
+function renderLeaderboard(users) {
+  leaderboardRows.innerHTML = "";
+
+  users.forEach((user, index) => {
+    const rank = index + 1;
+
+    const initials = user.username
+      ? user.username.substring(0, 2).toUpperCase()
+      : "??";
+
+    const row = `
+      <div class="row ${rank === 1 ? "top1" : rank === 2 ? "top2" : rank === 3 ? "top3" : ""}">
+        <div class="rank">${rank}</div>
+
+        <div class="name-cell">
+          <div class="avatar">${initials}</div>
+          <div class="person">
+            <span class="who">${user.username}</span>
+            <span class="meta">ID: ${user.userId}</span>
+          </div>
+        </div>
+
+        <div class="score">
+          <span class="small">Points</span> ${user.points}
+        </div>
+
+        <div class="level">
+          <span class="small">Lvl</span> ${user.level}
+        </div>
+      </div>
+    `;
+
+    leaderboardRows.innerHTML += row;
+  });
+}
+
+startLeaderboard();

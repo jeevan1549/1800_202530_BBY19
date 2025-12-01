@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -18,14 +18,19 @@ export const auth = getAuth(app);
 
 let tasks = [];
 
-onSnapshot(collection(db, "tasks"), (snapshot) => {
-  tasks = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-    reminded: false
-  }));
+onAuthStateChanged(auth, (user) => {
+  if (!user) return;
 
-  renderTasksToCalendar(tasks);
+  const tasksRef = collection(db, "users", user.uid, "tasks");
+
+  onSnapshot(tasksRef, (snapshot) => {
+    tasks = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    renderTasksToCalendar(tasks);
+  });
 });
 
 
@@ -60,20 +65,21 @@ const updateCalendar = () => {
       `<div class="date inactive">${prevDate.getDate()}</div>` + datesHTML;
   }
 
-  for (let i = 1; i <= totalDays; i++) {
-    const date = new Date(currentYear, currentMonth, i);
-    const activeClass =
-      date.toDateString() === new Date().toDateString() ? "active" : "";
+ for (let i = 1; i <= totalDays; i++) {
+  const date = new Date(currentYear, currentMonth, i);
+  const activeClass =
+    date.toDateString() === new Date().toDateString() ? "active" : "";
 
-    const fullDate = date.toISOString().split("T")[0];
+  const fullDate = date.toISOString().split("T")[0];
 
-    datesHTML += `
-      <div class="date ${activeClass}" data-date="${fullDate}">
-        <span>${i}</span>
-        <div class="tasks-container"></div>
-      </div>
-    `;
-  }
+  datesHTML += `
+    <div class="date ${activeClass}" data-date="${fullDate}">
+      <span>${i}</span>
+      <div class="tasks-container"></div>
+    </div>
+  `;
+}
+
 
   for (let i = 1; i < 7 - lastDayIndex; i++) {
     const nextDate = new Date(currentYear, currentMonth + 1, i);
@@ -137,4 +143,4 @@ setInterval(() => {
       task.reminded = true;
     }
   });
-}, 60000);
+}, 60000)

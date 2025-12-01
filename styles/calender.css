@@ -75,13 +75,12 @@ body {
   justify-content: center;
   border-radius: 8px;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: background 0.3s, transform 0.2s;
 }
 
 .dates div:hover {
-  background-color: #007bff;
-  color: white;
+  background-color:#b3e4ebcc;
+  color: black;
   transform: scale(1.05);
 }
 
@@ -96,7 +95,7 @@ body {
 }
 
 .date.active {
-  background-color: #007bff;
+  background-color: lightblue;
   color: white;
 }
 .day {
@@ -119,7 +118,7 @@ body {
 
 .calendar-task {
   color: black;
-  background-color: rgb(255, 255, 211) !important;
+  background-color: #dfe9f3 !important;
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 1rem;
@@ -133,6 +132,6 @@ body {
 
 
 .calendar-task:hover {
-  background-color: rgb(255, 255, 211) !important;
-  color:#007bff !important;
+  background-color: #dfe9f3 !important;
+  color:cornflowerblue !important;
 }

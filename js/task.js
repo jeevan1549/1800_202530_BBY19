@@ -105,7 +105,7 @@ auth.onAuthStateChanged(async (user) => {
     const taskData = {
       taskName: sanitizeInput(taskNameInput.value),
       taskClass: sanitizeInput(taskClassInput.value),
-      taskDueDate: sanitizeInput(taskDueDateInput.value),
+      taskDueDate: convertToISO(sanitizeInput(taskDueDateInput.value)),
       taskTime: selectedTime,
       taskDesc: sanitizeInput(taskDescInput.value),
       taskPoints: 0,
@@ -122,4 +122,9 @@ auth.onAuthStateChanged(async (user) => {
 
     window.location.href = "/index.html";
   });
+  function convertToISO(dateString) {
+  if (dateString === "N/A") return "N/A";
+  const [day, month, year] = dateString.split("/");
+  return `${year}-${month}-${day}`;
+}
 });
