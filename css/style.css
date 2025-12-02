@@ -280,10 +280,6 @@ body img {
   filter: invert(40%);
 }
 
-.addTask2:hover {
-  filter: invert(80%);
-}
-
 .MiscNav img:hover {
   filter: invert(35%);
 }
@@ -1082,12 +1078,28 @@ footer {
   padding: 20px 0;
 }
 
+.addFriend {
+  position: fixed;
+  margin-left: 24.5vw;
+  margin-top: 2vh;
+  font-weight: bolder;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color:#656a71;
+  border-radius: 3px;
+  padding: 0.75vw;
+  width: 20vw;
+  height: 3vh;
+  align-content: center;
+  text-align: center;
+}
 #LoginButton {
   text-align: center;
 }
 
 #LogoutButton {
   text-align: center;
+  display: none;
 }
 
 .account-content {

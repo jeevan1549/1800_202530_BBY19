@@ -38,6 +38,11 @@
   transition: 0.15s ease;
 }
 
+.leaderboard-wrap {
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
 #leaderboardRows .row:hover {
   transform: translateY(-2px);
 }

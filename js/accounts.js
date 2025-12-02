@@ -15,28 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const levelElement = document.getElementById("Level");
   const friendsElement = document.getElementById("Friends");
 
+  const friendCodeElement = document.getElementById("friend-code");
+
   const loginContainer = document.querySelector(".login-and-signup");
   const loginLink = loginContainer.querySelector("a");
 
-  // Create logout button
-  const logoutButton = document.getElementById("LogoutButton");
-
-  logoutButton.addEventListener("click", async (e) => {
-    e.preventDefault();
-    try {
-      await signOut(auth);
-      window.location.href = "/html/login.html";
-    } catch (err) {
-      console.error("Logout error:", err);
-    }
-  });
 
 
   let currentUserId = null;
   let points = 0;
-  let level = 1; // just display level, no exp logic
+  let level = 1;
 
-  // Add points
   async function addPoints(amount) {
     if (!currentUserId) return;
     points += amount;
@@ -48,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user) {
       currentUserId = user.uid;
 
-      logoutButton.style.display = "inline-block";
+      
       loginLink.style.display = "none";
 
       try {
@@ -61,9 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pointsElement.textContent = `Points: ${points}`;
         levelElement.textContent = `Level: ${level}`;
-        friendsElement.textContent = `Friends: ${
-          userData.friends?.length || 0
-        }`;
+
+        const friendsSnap = await getDocs(
+          collection(db, "users", user.uid, "friends")
+        );
+        friendsElement.textContent = `Friends: ${friendsSnap.size}`;
+
+        if (friendCodeElement) {
+          friendCodeElement.textContent = `ID: ${userData.userId}` || "No ID";
+        }
       } catch {
         usernameElement.textContent = "User";
         points = 0;
@@ -71,11 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
         pointsElement.textContent = `Points: ${points}`;
         levelElement.textContent = `Level: ${level}`;
         friendsElement.textContent = `Friends: 0`;
+
+        if (friendCodeElement) {
+          friendCodeElement.textContent = "No Code";
+        }
       }
     } else {
       currentUserId = null;
 
-      logoutButton.style.display = "none";
+
       loginLink.style.display = "inline-block";
 
       usernameElement.textContent = "Guest";
@@ -84,12 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
       pointsElement.textContent = `Points: ${points}`;
       levelElement.textContent = `Level: ${level}`;
 
-      const friendsCol = collection(db, "users", user.uid, "friends");
-      const friendsSnap = await getDocs(friendsCol);
-      friendsElement.textContent = `Friends: ${friendsSnap.size}`;
+      if (friendCodeElement) {
+        friendCodeElement.textContent = "";
+      }
+
+      friendsElement.textContent = `Friends: 0`;
     }
   });
 
-  // Expose functions globally if needed
   window.addPoints = addPoints;
 });

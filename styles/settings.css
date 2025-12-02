@@ -46,8 +46,12 @@ h1 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: #1e40af;
+  background: #8999ce;
   color: white;
+}
+
+#logOut {
+  background: #dc9494;
 }
 
 .logins-box {
