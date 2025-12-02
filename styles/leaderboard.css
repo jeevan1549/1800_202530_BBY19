@@ -14,13 +14,14 @@
 
 .row.header {
   display: grid;
-  grid-template-columns: 70px 1fr 120px 100px;
+  grid-template-columns: 15% 45% 20% 20%;
   padding: 12px 20px;
   background: #ececff;
   border-radius: 10px;
   font-weight: 700;
   margin-bottom: 10px;
-  background-color: #c6e9fccc;
+  align-items: center;
+  background-color: #acc6d5cc;
 }
 
 #leaderboardRows {
@@ -29,9 +30,9 @@
 
 #leaderboardRows .row {
   display: grid;
-  grid-template-columns: 70px 1fr 120px 100px;
+  grid-template-columns: 10% 50% 20% 20%;
   padding: 14px 20px;
-  background-color: #b7d6e2;
+  background-color: #d8e8ef;
   margin-bottom: 10px;
   border-radius: 12px;
   align-items: center;
@@ -41,6 +42,7 @@
 .leaderboard-wrap {
   padding-left: 3vw;
   padding-right: 3vw;
+  padding-top: 3vh;
 }
 
 #leaderboardRows .row:hover {
@@ -59,4 +61,10 @@
   font-size: 1.2rem;
 }
 
+.who {
+  font-size: 1.5vh;
+}
 
+.meta {
+  font-size: 1.5vh;
+}

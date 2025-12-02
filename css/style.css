@@ -61,17 +61,17 @@ body img {
 }
 .TopNav div:nth-child(1) {
   /* background-color: #dbe6eb; */
-  background-color: #f1fbfe;
+  background-color: #ddf5fc;
 }
 .TopNav div:nth-child(2) {
   /* background-color: #c6deea; */
-  background-color: #e7f1f4;
+  background-color: #d8eef5;
 }
 .TopNav div:nth-child(3) {
   /* background-color: #bcd9e8; */
-  background-color: #e3edef;
+  background-color: #d2e9ee;
   /*border-bottom: 1vh solid #88afc2; */
-  border-bottom: 1vh solid rgb(192, 205, 212);
+  border-bottom: 1vh solid rgb(173, 192, 203);
 }
 
 .MainContent {
@@ -90,15 +90,15 @@ body img {
 }
 .BottomNav > div:nth-child(1) {
   background-color: rgb(245, 245, 245);
-  border-top: 1vh solid rgb(180, 194, 201);
+  border-top: 1vh solid rgb(184, 203, 213);
   /* border-top: 1vh solid #97c0d4; */
   width: 100%;
   z-index: 3;
 }
 .BottomNav > div:nth-child(2) {
-  background-color: #e5f1f3;
+  background-color: #d4e9ed;
   /* background-color: #dbe6eb; */
-  border-bottom: 1vh solid rgb(193, 212, 214);
+  border-bottom: 1vh solid #b4cfd5;
   /* border-bottom: 1vh solid #97c0d4; */
   z-index: 3;
 }
@@ -119,7 +119,7 @@ body img {
   width: 25vw;
   height: 12vh;
   border: none;
-  background-color: #e7f6f9;
+  background-color: #d4e9ed;
   /* background-color: #c6deea; */
   transition: transform 0.15s ease, box-shadow 0.3s ease;
   text-decoration: none;
@@ -238,7 +238,7 @@ body img {
 }
 
 .addTask {
-  filter: invert(60.67%);
+  filter: invert(15%);
   bottom: 3vh;
   z-index: 1;
 }
@@ -246,7 +246,6 @@ body img {
 .addTask2 {
   bottom: 2vh;
   z-index: 2;
-  filter: saturate(1.5);
 }
 
 .plusImg {
@@ -696,7 +695,7 @@ footer {
 }
 
 .pet-interactions {
-  background-color: hsl(208, 52%, 95%);
+  background-color: hsl(204, 29%, 97%);
   font-family: "Pixelify Sans";
   width: 25vw;
   height: 5vh;
@@ -710,12 +709,12 @@ footer {
 }
 
 .pet-interactions:hover {
-  background-color: rgb(225, 225, 225);
+  background-color: rgb(231, 245, 249);
   transform: translateY(-3px);
 }
 
 .pet-interactions:active {
-  background-color: rgb(210, 210, 210);
+  background-color: rgb(200, 213, 222);
   transform: scale(0.92);
 }
 
@@ -755,7 +754,7 @@ footer {
   height: 2.5vh;
 }
 .currencyBox {
-  background-color: hsl(208, 52%, 95%);
+  background-color: hsl(204, 29%, 97%);
   width: 20vw;
   border: 4px solid rgb(104, 104, 104);
   padding-left: 2vw;
@@ -816,7 +815,7 @@ footer {
   width: 20vw;
   text-align: center;
   height: 5vh;
-  background-color: hsl(208, 52%, 95%);
+  background-color: hsl(204, 29%, 97%);
   border-radius: 5px;
   border-color: #c5ced4;
   font-family: "Pixelify Sans";
@@ -831,7 +830,7 @@ footer {
 }
 
 .shopAndInventory button:active {
-  background-color: #d0d0d0;
+  background-color: #bdc8d7;
   transform: scale(0.92);
 }
 
@@ -889,7 +888,7 @@ footer {
 }
 
 .bagFrameBody {
-  background-color: #d2d9dd;
+  background-color: #d7e5e8;
   opacity: 90%;
   border-radius: 5px;
 }
@@ -901,7 +900,7 @@ footer {
   text-align: center;
 }
 .shopFrameBody {
-  background-color: #d2d9dd;
+  background-color: #d7e5e8;
   opacity: 90%;
   border-radius: 5px;
   align-content: center;
@@ -944,7 +943,7 @@ footer {
   height: 11vh;
   text-align: center;
   font-size: 1.7vh;
-  background-color: #dee5ea;
+  background-color: #c0ccd4;
   border-radius: 5px;
   transition: transform 0.25s ease, box-shadow 0.25s ease,
     background-color 0.25s ease;
@@ -954,7 +953,7 @@ footer {
   width: 13vw;
   height: 2.25vh;
   text-align: center;
-  background-color: #ecf5f9;
+  background-color: #e6f0f5;
   border-radius: 5px;
   font-family: "Pixelify Sans";
   pointer-events: none;
@@ -1085,7 +1084,7 @@ footer {
   font-weight: bolder;
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background-color:#656a71;
+  background-color: #656a71;
   border-radius: 3px;
   padding: 0.75vw;
   width: 20vw;
