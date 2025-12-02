@@ -123,8 +123,18 @@ auth.onAuthStateChanged(async (user) => {
     window.location.href = "/index.html";
   });
   function convertToISO(dateString) {
-  if (dateString === "N/A") return "N/A";
-  const [day, month, year] = dateString.split("/");
-  return `${year}-${month}-${day}`;
+  if (!dateString || dateString === "N/A") return "N/A";
+
+  if (dateString.includes("-")) {
+    return dateString; 
+  }
+
+  if (dateString.includes("/")) {
+    const [day, month, year] = dateString.split("/");
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
+
+  return "N/A";
 }
+
 });
