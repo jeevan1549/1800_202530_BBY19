@@ -86,7 +86,7 @@ auth.onAuthStateChanged((user) => {
           taskCurrency: currency,
           taskExp: exp,
         });
-      }, 10_000);
+      }, 2500);
       pointsIntervals.set(docSnap.id, intervalId);
 
       const taskDetails = document.createElement("ul");
