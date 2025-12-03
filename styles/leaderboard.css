@@ -1,10 +1,9 @@
-
 .header-content {
   color: #8da5af;
 }
 
 .header-content:hover {
-  color:#768990 !important;
+  color: #768990 !important;
 }
 .title {
   font-size: 2rem;
@@ -49,7 +48,7 @@
   transform: translateY(-2px);
 }
 
-.score, 
+.score,
 .level {
   text-align: right;
   font-weight: 700;
