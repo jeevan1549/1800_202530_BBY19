@@ -44,7 +44,6 @@ form.addEventListener("submit", async (e) => {
 
   // Validate required fields
   if (!taskName || !taskClass || !taskDueDate) {
-    alert("Please fill out all required fields!");
     return;
   }
 
@@ -58,10 +57,8 @@ form.addEventListener("submit", async (e) => {
       createdAt: serverTimestamp(),
     });
 
-    alert("Task created successfully!");
     window.location.href = "/index.html";
   } catch (err) {
     console.error("Error adding task:", err);
-    alert("Failed to create task.");
   }
 });

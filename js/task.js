@@ -41,7 +41,7 @@ const cancelButton = document.getElementById("cancelTaskBtn");
 
 cancelButton.addEventListener("click", async (e) => {
   e.preventDefault();
-  window.location.href = "/html/index.html";
+  window.location.href = "/index.html";
 });
 
 auth.onAuthStateChanged(async (user) => {
@@ -123,18 +123,17 @@ auth.onAuthStateChanged(async (user) => {
     window.location.href = "/index.html";
   });
   function convertToISO(dateString) {
-  if (!dateString || dateString === "N/A") return "N/A";
+    if (!dateString || dateString === "N/A") return "N/A";
 
-  if (dateString.includes("-")) {
-    return dateString; 
+    if (dateString.includes("-")) {
+      return dateString;
+    }
+
+    if (dateString.includes("/")) {
+      const [day, month, year] = dateString.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    }
+
+    return "N/A";
   }
-
-  if (dateString.includes("/")) {
-    const [day, month, year] = dateString.split("/");
-    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-  }
-
-  return "N/A";
-}
-
 });

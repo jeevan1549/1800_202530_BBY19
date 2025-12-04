@@ -92,7 +92,7 @@ function createFriendCard(friendDoc) {
       await deleteDoc(doc(db, "users", user.uid, "friends", friendDoc.id));
     } catch (err) {
       console.error("Failed to delete friend:", err);
-      alert("Delete failed. See console.");
+
     }
   });
 
@@ -250,7 +250,7 @@ form.addEventListener("submit", async (ev) => {
   const friendUserId = userIdInput.value.trim();
 
   if (!friendName || !friendUserId) {
-    alert("Please enter both name and user ID.");
+
     return;
   }
 
@@ -260,7 +260,7 @@ form.addEventListener("submit", async (ev) => {
     const userSnap = await getDocs(qUser);
 
     if (userSnap.empty) {
-      alert("Invalid User ID — user not found.");
+
       return;
     }
 
@@ -272,7 +272,7 @@ form.addEventListener("submit", async (ev) => {
     const dupSnap = await getDocs(qDup);
 
     if (!dupSnap.empty) {
-      alert("This user is already in your friends list.");
+
       return;
     }
 
@@ -286,7 +286,7 @@ form.addEventListener("submit", async (ev) => {
 
   } catch (err) {
     console.error("Error adding friend:", err);
-    alert("Failed to add friend. See console for details.");
+
   }
 });
 

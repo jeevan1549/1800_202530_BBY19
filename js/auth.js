@@ -50,11 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
           userId: generateUserId(),
         });
 
-        alert("Signup successful!");
+
         signupForm.reset();
         window.location.href = "/html/accounts.html";
       } catch (err) {
-        alert(err.message);
+
         console.error(err);
       }
     });
@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         const user = userCredential.user;
 
-        alert("Login successful!");
+
         loginForm.reset();
         window.location.href = "/html/accounts.html";
       } catch (err) {
-        alert(err.message);
+
         console.error(err);
       }
     });

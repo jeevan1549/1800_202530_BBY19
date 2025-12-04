@@ -213,34 +213,16 @@ let sad = false;
 let eating = false;
 let wanting = false;
 
-const catFrames = [
-  "/images/catidle1.png",
-  "/images/catplay.png",
-];
-const catIdleFrames = [
-  "/images/catidle1.png",
-  "/images/catidle2.png",
-];
+const catFrames = ["/images/catidle1.png", "/images/catplay.png"];
+const catIdleFrames = ["/images/catidle1.png", "/images/catidle2.png"];
 const catHappyIdleFrames = [
   "/images/cathappyidle1.png",
   "/images/cathappyidle2.png",
 ];
-const catPettedFrames = [
-  "/images/catpetted1.png",
-  "/images/catpetted2.png",
-];
-const catEatIdleFrames = [
-  "/images/cateat1.png",
-  "/images/cateat2.png",
-];
-const catWantIdleFrames = [
-  "/images/catwant1.png",
-  "/images/catwant2.png",
-];
-const catSadIdleFrames = [
-  "/images/catwant1.png",
-  "/images/catwant2.png",
-];
+const catPettedFrames = ["/images/catpetted1.png", "/images/catpetted2.png"];
+const catEatIdleFrames = ["/images/cateat1.png", "/images/cateat2.png"];
+const catWantIdleFrames = ["/images/catwant1.png", "/images/catwant2.png"];
+const catSadIdleFrames = ["/images/catwant1.png", "/images/catwant2.png"];
 // Generic animation helper
 function playAnimation(frames, firstDelay, nextLoopDelay) {
   pet.src = frames[1];
@@ -655,13 +637,13 @@ shopItems.forEach((item) => {
 
   element.addEventListener("click", async () => {
     const user = auth.currentUser;
-    if (!user) return alert("You must be logged in.");
+    if (!user) return;
 
     const uRef = userRef(user.uid);
     const uSnap = await getDoc(uRef);
     const currency = uSnap.data().currency;
 
-    if (currency < item.price) return alert("Not enough currency!");
+    if (currency < item.price) return;
 
     await updateDoc(uRef, { currency: currency - item.price });
 
@@ -670,8 +652,6 @@ shopItems.forEach((item) => {
     const amount = itemSnap.exists() ? itemSnap.data().value : 0;
 
     await setDoc(itemRef, { value: amount + 1 });
-
-    alert(`${item.name} purchased!`);
   });
 });
 
