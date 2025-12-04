@@ -214,32 +214,32 @@ let eating = false;
 let wanting = false;
 
 const catFrames = [
-  "/images/petsprites/catidle1.png",
-  "/images/petsprites/catplay.png",
+  "/images/catidle1.png",
+  "/images/catplay.png",
 ];
 const catIdleFrames = [
-  "/images/petsprites/catidle1.png",
-  "/images/petsprites/catidle2.png",
+  "/images/catidle1.png",
+  "/images/catidle2.png",
 ];
 const catHappyIdleFrames = [
-  "/images/petsprites/cathappyidle1.png",
-  "/images/petsprites/cathappyidle2.png",
+  "/images/cathappyidle1.png",
+  "/images/cathappyidle2.png",
 ];
 const catPettedFrames = [
-  "/images/petsprites/catpetted1.png",
-  "/images/petsprites/catpetted2.png",
+  "/images/catpetted1.png",
+  "/images/catpetted2.png",
 ];
 const catEatIdleFrames = [
-  "/images/petsprites/cateat1.png",
-  "/images/petsprites/cateat2.png",
+  "/images/cateat1.png",
+  "/images/cateat2.png",
 ];
 const catWantIdleFrames = [
-  "/images/petsprites/catwant1.png",
-  "/images/petsprites/catwant2.png",
+  "/images/catwant1.png",
+  "/images/catwant2.png",
 ];
 const catSadIdleFrames = [
-  "/images/petsprites/catwant1.png",
-  "/images/petsprites/catwant2.png",
+  "/images/catwant1.png",
+  "/images/catwant2.png",
 ];
 // Generic animation helper
 function playAnimation(frames, firstDelay, nextLoopDelay) {
@@ -391,12 +391,12 @@ const itemButtons = [
 ];
 
 const itemImages = [
-  "/images/petsprites/fish.png",
-  "/images/petsprites/meat.png",
-  "/images/petsprites/ball.png",
-  "/images/petsprites/foodbowl.png",
-  "/images/petsprites/milkbowl.png",
-  "/images/petsprites/stuffy.png",
+  "/images/fish.png",
+  "/images/meat.png",
+  "/images/ball.png",
+  "/images/foodbowl.png",
+  "/images/milkbowl.png",
+  "/images/stuffy.png",
 ];
 
 const petItem = document.getElementById("itemImg");
@@ -596,37 +596,37 @@ const shopItems = [
     id: "foodBowl",
     name: "Food Bowl",
     price: 100,
-    img: "/images/petsprites/foodbowl.png",
+    img: "/images/foodbowl.png",
   },
   {
     id: "milkBowl",
     name: "Milk Bowl",
     price: 100,
-    img: "/images/petsprites/milkbowl.png",
+    img: "/images/milkbowl.png",
   },
   {
     id: "fish",
     name: "Fish",
     price: 300,
-    img: "/images/petsprites/fish.png",
+    img: "/images/fish.png",
   },
   {
     id: "meat",
     name: "Meat",
     price: 420,
-    img: "/images/petsprites/meat.png",
+    img: "/images/meat.png",
   },
   {
     id: "ball",
     name: "Ball",
     price: 1000,
-    img: "/images/petsprites/ball.png",
+    img: "/images/ball.png",
   },
   {
     id: "stuffy",
     name: "Stuffy",
     price: 1000,
-    img: "/images/petsprites/stuffy.png",
+    img: "/images/stuffy.png",
   },
 ];
 
@@ -640,7 +640,7 @@ itemContainer.innerHTML = shopItems
       <div class="shopItemHeader"><a>${item.name}</a></div>
       <div class="itemContainer"><img src="${item.img}" class="shop-item"/></div>
       <div class="shopItemFooter">
-        <div><img src="/images/petsprites/currency.png" class="priceIcon"/></div>
+        <div><img src="/images/currency.png" class="priceIcon"/></div>
         <div><p>${item.price}</p></div>
       </div>
     </div>
