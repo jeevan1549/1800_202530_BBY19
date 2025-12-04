@@ -1,10 +1,3 @@
-// -------------------------------------------------------------
-// src/loginSignup.js
-// -------------------------------------------------------------
-// Part of the COMP1800 Projects 1 Course (BCIT).
-// Starter code provided for students to use and adapt.
-// Manages the login/signup form behaviour and redirects.
-// -------------------------------------------------------------
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
@@ -16,13 +9,10 @@ import {
 } from './authentication.js';
 
 
-// --- Login and Signup Page ---
-// Handles toggling between Login/Signup views and form submits
-// using plain DOM APIs for simplicity and maintainability.
 
 
 function initAuthUI() {
-    // --- DOM Elements ---
+
     const alertEl = document.getElementById('authAlert');
     const loginView = document.getElementById('loginView');
     const signupView = document.getElementById('signupView');
@@ -32,36 +22,31 @@ function initAuthUI() {
     const signupForm = document.getElementById('signupForm');
     const redirectUrl = 'main.html';
 
-    // --- Helper Functions ---
-    // Toggle element visibility
     function setVisible(el, visible) {
         el.classList.toggle('d-none', !visible);
     }
 
-    // Show error message with accessibility and auto-hide
     let errorTimeout;
     function showError(msg) {
         alertEl.textContent = msg || '';
         alertEl.classList.remove('d-none');
         clearTimeout(errorTimeout);
-        errorTimeout = setTimeout(hideError, 5000); // Auto-hide after 5s
+        errorTimeout = setTimeout(hideError, 5000); 
     }
 
-    // Hide error message
+
     function hideError() {
         alertEl.classList.add('d-none');
         alertEl.textContent = '';
         clearTimeout(errorTimeout);
     }
 
-    // Enable/disable submit button for forms
+
     function setSubmitDisabled(form, disabled) {
         const submitBtn = form?.querySelector('[type="submit"]');
         if (submitBtn) submitBtn.disabled = disabled;
     }
 
-    // --- Event Listeners ---
-    // Toggle buttons
     toSignupBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         hideError();
@@ -78,7 +63,6 @@ function initAuthUI() {
         loginView?.querySelector('input')?.focus();
     });
 
-    // Login form submit
     loginForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         hideError();
@@ -100,7 +84,6 @@ function initAuthUI() {
         }
     });
 
-    // Signup form submit
     signupForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         hideError();
@@ -124,5 +107,4 @@ function initAuthUI() {
     });
 }
 
-// --- Initialize UI on DOMContentLoaded ---
 document.addEventListener('DOMContentLoaded', initAuthUI);

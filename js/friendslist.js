@@ -64,7 +64,9 @@ function createFriendCard(friendDoc) {
     <div class="friend-main">
       <div class="friend-meta">
         <div class="friend-name">${escapeHtml(friendDoc.name)}</div>
-        <div class="friend-sub" id="sub-${friendDoc.id}">ID: ${escapeHtml(friendDoc.uid)}</div>
+        <div class="friend-sub" id="sub-${friendDoc.id}">ID: ${escapeHtml(
+    friendDoc.uid
+  )}</div>
       </div>
       <div class="friend-actions">
         <button class="info-btn" title="View profile">Info</button>
@@ -78,11 +80,12 @@ function createFriendCard(friendDoc) {
       <div class="details-row"><strong>Points:</strong> <span class="u-points">—</span></div>
       <div class="details-row"><strong>Exp:</strong> <span class="u-exp">—</span></div>
       <div class="details-row"><strong>Email:</strong> <span class="u-email">—</span></div>
-      <div class="details-row"><strong>Added:</strong> <span class="u-added">${escapeHtml(formatTimestamp(friendDoc.addedAt))}</span></div>
+      <div class="details-row"><strong>Added:</strong> <span class="u-added">${escapeHtml(
+        formatTimestamp(friendDoc.addedAt)
+      )}</span></div>
     </div>
   `;
 
-  // DELETE FRIEND
   container.querySelector(".delete-btn").addEventListener("click", async () => {
     const confirmed = confirm(`Delete ${friendDoc.name} from your friends?`);
     if (!confirmed) return;
@@ -92,11 +95,9 @@ function createFriendCard(friendDoc) {
       await deleteDoc(doc(db, "users", user.uid, "friends", friendDoc.id));
     } catch (err) {
       console.error("Failed to delete friend:", err);
-      alert("Delete failed. See console.");
     }
   });
 
-  // SHOW INFO
   container.querySelector(".info-btn").addEventListener("click", async () => {
     const detailsEl = document.getElementById(`details-${friendDoc.id}`);
     const isHidden = detailsEl.getAttribute("aria-hidden") === "true";
@@ -119,7 +120,11 @@ async function fetchUserByUserId(userId) {
     return usersCache.get(userId);
   }
   try {
-    const q = query(collection(db, "users"), where("userId", "==", userId), orderBy("createdAt", "desc"));
+    const q = query(
+      collection(db, "users"),
+      where("userId", "==", userId),
+      orderBy("createdAt", "desc")
+    );
     const snap = await getDocs(q);
 
     if (snap.empty) {
@@ -130,7 +135,6 @@ async function fetchUserByUserId(userId) {
     const userData = snap.docs[0].data();
     usersCache.set(userId, userData);
     return userData;
-
   } catch (err) {
     console.error("Error fetching user profile:", err);
     usersCache.set(userId, null);
@@ -165,15 +169,14 @@ function applySearchAndSortAndRender() {
 
   let arr = [...friendsArray];
 
-  // FILTER
   if (searchTerm) {
-    arr = arr.filter((f) =>
-      (f.name && f.name.toLowerCase().includes(searchTerm)) ||
-      (f.uid && f.uid.toLowerCase().includes(searchTerm))
+    arr = arr.filter(
+      (f) =>
+        (f.name && f.name.toLowerCase().includes(searchTerm)) ||
+        (f.uid && f.uid.toLowerCase().includes(searchTerm))
     );
   }
 
-  // SORT
   if (sortMode === "name") {
     arr.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
   } else if (sortMode === "level") {
@@ -184,8 +187,12 @@ function applySearchAndSortAndRender() {
     });
   } else {
     arr.sort((a, b) => {
-      const atA = a.addedAt ? new Date(a.addedAt.toDate?.() || a.addedAt).getTime() : 0;
-      const atB = b.addedAt ? new Date(b.addedAt.toDate?.() || b.addedAt).getTime() : 0;
+      const atA = a.addedAt
+        ? new Date(a.addedAt.toDate?.() || a.addedAt).getTime()
+        : 0;
+      const atB = b.addedAt
+        ? new Date(b.addedAt.toDate?.() || b.addedAt).getTime()
+        : 0;
       return atB - atA;
     });
   }
@@ -203,10 +210,6 @@ function applySearchAndSortAndRender() {
 
   updateFriendCount();
 }
-
-/* ================================
-   REAL-TIME FRIENDS LISTENER (FIXED)
-   ================================ */
 
 let unsubscribeFriends = null;
 
@@ -232,16 +235,12 @@ onAuthStateChanged(auth, (user) => {
 
     friendsArray = newArr;
 
-    const uids = Array.from(new Set(newArr.map(f => f.uid))).slice(0, 20);
+    const uids = Array.from(new Set(newArr.map((f) => f.uid))).slice(0, 20);
     uids.forEach((u) => fetchUserByUserId(u));
 
     applySearchAndSortAndRender();
   });
 });
-
-/* ================================
-   ADD FRIEND
-   ================================ */
 
 form.addEventListener("submit", async (ev) => {
   ev.preventDefault();
@@ -250,29 +249,27 @@ form.addEventListener("submit", async (ev) => {
   const friendUserId = userIdInput.value.trim();
 
   if (!friendName || !friendUserId) {
-    alert("Please enter both name and user ID.");
     return;
   }
 
   try {
-    // Verify the friend's userId exists
-    const qUser = query(collection(db, "users"), where("userId", "==", friendUserId));
+    const qUser = query(
+      collection(db, "users"),
+      where("userId", "==", friendUserId)
+    );
     const userSnap = await getDocs(qUser);
 
     if (userSnap.empty) {
-      alert("Invalid User ID — user not found.");
       return;
     }
 
     const currentUser = auth.currentUser;
     const friendsRef = collection(db, "users", currentUser.uid, "friends");
 
-    // Prevent duplicate friend entries
     const qDup = query(friendsRef, where("uid", "==", friendUserId));
     const dupSnap = await getDocs(qDup);
 
     if (!dupSnap.empty) {
-      alert("This user is already in your friends list.");
       return;
     }
 
@@ -283,16 +280,12 @@ form.addEventListener("submit", async (ev) => {
     });
 
     form.reset();
-
   } catch (err) {
     console.error("Error adding friend:", err);
-    alert("Failed to add friend. See console for details.");
   }
 });
 
-// Search and sort
 searchInput.addEventListener("input", applySearchAndSortAndRender);
 sortSelect.addEventListener("change", applySearchAndSortAndRender);
 
-// Initial render
 applySearchAndSortAndRender();

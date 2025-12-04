@@ -58,19 +58,23 @@ body img {
 .TopNav {
   display: grid;
   grid-template-rows: auto 5vh auto;
+  z-index: 10;
 }
 .TopNav div:nth-child(1) {
   /* background-color: #dbe6eb; */
   background-color: #ddf5fc;
+  z-index: 10;
 }
 .TopNav div:nth-child(2) {
   /* background-color: #c6deea; */
   background-color: #d8eef5;
+  z-index: 10;
 }
 .TopNav div:nth-child(3) {
   /* background-color: #bcd9e8; */
   background-color: #d2e9ee;
   /*border-bottom: 1vh solid #88afc2; */
+  z-index: 10;
   border-bottom: 1vh solid rgb(173, 192, 203);
 }
 

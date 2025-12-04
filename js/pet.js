@@ -14,7 +14,6 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("User logged in:", user.email ?? "Guest");
 
-    // --- Guest check ---
     if (user.isAnonymous) {
       const mainContent = document.querySelector(".MainContent");
       if (mainContent) mainContent.style.display = "none";
@@ -42,13 +41,11 @@ onAuthStateChanged(auth, async (user) => {
     if (lockedContent) lockedContent.style.display = "grid";
     console.log("No user logged in");
 
-    // Optional: hide main content if not logged in at all
     const mainContent = document.querySelector(".MainContent");
     if (mainContent) mainContent.style.display = "none";
   }
 });
 
-// --- PET TEMPLATE ---
 const petTemplate = {
   age: 1,
   mood: 3,
@@ -57,7 +54,6 @@ const petTemplate = {
   type: "cat",
 };
 
-// --- UI ELEMENTS ---
 const playButton = document.getElementById("playButton");
 const petButton = document.getElementById("petButton");
 const feedButton = document.getElementById("feedButton");
@@ -75,13 +71,10 @@ const currencyContainer = document.getElementById("pet-currency");
 
 const lockedloginButton = document.getElementById("lockedlogin");
 
-// --- Locked Login ---
-
 lockedloginButton.addEventListener("click", function () {
   window.location.href = "login.html";
 });
 
-// --- FIRESTORE REFERENCES ---
 function userRef(uid) {
   return doc(db, "users", uid);
 }
@@ -98,7 +91,6 @@ function bagCollectionRef(uid) {
   return collection(db, "users", uid, "bag");
 }
 
-// --- CREATE USER DEFAULTS ---
 async function createUserDefaults(user) {
   const uRef = userRef(user.uid);
   const snap = await getDoc(uRef);
@@ -116,13 +108,11 @@ async function createUserDefaults(user) {
     });
   }
 
-  // Create pet if missing
   const pRef = petRef(user.uid);
   if (!(await getDoc(pRef)).exists()) {
     await setDoc(pRef, petTemplate);
   }
 
-  // Create bag items if missing
   const items = ["milkBowl", "foodBowl", "ball", "fish", "stuffy", "meat"];
   for (const item of items) {
     const iRef = bagItemRef(user.uid, item);
@@ -132,7 +122,6 @@ async function createUserDefaults(user) {
   }
 }
 
-// --- LOAD PET ---
 let age = 1;
 let catHeight = 30;
 let containerHeight = 6;
@@ -153,19 +142,16 @@ async function loadPet(uid) {
   petContainer.style.height = `${containerHeight}vh`;
 }
 
-// --- UPDATE PET ---
 async function updatePet(uid, updated) {
   await updateDoc(petRef(uid), updated);
 }
 
-// --- AUTH STATE ---
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
 
   await createUserDefaults(user);
   await loadPet(user.uid);
 
-  // --- LIVE PET UPDATES ---
   onSnapshot(petRef(user.uid), (snap) => {
     if (!snap.exists()) return;
     const data = snap.data();
@@ -180,14 +166,12 @@ onAuthStateChanged(auth, async (user) => {
     petContainer.style.height = `${containerHeight}vh`;
   });
 
-  // --- LIVE CURRENCY UPDATES ---
   onSnapshot(userRef(user.uid), (snap) => {
     const data = snap.data();
     if (currencyContainer)
       currencyContainer.textContent = data?.currency ?? 200;
   });
 
-  // --- LIVE BAG UPDATES ---
   onSnapshot(bagCollectionRef(user.uid), (snapshot) => {
     const bag = {};
     snapshot.forEach((doc) => {
@@ -197,12 +181,9 @@ onAuthStateChanged(auth, async (user) => {
   });
 });
 
-// ---
-
 let itemselected = "none";
 let foodselected = false;
 
-// --- PET ANIMATION LOOP ---
 let looping = false;
 let idleTimeout;
 
@@ -213,34 +194,16 @@ let sad = false;
 let eating = false;
 let wanting = false;
 
-const catFrames = [
-  "/images/catidle1.png",
-  "/images/catplay.png",
-];
-const catIdleFrames = [
-  "/images/catidle1.png",
-  "/images/catidle2.png",
-];
+const catFrames = ["/images/catidle1.png", "/images/catplay.png"];
+const catIdleFrames = ["/images/catidle1.png", "/images/catidle2.png"];
 const catHappyIdleFrames = [
   "/images/cathappyidle1.png",
   "/images/cathappyidle2.png",
 ];
-const catPettedFrames = [
-  "/images/catpetted1.png",
-  "/images/catpetted2.png",
-];
-const catEatIdleFrames = [
-  "/images/cateat1.png",
-  "/images/cateat2.png",
-];
-const catWantIdleFrames = [
-  "/images/catwant1.png",
-  "/images/catwant2.png",
-];
-const catSadIdleFrames = [
-  "/images/catwant1.png",
-  "/images/catwant2.png",
-];
+const catPettedFrames = ["/images/catpetted1.png", "/images/catpetted2.png"];
+const catEatIdleFrames = ["/images/cateat1.png", "/images/cateat2.png"];
+const catWantIdleFrames = ["/images/catwant1.png", "/images/catwant2.png"];
+const catSadIdleFrames = ["/images/catwant1.png", "/images/catwant2.png"];
 // Generic animation helper
 function playAnimation(frames, firstDelay, nextLoopDelay) {
   pet.src = frames[1];
@@ -321,8 +284,6 @@ setInterval(async () => {
   await updatePet(user.uid, { age });
 }, 120000);
 
-// --- INTERACTIONS ---
-
 function bounce() {
   if (bouncedeb) return;
   bouncedeb = true;
@@ -351,17 +312,15 @@ function bounce() {
   } else {
     pet.src = catSadIdleFrames[0];
 
-    // change to the next frame after 500ms
     setTimeout(() => {
       pet.src = catSadIdleFrames[1];
     }, 1000);
 
     sad = true;
 
-    // reset sad state after 3s
     setTimeout(() => {
       sad = false;
-      bouncedeb = false; // reset bounce debounce
+      bouncedeb = false;
     }, 2000);
   }
 }
@@ -410,7 +369,6 @@ function feed() {
   looping = false;
 
   if (foodselected) {
-    // Show item
     petItem.style.visibility = "visible";
     petItem.style.opacity = 1;
     const index = itemButtons.indexOf(itemselected);
@@ -423,11 +381,9 @@ function feed() {
 
     setTimeout(() => {
       (async () => {
-        // Get current user
         const currentUser = auth.currentUser;
         if (!currentUser) return;
 
-        // Handle different food items
         if (itemselected === "milk-bowl-button") {
           hunger += 200;
           heart += 100;
@@ -517,7 +473,6 @@ playButton.addEventListener("click", bounce);
 petButton.addEventListener("click", petted);
 feedButton.addEventListener("click", feed);
 
-// --- SHOP & BAG UI ---
 const petstats = document.getElementsByClassName("petStatsAndCurrency")[0];
 const currencyBox = petstats.querySelector(".currencyBox");
 const ageContainer = document.getElementById("ageContainer");
@@ -564,7 +519,6 @@ bagButton.addEventListener("click", () => {
   }
 });
 
-// --- RENDER BAG ---
 const bagContainer = document.getElementById("bagContainer");
 
 function renderBag(bag) {
@@ -590,7 +544,6 @@ function renderBag(bag) {
   `;
 }
 
-// --- SHOP ITEM BUYING ---
 const shopItems = [
   {
     id: "foodBowl",
@@ -632,7 +585,6 @@ const shopItems = [
 
 const itemContainer = document.getElementById("itemContainer");
 
-// Render shop items
 itemContainer.innerHTML = shopItems
   .map(
     (item) => `
@@ -648,20 +600,19 @@ itemContainer.innerHTML = shopItems
   )
   .join("");
 
-// Add click listeners dynamically
 shopItems.forEach((item) => {
   const element = document.getElementById(item.id);
   if (!element) return;
 
   element.addEventListener("click", async () => {
     const user = auth.currentUser;
-    if (!user) return alert("You must be logged in.");
+    if (!user) return;
 
     const uRef = userRef(user.uid);
     const uSnap = await getDoc(uRef);
     const currency = uSnap.data().currency;
 
-    if (currency < item.price) return alert("Not enough currency!");
+    if (currency < item.price) return;
 
     await updateDoc(uRef, { currency: currency - item.price });
 
@@ -670,19 +621,15 @@ shopItems.forEach((item) => {
     const amount = itemSnap.exists() ? itemSnap.data().value : 0;
 
     await setDoc(itemRef, { value: amount + 1 });
-
-    alert(`${item.name} purchased!`);
   });
 });
-
-// Hunger System
 
 let hunger = localStorage.getItem("hunger");
 
 if (hunger !== null) {
   hunger = Number(hunger);
 } else {
-  hunger = 2000; // start full at max 300
+  hunger = 2000;
 }
 
 localStorage.setItem("hunger", hunger);
@@ -693,12 +640,10 @@ const hungerBars = [
   document.getElementById("hunger3"),
 ];
 
-// Each bar represents 100 points
 const pointsPerBar = 500;
 
 setInterval(() => {
   hungerBars.forEach((bar, index) => {
-    // show bar if hunger >= (index + 1) * pointsPerBar
     if (hunger >= (index + 1) * pointsPerBar) {
       bar.style.visibility = "visible";
     } else {
@@ -714,16 +659,14 @@ setInterval(() => {
   if (hunger > 2000) {
     hunger = 2000;
   }
-}, 500); // every .5 seconds
-
-// Hearts System
+}, 500);
 
 let heart = localStorage.getItem("heart");
 
 if (heart !== null) {
   heart = Number(heart);
 } else {
-  heart = 1000; // start full at max 300
+  heart = 1000;
 }
 
 localStorage.setItem("heart", heart);
@@ -734,12 +677,10 @@ const heartBars = [
   document.getElementById("heart3"),
 ];
 
-// Each bar represents 100 points
 const pointsPerBar2 = 250;
 
 setInterval(() => {
   heartBars.forEach((bar, index) => {
-    // show bar if hunger >= (index + 1) * pointsPerBar
     if (heart >= (index + 1) * pointsPerBar2) {
       bar.style.visibility = "visible";
     } else {
@@ -755,16 +696,14 @@ setInterval(() => {
   if (heart > 1000) {
     heart = 1000;
   }
-}, 500); // every .5 seconds
-
-// Energy System
+}, 500);
 
 let energy = localStorage.getItem("energy");
 
 if (energy !== null) {
   energy = Number(energy);
 } else {
-  energy = 2000; // start full at max 300
+  energy = 2000;
 }
 
 localStorage.setItem("energy", energy);
@@ -775,12 +714,10 @@ const energyBars = [
   document.getElementById("energy3"),
 ];
 
-// Each bar represents 100 points
 const pointsPerBar3 = 500;
 
 setInterval(() => {
   energyBars.forEach((bar, index) => {
-    // show bar if hunger >= (index + 1) * pointsPerBar
     if (energy >= (index + 1) * pointsPerBar3) {
       bar.style.visibility = "visible";
     } else {
@@ -796,10 +733,8 @@ setInterval(() => {
   if (energy > 2000) {
     energy = 2000;
   }
-}, 500); // every .5 seconds
+}, 500);
 
-//--- Item Selection ---//
-// All buttons
 const buttons = [
   "milk-bowl-button",
   "food-bowl-button",
@@ -809,7 +744,6 @@ const buttons = [
   "stuffy-button",
 ];
 
-// Food buttons
 const foodButtons = [
   "milk-bowl-button",
   "food-bowl-button",
@@ -822,7 +756,6 @@ document.addEventListener("click", async function (e) {
     return;
   }
 
-  // Ignore clicks outside of buttons
   if (!buttons.includes(e.target.id)) return;
 
   const currentUser = auth.currentUser;
@@ -830,22 +763,19 @@ document.addEventListener("click", async function (e) {
 
   const clickedId = e.target.id;
 
-  // Convert button id to bag document id (milkBowl, foodBowl, etc.)
   const bagDocId = clickedId
     .replace("-button", "")
     .replace(/-(.)/g, (_, c) => c.toUpperCase());
 
-  // Check the user's bag for quantity
   const userBagRef = doc(db, "users", currentUser.uid, "bag", bagDocId);
   const bagSnap = await getDoc(userBagRef);
   const itemAmount = bagSnap?.data()?.value ?? 0;
 
   if (itemAmount <= 0) {
     console.log(`${clickedId} is unavailable!`);
-    return; // exit early, cannot select this item
+    return;
   }
 
-  // If clicking the same button again → deselect
   if (itemselected === clickedId) {
     itemselected = "none";
     foodselected = false;
@@ -853,22 +783,18 @@ document.addEventListener("click", async function (e) {
     return;
   }
 
-  // Select the new button
   itemselected = clickedId;
 
-  // Check if it's a food button
   foodselected = foodButtons.includes(itemselected);
 
-  // Reset all buttons to grey
   resetButtonColors();
 
-  // Set clicked button to green
   e.target.style.backgroundColor = "#6cde9f";
 });
 
 function resetButtonColors() {
   buttons.forEach((id) => {
     const el = document.getElementById(id);
-    if (el) el.style.backgroundColor = "#272727ff"; // grey
+    if (el) el.style.backgroundColor = "#272727ff";
   });
 }

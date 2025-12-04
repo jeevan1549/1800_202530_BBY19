@@ -149,7 +149,7 @@ auth.onAuthStateChanged((user) => {
             taskDiv.classList.add("remove");
           } catch (err) {
             console.error("Error archiving task:", err);
-            alert("There was an issue archiving your task.");
+
           }
         });
 

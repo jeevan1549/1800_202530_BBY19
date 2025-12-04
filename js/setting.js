@@ -1,5 +1,9 @@
 import { auth, db } from "./firebaseConfig.js";
-import { onAuthStateChanged, sendPasswordResetEmail, signOut } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 const darkToggle = document.getElementById("darkModeToggle");
@@ -39,10 +43,7 @@ onAuthStateChanged(auth, async (user) => {
   viewLoginsBtn.addEventListener("click", async () => {
     recentLoginsDiv.innerHTML = "Loading...";
 
-    const q = query(
-      collection(db, "logins"),
-      where("userId", "==", user.uid)
-    );
+    const q = query(collection(db, "logins"), where("userId", "==", user.uid));
 
     const querySnapshot = await getDocs(q);
     recentLoginsDiv.innerHTML = "";
@@ -55,9 +56,7 @@ onAuthStateChanged(auth, async (user) => {
 
   resetPasswordBtn.addEventListener("click", () => {
     sendPasswordResetEmail(auth, user.email)
-      .then(() => {
-        alert("Password reset email sent!");
-      })
+      .then(() => {})
       .catch((error) => {
         console.error(error);
       });

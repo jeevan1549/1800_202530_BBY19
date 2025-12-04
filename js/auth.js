@@ -1,4 +1,3 @@
-// src/auth.js
 import { auth, db } from "./firebaseConfig.js";
 import {
   createUserWithEmailAndPassword,
@@ -6,12 +5,9 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore"; // added updateDoc & getDoc
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // -------------------------
-  // SIGNUP LOGIC
-  // -------------------------
   const signupForm = document.getElementById("signup-form");
   if (signupForm) {
     signupForm.addEventListener("submit", async (e) => {
@@ -22,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const username = signupForm["username"].value;
 
       try {
-        // Create user in Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           email,
@@ -38,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           return id;
         }
-        // Store username, email, points, exp, and level in Firestore
+
         await setDoc(doc(db, "users", user.uid), {
           username: username,
           email: email,
@@ -50,19 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
           userId: generateUserId(),
         });
 
-        alert("Signup successful!");
         signupForm.reset();
         window.location.href = "/html/accounts.html";
       } catch (err) {
-        alert(err.message);
         console.error(err);
       }
     });
   }
 
-  // -------------------------
-  // LOGIN LOGIC
-  // -------------------------
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
@@ -79,20 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         const user = userCredential.user;
 
-        alert("Login successful!");
         loginForm.reset();
         window.location.href = "/html/accounts.html";
       } catch (err) {
-        alert(err.message);
         console.error(err);
       }
     });
   }
 });
 
-// -------------------------
-// OPTIONAL: AUTH STATE
-// -------------------------
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     console.log("User logged in:", user.email);
