@@ -1,4 +1,4 @@
-// src/accounts.js
+
 import { auth, db } from "./firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import {

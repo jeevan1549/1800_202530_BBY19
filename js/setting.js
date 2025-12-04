@@ -56,7 +56,8 @@ onAuthStateChanged(auth, async (user) => {
   resetPasswordBtn.addEventListener("click", () => {
     sendPasswordResetEmail(auth, user.email)
       .then(() => {
-        alert("Password reset email sent!");
+
+      
       })
       .catch((error) => {
         console.error(error);
