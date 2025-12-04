@@ -1,4 +1,3 @@
-// task.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
 import {
   getFirestore,
@@ -7,7 +6,6 @@ import {
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
 
-// Initialize Firebase from your .env variables
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -30,7 +28,6 @@ form.addEventListener("submit", async (e) => {
   const taskDueDate = document.getElementById("taskDueDate").value.trim();
   const taskDesc = document.getElementById("taskDesc").value.trim();
 
-  // Task time
   const timeOptions = document.getElementsByName("timeOption");
   let taskTime = "";
   timeOptions.forEach((option) => {
@@ -42,7 +39,6 @@ form.addEventListener("submit", async (e) => {
     }
   });
 
-  // Validate required fields
   if (!taskName || !taskClass || !taskDueDate) {
     return;
   }
