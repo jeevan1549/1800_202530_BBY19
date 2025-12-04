@@ -19,7 +19,17 @@ export default defineConfig({
                 signup: resolve(__dirname, 'html/signup.html'),
                 task1: resolve(__dirname, 'html/task1.html'),
                 todolist: resolve(__dirname, 'html/todolist.html'),
-
+                catidle1: resolve(__dirname, 'images/catidle1.png'),
+                catidle2: resolve(__dirname, 'images/catidle2.png'),
+                cathappyidle1: resolve(__dirname, 'images/cathappyidle1.png'),
+                cathappyidle2: resolve(__dirname, 'images/cathappyidle2.png'),
+                catpetted1: resolve(__dirname, 'images/catpetted1.png'),
+                catpetted2: resolve(__dirname, 'images/catpetted2.png'),
+                catwant1: resolve(__dirname, 'images/catwant1.png'),
+                catwant2: resolve(__dirname, 'images/catwant2.png'),
+                cateat1: resolve(__dirname, 'images/cateat1.png'),
+                cateat2: resolve(__dirname, 'images/cateat2.png'),
+                catplay: resolve(__dirname, 'images/catplay.png'),
 
             }
         }
