@@ -1,4 +1,4 @@
-# Elmo Hikes
+# Swiftask
 
 
 ## Overview
@@ -11,9 +11,11 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Features
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
+- Create, edit and complete tasks
+- Compete with friends on the leaderboard
+- Play with, feed and pet your cat 
+- View your tasks on a calendar
+- View friends, points, level and user ID in profile
 - Responsive design for desktop and mobile
 
 ---
@@ -32,10 +34,18 @@ Example:
 
 ## Usage
 
-1. Open your browser and visit `http://localhost:3000`.
-2. Browse the list of hiking trails displayed on the main page.
-3. Click the heart icon (or similar) to mark a trail as a favorite.
-4. View your favorite hikes in the favorites section.
+1. Open your browser and visit `https://nineteen1800.web.app/`.
+2. Browse the list of tasks in the main page.
+3. Click the plus button at the bottom of the screen to add a task.
+4. Click the edit button to change details about your task.
+5. Click the done button to move your task to archive.
+6. Click the leaderboard button on the bottom right to view your status on the leaderboard.
+7. Click the button on the bottom middle to view your pet.
+8. Click the store button near the top on the left to buy food/toys for your pet.
+9. Click the bag button below the store button to use the food/toys purchased.
+10. Click the three buttons below the pet to interact with it.
+11. View upcoming deadlines in the calendar.
+12. View profile details in profile page.
 
 ---
 
@@ -44,12 +54,60 @@ Example:
 
 ```
 elmo-hikes/
-├── src/
-│   ├── main.js
-├── styles/
-│   └── style.css
-├── public/
+├── css/
+│   └── faqpage.css
+│   ├── style.css
+├── html/
+│   └── accounts.html
+│   ├── archive.html
+│   ├── calendar.html
+│   ├── faqpage.html
+│   ├── friendlist.html
+│   ├── leaderboard.html
+│   ├── login.html
+│   ├── pet1.html
+│   ├── settings.html
+│   ├── signup.html
+│   ├── skeleton.html
+│   ├── task1.html
+│   ├── todolist.html
 ├── images/
+│   └── petsprites/
+│   ├──add.png
+│   ├── archive.png
+│   ├──back.png
+│   ├──background.png
+│   ├──calendar.png
+│   ├──chevron.png
+│   ├──fire.png
+│   ├──half-circle.png
+│   ├──halfcircle2.png
+│   ├──Icon.ico
+│   ├──information.png
+│   ├──leaderboard.png
+│   ├──left-chevron.png
+│   ├──lock.png
+│   ├──pet.png
+│   ├──plainbg.png
+│   ├──position-ranking-board-icon-of-leaderboard-vector.png
+│   ├──setting.png
+│   ├──task.png
+│   ├──user.png
+├── js/
+│   └──accounts.js
+│   ├──archive.js
+│   ├──auth.js
+│   ├──calendar.js
+│   ├──firebaseConfig.js
+│   ├──friendslist.js
+│   ├──indexTasks.js
+│   ├──leaderboard.js
+│   ├──loginSignup.js
+│   ├──main.js
+│   ├──pet.js
+│   ├──setting.js
+│   ├──task.js
+│   ├──todolist.js
 ├── index.html
 ├── package.json
 ├── README.md
@@ -68,7 +126,7 @@ elmo-hikes/
 ## Acknowledgments
 
 - Trail data and images are for demonstration purposes only.
-- Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
+- 
 - Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
 
 ---
@@ -78,13 +136,12 @@ elmo-hikes/
 ### Limitations
 
 - Limited trail details (e.g., no live trail conditions).
-- Accessibility features can be further improved.
+- Settings does not have many options for customization.
 
 ### Future Work
 
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
+- Implement different pets.
+- Make a friends leaderboard as well as the universal leaderboard.
 
 ---
 
