@@ -27,24 +27,39 @@
   align-items: center;
 }
 
+#addFriendButton {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
 #friendUserId {
-  font-size: large;
+  font-size: 1.25vh;
+  width: 28vw;
 }
 
 #friendName {
-  font-size: large;
+  font-size: 1.25vh;
+  width: 28vw;
 }
+
+#addFriendButton {
+  font-size: 1.25vh;
+  width: 15vw;
+}
+
 #friendsSearch {
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
   min-width: 200px;
+  font-size: 1.5vh;
 }
 
 #friendsSort {
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
+  font-size: 1.5vh;
 }
 
 .friend-form {

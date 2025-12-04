@@ -57,6 +57,7 @@ body {
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   font-weight: 600;
+  font-size: 2vh;
   color: #555;
   margin-bottom: 0.5rem;
 }
@@ -100,7 +101,7 @@ body {
 }
 .day {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2vh;
 }
 
 .date {

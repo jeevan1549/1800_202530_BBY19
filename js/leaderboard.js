@@ -55,3 +55,4 @@ function renderLeaderboard(users) {
 }
 
 startLeaderboard();
+
