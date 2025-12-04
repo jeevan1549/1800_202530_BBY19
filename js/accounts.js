@@ -14,13 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const pointsElement = document.getElementById("Points");
   const levelElement = document.getElementById("Level");
   const friendsElement = document.getElementById("Friends");
-
   const friendCodeElement = document.getElementById("friend-code");
+
+  const addFriendElements = document.getElementsByClassName("addFriend");
 
   const loginContainer = document.querySelector(".login-and-signup");
   const loginLink = loginContainer.querySelector("a");
-
-
 
   let currentUserId = null;
   let points = 0;
@@ -36,9 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       currentUserId = user.uid;
-
-      
       loginLink.style.display = "none";
+
+      for (const el of addFriendElements) {
+        el.style.display = "fixed";
+      }
 
       try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
@@ -73,9 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       currentUserId = null;
-
-
       loginLink.style.display = "inline-block";
+
+      for (const el of addFriendElements) {
+        el.style.display = "none";
+      }
 
       usernameElement.textContent = "Guest";
       points = 0;
