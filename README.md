@@ -2,7 +2,7 @@
 
 
 ## Overview
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
+Our team BBY19 is designing an app called Swiftask, which is designed to motivate students by using techniques that match their interests from friendly competitions and to-do lists to progress tracking and more.
 
 Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
 
@@ -23,7 +23,6 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Technologies Used
 
-Example:
 - **Frontend**: HTML, CSS, JavaScript
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase for hosting
@@ -53,64 +52,122 @@ Example:
 ## Project Structure
 
 ```
-elmo-hikes/
+Swiftask/
+├── .firebase/
+├── .vscode/
+│
 ├── css/
-│   └── faqpage.css
-│   ├── style.css
+│   ├── faqpage.css
+│   └── style.css
+│
 ├── html/
-│   └── accounts.html
+│   ├── accounts.html
 │   ├── archive.html
-│   ├── calendar.html
+│   ├── calender.html
 │   ├── faqpage.html
-│   ├── friendlist.html
-│   ├── leaderboard.html
+│   ├── friendslist.html
+│   ├── leaderboard1.html
 │   ├── login.html
 │   ├── pet1.html
 │   ├── settings.html
 │   ├── signup.html
 │   ├── skeleton.html
 │   ├── task1.html
-│   ├── todolist.html
+│   └── todolist.html
+│
 ├── images/
-│   └── petsprites/
-│   ├──add.png
+│   ├── add.png
 │   ├── archive.png
-│   ├──back.png
-│   ├──background.png
-│   ├──calendar.png
-│   ├──chevron.png
-│   ├──fire.png
-│   ├──half-circle.png
-│   ├──halfcircle2.png
-│   ├──Icon.ico
-│   ├──information.png
-│   ├──leaderboard.png
-│   ├──left-chevron.png
-│   ├──lock.png
-│   ├──pet.png
-│   ├──plainbg.png
-│   ├──position-ranking-board-icon-of-leaderboard-vector.png
-│   ├──setting.png
-│   ├──task.png
-│   ├──user.png
+│   ├── back.png
+│   ├── background.png
+│   ├── bagicon.png
+│   ├── ball.png
+│   ├── calendar.png
+│   ├── cateat1.png
+│   ├── cateat2.png
+│   ├── cathappyidle1.png
+│   ├── cathappyidle2.png
+│   ├── catidle1.png
+│   ├── catidle2.png
+│   ├── catpetted1.png
+│   ├── catpetted2.png
+│   ├── catplay.png
+│   ├── catwant1.png
+│   ├── catwant2.png
+│   ├── chevron.png
+│   ├── cookedmeat.png
+│   ├── currency.png
+│   ├── emptybowl.png
+│   ├── fire.png
+│   ├── fish.png
+│   ├── foodbowl.png
+│   ├── fullenergy.png
+│   ├── fullheart.png
+│   ├── half-circle.png
+│   ├── half-circle2.png
+│   ├── half-circle2old.png
+│   ├── hunger2.png
+│   ├── Icon.ico
+│   ├── information.png
+│   ├── leaderboard.png
+│   ├── left-chevron.png
+│   ├── lock.png
+│   ├── meat.png
+│   ├── milkbowl.png
+│   ├── pet.png
+│   ├── plainbg.png
+│   ├── plainbg2.png
+│   ├── position-ranking-board-icon-of-leaderboard-vector.jpg
+│   ├── setting.png
+│   ├── shopicon.png
+│   ├── stuffy.png
+│   ├── task.png
+│   └── user.png
+│
 ├── js/
-│   └──accounts.js
-│   ├──archive.js
-│   ├──auth.js
-│   ├──calendar.js
-│   ├──firebaseConfig.js
-│   ├──friendslist.js
-│   ├──indexTasks.js
-│   ├──leaderboard.js
-│   ├──loginSignup.js
-│   ├──main.js
-│   ├──pet.js
-│   ├──setting.js
-│   ├──task.js
-│   ├──todolist.js
+│   ├── accounts.js
+│   ├── archive.js
+│   ├── auth.js
+│   ├── calender.js
+│   ├── firebaseConfig.js
+│   ├── friendslist.js
+│   ├── indexTasks.js
+│   ├── leaderboard.js
+│   ├── loginSignup.js
+│   ├── pet.js
+│   ├── setting.js
+│   ├── task.js
+│   └── todolist.js
+│
+├── node_modules/
+│
+├── points_server/
+│
+├── public/
+│
+├── src/
+│
+├── styles/
+│   ├── archive.css
+│   ├── calender.css
+│   ├── friendslist.css
+│   ├── leaderboard.css
+│   ├── login.css
+│   ├── settings.css
+│   ├── signup.css
+│   └── style.css
+│
+├── .env
+├── .firebaserc
+├── .gitignore
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rulkes
 ├── index.html
+├── package-lock.json
 ├── package.json
 ├── README.md
+├── vite.config.js
 ```
 
 ---
@@ -125,9 +182,8 @@ elmo-hikes/
 
 ## Acknowledgments
 
-- Trail data and images are for demonstration purposes only.
-- 
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+- Used ChatGPT for code suggestions, debugging purposes and explanations.
+- Icons sourced from [Flaticon]([https://fontawesome.com/](https://www.flaticon.com/icons))).
 
 ---
 
@@ -135,13 +191,14 @@ elmo-hikes/
 ## Limitations and Future Work
 ### Limitations
 
-- Limited trail details (e.g., no live trail conditions).
+- Leaderboard doesn't have a podium.
 - Settings does not have many options for customization.
 
 ### Future Work
 
 - Implement different pets.
 - Make a friends leaderboard as well as the universal leaderboard.
+- Group todo list 
 
 ---
 
